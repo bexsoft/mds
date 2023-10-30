@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import React, { FC } from "react";
+import React, {FC} from "react";
 import styled from "styled-components";
-import { TableComponentsExtraProps } from "./Table.types";
+import {TableComponentsExtraProps} from "./Table.types";
 import get from "lodash/get";
-import { lightColors } from "../../global/themes";
+import {lightColors} from "../../global/themes";
 
-const TableCellMain = styled.td<TableComponentsExtraProps>(({ theme, sx }) => ({
+const TableCellMain = styled.td<TableComponentsExtraProps>(({theme, sx}) => ({
   fontFamily: "'Inter',sans-serif",
   fontWeight: 400,
   fontSize: 12,
@@ -28,9 +28,9 @@ const TableCellMain = styled.td<TableComponentsExtraProps>(({ theme, sx }) => ({
   display: "table-cell",
   verticalAlign: "inherit",
   borderBottom: `1px solid ${get(
-    theme,
-    "borderColor",
-    lightColors.borderColor,
+      theme,
+      "borderColor",
+      lightColors.borderColor,
   )}`,
   textAlign: "left",
   padding: 16,
@@ -39,13 +39,13 @@ const TableCellMain = styled.td<TableComponentsExtraProps>(({ theme, sx }) => ({
 }));
 
 const TableCell: FC<
-  TableComponentsExtraProps &
-    React.TableHTMLAttributes<HTMLTableDataCellElement>
-> = ({ children, sx, ...restProps }) => {
+    TableComponentsExtraProps &
+    React.TdHTMLAttributes<HTMLTableDataCellElement>>
+    = ({children, sx, ...restProps}) => {
   return (
-    <TableCellMain sx={sx} {...restProps}>
-      {children}
-    </TableCellMain>
+      <TableCellMain sx={sx} {...restProps}>
+        {children}
+      </TableCellMain>
   );
 };
 
