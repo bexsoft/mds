@@ -293,6 +293,7 @@ interface ThemeDefinitionProps {
   linkColor?: string;
   boxBackground: string;
   mutedText: string;
+  secondaryText: string;
   signalColors?: SignalColorsThemeProps;
   buttons?: {
     regular?: ButtonThemeStatesProps;
@@ -1043,10 +1044,14 @@ interface TabsProps {
   useRouteTabs?: boolean;
   routes?: React__default.ReactElement | null;
   onTabClick: (selectedItem: string) => void;
+  optionsInitialComponent?: React__default.ReactNode;
+  optionsEndComponent?: React__default.ReactNode;
+  horizontalBarBackground?: boolean;
   sx?: CSSObject;
 }
 interface TabsContainerProps {
   horizontal: boolean;
+  horizontalBarBackground: boolean;
   sx?: CSSObject;
 }
 interface TabButtonProps {
@@ -1144,6 +1149,8 @@ interface MainProgressProps {
 interface CommonProgressBar {
   sx?: CSSObject;
   color?: "blue" | "red" | "green" | "orange" | "grey";
+  barHeight?: number;
+  transparentBG?: boolean;
 }
 type ProgressBarProps = MainProgressProps & CommonProgressBar;
 
@@ -2319,6 +2326,39 @@ declare const FileNonType: (
   props: SVGProps<SVGSVGElement>,
 ) => React$1.JSX.Element;
 
+interface TableComponentsExtraProps {
+  sx?: CSSProperties;
+}
+
+declare const Table: FC<
+  TableComponentsExtraProps &
+    React__default.TableHTMLAttributes<HTMLTableElement>
+>;
+
+declare const TableBody: FC<
+  TableComponentsExtraProps &
+    React__default.HTMLAttributes<HTMLTableSectionElement>
+>;
+
+declare const TableCell: FC<
+  TableComponentsExtraProps &
+    React__default.TdHTMLAttributes<HTMLTableDataCellElement>
+>;
+
+declare const TableHead: FC<
+  TableComponentsExtraProps &
+    React__default.HTMLAttributes<HTMLTableSectionElement>
+>;
+
+declare const TableHeadCell: FC<
+  TableComponentsExtraProps &
+    React__default.ThHTMLAttributes<HTMLTableHeaderCellElement>
+>;
+
+declare const TableRow: FC<
+  TableComponentsExtraProps & React__default.HTMLAttributes<HTMLTableRowElement>
+>;
+
 export {
   AGPLV3DarkLogo,
   AGPLV3LightLogo,
@@ -2687,6 +2727,12 @@ export {
   TabItemProps,
   TabPanelProps,
   TabProps,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
   Tabs,
   TabsContainerProps,
   TabsProps,

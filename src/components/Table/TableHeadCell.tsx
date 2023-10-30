@@ -41,8 +41,7 @@ const TableHeadCellMain = styled.th<TableComponentsExtraProps>(
 );
 
 const TableHeadCell: FC<
-  TableComponentsExtraProps &
-    React.ThHTMLAttributes<HTMLTableHeaderCellElement>
+  TableComponentsExtraProps & React.ThHTMLAttributes<HTMLTableHeaderCellElement>
 > = ({ children, sx, ...restProps }) => {
   return (
     <TableHeadCellMain sx={sx} {...restProps}>
