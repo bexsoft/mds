@@ -328,10 +328,7 @@ const DateTimeInput: FC<DateTimeInputProps> = ({
   };
 
   return (
-    <InputContainer
-      sx={sx}
-      className={`inputItem ${className}`}
-    >
+    <InputContainer sx={sx} className={`inputItem ${className}`}>
       {label !== "" && (
         <InputLabel
           htmlFor={id}
