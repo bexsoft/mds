@@ -241,6 +241,10 @@ const GlobalStyles = createGlobalStyle`
     .muted {
         color: ${get(theme, "mutedText", lightColors.mutedText)};
     }
+    
+    .error {
+        color: ${get(theme, "signalColors.danger", lightColors.mainRed)};
+    }
     `;
     }}
 `;

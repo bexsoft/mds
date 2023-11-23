@@ -153,6 +153,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
                     currentValue === selector.value ? "checked" : ""
                   }`}
                 >
+                  {selector.icon}
                   {selector.label}
                 </label>
               </RadioContainer>
