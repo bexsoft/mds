@@ -92,7 +92,7 @@ const TableActionButton = <T,>({
           ? (e) => {
               e.stopPropagation();
               if (!disabled) {
-                onClick(valueClick as string);
+                onClick(valueClick as string | T);
               } else {
                 e.preventDefault();
               }

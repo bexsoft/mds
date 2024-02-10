@@ -119,7 +119,7 @@ export interface DataTableWrapperProps extends HTMLAttributes<HTMLDivElement> {
 export interface IActionButton<T> {
   tooltip?: string;
   type: PredefinedActionTypes | React.ReactNode;
-  onClick?: (id: string) => void;
+  onClick?: (id: T | string) => void;
   valueToSend: T;
   selected: boolean;
   sendOnlyId?: boolean;
