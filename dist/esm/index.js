@@ -22201,7 +22201,7 @@ var Em = function (e) {
       c = e.disabled,
       d = void 0 !== c && c,
       u = e.tooltip,
-      p = l ? i[o] : i,
+      p = l ? Ha(i, o, "") : i,
       m =
         ((n = a),
         vm.includes(n)
@@ -23024,7 +23024,7 @@ var zm = ut(function (e, t, n) {
                         onRowClick: function (e) {
                           !(function (e) {
                             if (ee) {
-                              var t = ee.sendOnlyId && m ? e[J] : e,
+                              var t = ee.sendOnlyId && m ? Ha(e, J, "") : e,
                                 n = !1;
                               ee.isDisabled &&
                                 (n =
@@ -23097,6 +23097,7 @@ var zm = ut(function (e, t, n) {
                             });
                           },
                         }),
+                      Sm(i, h, E, b, v, p || [], J, _, A, H, ie || "", oe),
                       v &&
                         t.createElement(Bp, {
                           dataKey: "column-options",
@@ -23149,7 +23150,6 @@ var zm = ut(function (e, t, n) {
                             })(r || [], n, a, J);
                           },
                         }),
-                      Sm(i, h, E, b, v, p || [], J, _, A, H, ie || "", oe),
                     );
                   });
                 },

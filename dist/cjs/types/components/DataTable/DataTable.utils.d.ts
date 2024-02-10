@@ -3,7 +3,7 @@ import { SortDirectionType } from "react-virtualized";
 import { IColumns, ISortConfig, ItemActions } from "./DataTable.types";
 export declare const selectWidth = 45;
 export declare const generateColumnsMap: (
-  columns: IColumns[],
+  columns: IColumns<any>[],
   containerWidth: number,
   actionsWidth: number,
   hasSelect: boolean,
@@ -17,7 +17,7 @@ export declare const generateColumnsMap: (
   currentSortDirection: "ASC" | "DESC" | undefined,
 ) => (React.JSX.Element | null)[];
 export declare const elementActions: (
-  actions: ItemActions[],
+  actions: ItemActions<any>[],
   valueToSend: any,
   selected: boolean,
   idField: string,

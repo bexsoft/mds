@@ -14317,7 +14317,7 @@ var Oc = function (e) {
       c = e.disabled,
       d = void 0 !== c && c,
       u = e.tooltip,
-      p = s ? r[i] : r,
+      p = s ? Ia(r, i, "") : r,
       m =
         ((t = n),
         Mc.includes(t)
@@ -58277,7 +58277,7 @@ var Gk = Fk,
                         onRowClick: function (e) {
                           !(function (e) {
                             if (J) {
-                              var t = J.sendOnlyId && p ? e[Q] : e,
+                              var t = J.sendOnlyId && p ? Ia(e, Q, "") : e,
                                 n = !1;
                               J.isDisabled &&
                                 (n =
@@ -58354,6 +58354,7 @@ var Gk = Fk,
                             });
                           },
                         }),
+                      Fc(a, f, E, b, v, u || [], Q, T, C, F, re || "", oe),
                       v &&
                         o.default.createElement(Qs, {
                           dataKey: "column-options",
@@ -58406,7 +58407,6 @@ var Gk = Fk,
                             })(n || [], t, a, Q);
                           },
                         }),
-                      Fc(a, f, E, b, v, u || [], Q, T, C, F, re || "", oe),
                     );
                   });
                 },
