@@ -17,6 +17,8 @@
 interface IVarPropVals {
   lightMode?: string;
   darkMode?: string;
+  lightModeID: string;
+  darkModeID: string;
 }
 
 interface IVarsCollection {
@@ -50,8 +52,8 @@ function figmaColorToHex(color: RGB | RGBA): string {
 
   const rgb = RGBToWebRGB(color);
   hex += ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2])
-      .toString(16)
-      .slice(1);
+    .toString(16)
+    .slice(1);
 
   if (rgb[3] !== undefined) {
     const a = Math.round(rgb[3] * 255).toString(16);
@@ -65,19 +67,19 @@ function figmaColorToHex(color: RGB | RGBA): string {
 }
 
 const lookForFilteredColorID = (
-    idColorToLookUp: string,
-    modeID: string,
+  idColorToLookUp: string,
+  modeID: string,
 ): string => {
   const findColor = localVariables.find(
-      (colorElm) => colorElm.id === idColorToLookUp,
+    (colorElm) => colorElm.id === idColorToLookUp,
   );
 
   if (findColor) {
     // This is an anidate color
     const valuesByMode = findColor.valuesByMode[modeID] as
-        | RGB
-        | RGBA
-        | VariableAlias;
+      | RGB
+      | RGBA
+      | VariableAlias;
 
     if ("type" in valuesByMode) {
       return lookForFilteredColorID(valuesByMode.id, modeID);
@@ -95,28 +97,32 @@ const getVarCollections = async () => {
 };
 
 // Runs this code if the plugin is run in Figma
-if (figma.editorType === 'figma') {
+if (figma.editorType === "figma") {
   figma.showUI(__html__);
 
-  figma.ui.onmessage =  (msg: {type: string, count: number}) => {
+  figma.ui.onmessage = (msg: { type: string; count: number }) => {
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.
-    switch(msg.type) {
+    switch (msg.type) {
       case "fetch-vars":
-        getVarCollections().then((vars) => {
-          localVariables = vars;
-          figma.notify("Project var Collections loaded.");
-          figma.ui.postMessage({type: "vars-loaded"})
-        }).catch(() => {
-          figma.notify("Error while getting collection", {
-            error: true,
-            timeout: 5000,
+        getVarCollections()
+          .then((vars) => {
+            localVariables = vars;
+            figma.notify("Project var Collections loaded.");
+            figma.ui.postMessage({ type: "vars-loaded" });
+          })
+          .catch(() => {
+            figma.notify("Error while getting collection", {
+              error: true,
+              timeout: 5000,
+            });
           });
-        })
         break;
       case "get-colors":
         // Filter colors only.
-        const filterColors = localVariables.filter((item) => item.name.startsWith("Color"));
+        const filterColors = localVariables.filter((item) =>
+          item.name.startsWith("Color"),
+        );
 
         if (filterColors.length > 0) {
           //Basic Color consts
@@ -125,13 +131,13 @@ if (figma.editorType === 'figma') {
           // We get color variables only (not aliases)
           filterColors.forEach((filterC) => {
             const lightVar = filterC.valuesByMode[lightModeID] as
-                | RGB
-                | RGBA
-                | VariableAlias;
+              | RGB
+              | RGBA
+              | VariableAlias;
             const darkVar = filterC.valuesByMode[darkModeID] as
-                | RGB
-                | RGBA
-                | VariableAlias;
+              | RGB
+              | RGBA
+              | VariableAlias;
             const id = filterC.id;
 
             // This is basic variable
@@ -146,41 +152,48 @@ if (figma.editorType === 'figma') {
           const retItem: IVarsCollection = {};
           filterColors.forEach((dataProc) => {
             const lightVar = dataProc.valuesByMode[lightModeID] as
-                | RGB
-                | RGBA
-                | VariableAlias;
+              | RGB
+              | RGBA
+              | VariableAlias;
             const darkVar = dataProc.valuesByMode[darkModeID] as
-                | RGB
-                | RGBA
-                | VariableAlias;
+              | RGB
+              | RGBA
+              | VariableAlias;
 
             retItem[dataProc.name] = {
               lightMode:
-                  "type" in lightVar
-                      ? colorConsts[
+                "type" in lightVar
+                  ? colorConsts[
                       lookForFilteredColorID(lightVar.id, lightModeID)
-                      ]?.lightMode || ""
-                      : colorConsts[
-                          lookForFilteredColorID(dataProc.id, lightModeID)
-                          ].lightMode,
+                    ]?.lightMode || ""
+                  : colorConsts[
+                      lookForFilteredColorID(dataProc.id, lightModeID)
+                    ].lightMode,
               darkMode:
-                  "type" in darkVar
-                      ? colorConsts[
-                      lookForFilteredColorID(darkVar.id,  darkModeID)
-                      ]?.darkMode || ""
-                      : colorConsts[
-                          lookForFilteredColorID(dataProc.id, darkModeID)
-                          ].darkMode,
+                "type" in darkVar
+                  ? colorConsts[lookForFilteredColorID(darkVar.id, darkModeID)]
+                      ?.darkMode || ""
+                  : colorConsts[lookForFilteredColorID(dataProc.id, darkModeID)]
+                      .darkMode,
+              lightModeID: "type" in lightVar ? lightVar.id : dataProc.id,
+              darkModeID: "type" in darkVar ? darkVar.id : dataProc.id,
             };
+
+            if (dataProc.name === "Color/Dataviz/5") {
+              if ("id" in darkVar && "id" in lightVar) {
+                console.log("LIGHT", lightVar.id);
+                console.log("DARK", darkVar.id);
+              }
+            }
           });
 
           // Need to verify a way to start a download of this JSON
           const jsonObject = JSON.stringify(retItem);
-          figma.ui.postMessage({type: "generated-colors", data: jsonObject})
-        break;
-    }
+          figma.ui.postMessage({ type: "generated-colors", data: jsonObject });
+          break;
+        }
 
-    // figma.closePlugin();
+      // figma.closePlugin();
+    }
   };
 }
-
