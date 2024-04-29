@@ -1,8 +1,5 @@
-import {
-  IBytesCalc,
-  OverrideTheme,
-  ThemeDefinitionProps,
-} from "./global.types";
+import { IBytesCalc, OverrideTheme } from "./global.types";
+import { DefaultTheme } from "styled-components";
 export declare const breakPoints: {
   xs: number;
   sm: number;
@@ -24,5 +21,5 @@ export declare const getThemeColors: (themeSubVar: string) => {
 };
 export declare const overridePropsParse: (
   overrideValue: OverrideTheme,
-  theme: ThemeDefinitionProps,
+  theme: DefaultTheme,
 ) => import("styled-components").CSSObject | undefined;

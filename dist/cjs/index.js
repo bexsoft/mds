@@ -30572,7 +30572,8 @@ var Ff,
                   );
               }
             }
-            function ge(e, n, o, f, g, E) {
+            var ge = {};
+            function Ee(e, n, o, f, g, E) {
               var w = (function (e) {
                 return (
                   "string" == typeof e ||
@@ -30650,6 +30651,25 @@ var Ff,
                       );
                   else he(k, e);
               }
+              if (W.call(n, "key")) {
+                var M = A(e),
+                  O = Object.keys(n).filter(function (e) {
+                    return "key" !== e;
+                  }),
+                  D =
+                    O.length > 0
+                      ? "{key: someKey, " + O.join(": ..., ") + ": ...}"
+                      : "{key: someKey}";
+                ge[M + D] ||
+                  (b(
+                    'A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />',
+                    D,
+                    M,
+                    O.length > 0 ? "{" + O.join(": ..., ") + ": ...}" : "{}",
+                    M,
+                  ),
+                  (ge[M + D] = !0));
+              }
               return (
                 e === a
                   ? (function (e) {
@@ -30680,13 +30700,13 @@ var Ff,
                 R
               );
             }
-            var Ee = function (e, t, n) {
-                return ge(e, t, n, !1);
+            var be = function (e, t, n) {
+                return Ee(e, t, n, !1);
               },
-              be = function (e, t, n) {
-                return ge(e, t, n, !0);
+              ve = function (e, t, n) {
+                return Ee(e, t, n, !0);
               };
-            (zf.Fragment = a), (zf.jsx = Ee), (zf.jsxs = be);
+            (zf.Fragment = a), (zf.jsx = be), (zf.jsxs = ve);
           })()),
       zf));
 var Uf = Bf.exports,

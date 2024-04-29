@@ -8,7 +8,7 @@ import React__default, {
   HTMLAttributes,
 } from "react";
 import * as styled_components from "styled-components";
-import { CSSObject } from "styled-components";
+import { CSSObject, DefaultTheme } from "styled-components";
 import { SortDirectionType } from "react-virtualized";
 import { DateTime } from "luxon";
 
@@ -437,7 +437,7 @@ interface IBytesCalc {
 }
 type OverrideTheme =
   | CSSObject
-  | ((theme: ThemeDefinitionProps) => CSSObject)
+  | ((theme: DefaultTheme) => CSSObject)
   | undefined;
 
 declare const breakPoints: {
@@ -461,9 +461,8 @@ interface ThemeHandlerProps {
 
 declare const ThemeHandler: FC<ThemeHandlerProps>;
 
-declare const GlobalStyles: styled_components.GlobalStyleComponent<
-  {},
-  styled_components.DefaultTheme
+declare const GlobalStyles: React$1.NamedExoticComponent<
+  styled_components.ExecutionProps & object
 >;
 
 interface ButtonProps {

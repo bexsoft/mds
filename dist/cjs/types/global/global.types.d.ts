@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSObject } from "styled-components";
+import { CSSObject, DefaultTheme } from "styled-components";
 export interface ThemeColorItem {
   [key: string]: ColorVariant;
 }
@@ -425,6 +425,6 @@ export interface IBytesCalc {
 }
 export type OverrideTheme =
   | CSSObject
-  | ((theme: ThemeDefinitionProps) => CSSObject)
+  | ((theme: DefaultTheme) => CSSObject)
   | undefined;
 export {};

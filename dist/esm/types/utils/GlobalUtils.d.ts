@@ -1,4 +1,5 @@
-export declare const expandMenuOptionStyles: (theme: any) => {
+import { DefaultTheme } from "styled-components";
+export declare const expandMenuOptionStyles: (theme: DefaultTheme) => {
   display: string;
   alignItems: string;
   justifyContent: string;
@@ -46,7 +47,7 @@ export declare const expandMenuOptionStyles: (theme: any) => {
     fontWeight: number;
     lineHeight: string;
     letterSpacing: string;
-    whiteSpace: string;
+    whiteSpace: "nowrap";
   };
   "& .button-label": {
     marginLeft: number;
