@@ -18,22 +18,13 @@ import { createGlobalStyle } from "styled-components";
 import get from "lodash/get";
 import { lightColors, lightV2 } from "../../global/themes";
 
-const GeistBlackWoff2 = require("../assets/fonts/Geist/Geist-Black.woff2");
-const GeistBoldWoff2 = require("../assets/fonts/Geist/Geist-Bold.woff2");
-const GeistLightWoff2 = require("../assets/fonts/Geist/Geist-Light.woff2");
-const GeistRegularWoff2 = require("../assets/fonts/Geist/Geist-Regular.woff2");
-const GeistThinWoff2 = require("../assets/fonts/Geist/Geist-Thin.woff2");
-const GeistSemiBoldWoff2 = require("../assets/fonts/Geist/Geist-SemiBold.woff2");
-const GeistMediumWoff2 = require("../assets/fonts/Geist/Geist-Medium.woff2");
-const GeistUltraLightWoff2 = require("../assets/fonts/Geist/Geist-UltraLight.woff2");
-
 const GlobalStyles = createGlobalStyle`
     ${({ theme }) => {
       return `
     /* Fonts */
     @font-face {
       font-family: "Geist";
-      src: url(${GeistBoldWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Bold.woff2") format("woff2");
       font-weight: bold;
       font-style: normal;
       font-display: swap;
@@ -41,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistMediumWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Medium.woff2") format("woff2");
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -49,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistSemiBoldWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-SemiBold.woff2") format("woff2");
       font-weight: 600;
       font-style: normal;
       font-display: swap;
@@ -57,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistLightWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Light.woff2") format("woff2");
       font-weight: 300;
       font-style: normal;
       font-display: swap;
@@ -65,7 +56,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistUltraLightWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-UltraLight.woff2") format("woff2");
       font-weight: 200;
       font-style: normal;
       font-display: swap;
@@ -73,7 +64,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistBlackWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Black.woff2") format("woff2");
       font-weight: 900;
       font-style: normal;
       font-display: swap;
@@ -81,7 +72,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistRegularWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Regular.woff2") format("woff2");
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -89,7 +80,7 @@ const GlobalStyles = createGlobalStyle`
     
     @font-face {
       font-family: "Geist";
-      src: url(${GeistThinWoff2}) format("woff2");
+      src: url("../assets/fonts/Geist/Geist-Thin.woff2") format("woff2");
       font-weight: 100;
       font-style: normal;
       font-display: swap;

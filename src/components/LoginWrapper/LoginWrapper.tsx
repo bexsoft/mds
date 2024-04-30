@@ -24,9 +24,6 @@ import { breakPoints } from "../../global/utils";
 import Box from "../Box/Box";
 import { lightV2 } from "../../global/themes";
 
-const bgVideo = require("../assets/video/videoBG.mp4");
-const poster = require("../assets/background/loginAnimationPoster.png");
-
 const CustomLogin = styled.div(({ theme }) => {
   return {
     width: "100vw",
@@ -219,13 +216,13 @@ const LoginWrapper: FC<LoginWrapperProps> = ({
             muted
             loop
             disablePictureInPicture
-            poster={poster}
+            poster={"../assets/background/loginAnimationPoster.png"}
             className={"videoBG"}
           >
-            <source src={bgVideo} type={"video/mp4"} />
+            <source src={"../assets/video/videoBG.mp4"} type={"video/mp4"} />
           </video>
         ) : (
-          <img src={poster} className={"videoBG"} />
+          <img src={"../assets/background/loginAnimationPoster.png"} className={"videoBG"} />
         )}
       </Box>
     </CustomLogin>
