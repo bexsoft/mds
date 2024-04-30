@@ -1,3727 +1,1984 @@
-/// <reference types="react" />
-import * as React$1 from "react";
-import React__default, {
-  FC,
-  ReactNode,
-  MouseEventHandler,
-  SVGProps,
-  HTMLAttributes,
-} from "react";
-import * as styled_components from "styled-components";
-import { CSSObject } from "styled-components";
+import React, { FC, MouseEventHandler, ReactNode, SVGProps, HTMLAttributes } from "react";
+import { CSSObject, DefaultTheme } from "styled-components";
 import { SortDirectionType } from "react-virtualized";
 import { DateTime } from "luxon";
-
-interface ThemeColorItem {
-  [key: string]: ColorVariant;
+export interface ThemeColorItem {
+    [key: string]: ColorVariant;
 }
-interface ColorVariant {
-  lightMode: string;
-  darkMode: string;
+export interface ColorVariant {
+    lightMode: string;
+    darkMode: string;
 }
-interface ButtonThemeProps {
-  border: string;
-  text: string;
-  background: string;
-  iconColor: string;
-  shadow?: string;
-}
-interface ButtonThemeStatesProps {
-  enabled: ButtonThemeProps;
-  disabled: ButtonThemeProps;
-  hover: ButtonThemeProps;
-  pressed: ButtonThemeProps;
-}
-interface LoginPageThemeProps {
-  formBG: string;
-  formBorder?: string;
-  formShadow?: string;
-  bgFilter: string;
-  promoBG: string;
-  promoHeader: string;
-  promoText: string;
-  footerElements: string;
-  footerDivider: string;
-}
-interface PageHeaderThemeProps {
-  color: string;
-}
-interface TooltipThemeProps {
-  background: string;
-  color: string;
-}
-interface CommonInputThemeProps {
-  labelColor: string;
-}
-interface CheckBoxThemeProps {
-  checkBoxBorder: string;
-  checkBoxColor: string;
-  disabledBorder: string;
-  disabledColor: string;
-}
-interface IconButtonThemeProps {
-  buttonBG: string;
-  activeBG: string;
-  hoverBG: string;
-  disabledBG: string;
-  color: string;
-  disabledColor?: string;
-}
-interface ActionCustomButton {
-  border: string;
-  background: string;
-  iconColor: string;
-  disabledBorder: string;
-  disabledBackground: string;
-  disabledIconColor: string;
-  hoverBorder: string;
-  hoverBackground: string;
-  hoverIconColor: string;
-  activeBorder: string;
-  activeBackground: string;
-  activeIconColor: string;
-}
-interface DataTableThemeProps {
-  border: string;
-  disabledBorder: string;
-  disabledBG: string;
-  selected: string;
-  itemDisabled: string;
-  hoverColor: string;
-  titleColor: string;
-  itemColor: string;
-  actionButton?: ActionCustomButton;
-}
-interface BackLinkThemeProps {
-  color: string;
-  arrow: string;
-  hover: string;
-}
-interface InputBoxThemeProps {
-  border: string;
-  hoverBorder: string;
-  color: string;
-  backgroundColor: string;
-  placeholderColor: string;
-  error: string;
-  disabledBorder: string;
-  disabledBackground: string;
-  disabledText: string;
-  disabledPlaceholder: string;
-}
-interface BreadcrumbsThemeProps {
-  elementsColor: string;
-  selectedColor: string;
-  hoverColor: string;
-  hoverBG: string;
-}
-interface ActionsListThemeProps {
-  titleColor: string;
-  containerBorderColor: string;
-  backgroundColor: string;
-  optionsTextColor: string;
-  optionsBorder: string;
-  optionsHoverTextColor: string;
-  disabledOptionsTextColor: string;
-}
-interface ScreenTitleThemeProps {
-  subtitleColor: string;
-  titleColor: string;
-}
-interface IconThemeColorProps {
-  accept: string;
-  delete: string;
-  default: string;
-}
-interface ModalBoxThemeProps {
-  overlayColor: string;
-  containerColor: string;
-  closeColor: string;
-  closeHoverColor: string;
-  closeHoverBG: string;
-  titleColor: string;
-  border?: string;
-  iconColor: IconThemeColorProps;
-}
-interface SwitchThemeProps {
-  onLabelColor: string;
-  offLabelColor: string;
-  switchBackground: string;
-  onBackgroundColor: string;
-  bulletBorderColor: string;
-  bulletBGColor: string;
-  disabledBackground: string;
-  disabledBulletBorderColor: string;
-  disabledBulletBGColor: string;
-  disabledOnBackground: string;
-}
-interface DropdownSelectorThemeProps {
-  backgroundColor: string;
-  optionTextColor: string;
-  selectedTextColor: string;
-  selectedBGColor: string;
-  hoverText: string;
-  hoverBG: string;
-  disabledText: string;
-  border?: string;
-}
-interface ReadBoxThemeProps {
-  borderColor: string;
-  backgroundColor: string;
-  textColor: string;
-}
-interface SignalColorsThemeProps {
-  main: string;
-  danger: string;
-  warning: string;
-  good: string;
-  info: string;
-  disabled: string;
-  dark: string;
-  clear: string;
-  selectBlue?: string;
-}
-interface MenuThemeProps {
-  vertical?: {
+export interface ButtonThemeProps {
+    border: string;
+    text: string;
     background: string;
-    textColor: string;
-    iconBorderColor: string;
-    iconBGColor: string;
-    hoverSelectedIconBorder: string;
-    hoverSelectedBackground: string;
-    hoverSelectedColor: string;
-    sectionDividerColor: string;
-    notificationColor: string;
-    dropArrowBackground: string;
-    dropArrowColor: string;
-    menuCollapseColor: string;
-    sectionLabelColor: string;
-  };
-  horizontal?: {
-    menuHeaderBackground: string;
-    barBackground: string;
-    textColor: string;
-    iconBorderColor: string;
-    iconBGColor: string;
-    hoverSelectedIconBorder: string;
-    hoverSelectedBackground: string;
-    hoverSelectedColor: string;
-    sectionDividerColor: string;
-    notificationColor: string;
-    dropArrowBackground: string;
-    dropArrowColor: string;
-    dropBackground: string;
-    dropHoverSelectedColor: string;
-    noOptionsBar: string;
-  };
+    iconColor: string;
+    shadow?: string;
 }
-interface TabButtonProps$1 {
-  labelColor: string;
-  backgroundColor: string;
-  hoverBackground: string;
-  hoverLabelColor: string;
-  selectedBackground: string;
-  selectedLabelColor: string;
-  disabledBackgroundColor: string;
-  disabledColor: string;
+export interface ButtonThemeStatesProps {
+    enabled: ButtonThemeProps;
+    disabled: ButtonThemeProps;
+    hover: ButtonThemeProps;
+    pressed: ButtonThemeProps;
 }
-interface TabThemeProps {
-  vertical?: {
+export interface LoginPageThemeProps {
+    formBG: string;
+    formBorder?: string;
+    formShadow?: string;
+    bgFilter: string;
+    promoBG: string;
+    promoHeader: string;
+    promoText: string;
+    footerElements: string;
+    footerDivider: string;
+}
+export interface PageHeaderThemeProps {
+    color: string;
+}
+export interface TooltipThemeProps {
+    background: string;
+    color: string;
+}
+export interface CommonInputThemeProps {
+    labelColor: string;
+}
+export interface CheckBoxThemeProps {
+    checkBoxBorder: string;
+    checkBoxColor: string;
+    disabledBorder: string;
+    disabledColor: string;
+}
+export interface IconButtonThemeProps {
+    buttonBG: string;
+    activeBG: string;
+    hoverBG: string;
+    disabledBG: string;
+    color: string;
+    disabledColor?: string;
+}
+export interface ActionCustomButton {
+    border: string;
+    background: string;
+    iconColor: string;
+    disabledBorder: string;
+    disabledBackground: string;
+    disabledIconColor: string;
+    hoverBorder: string;
+    hoverBackground: string;
+    hoverIconColor: string;
+    activeBorder: string;
+    activeBackground: string;
+    activeIconColor: string;
+}
+export interface DataTableThemeProps {
+    border: string;
+    disabledBorder: string;
+    disabledBG: string;
+    selected: string;
+    itemDisabled: string;
+    hoverColor: string;
+    titleColor: string;
+    itemColor: string;
+    actionButton?: ActionCustomButton;
+}
+export interface BackLinkThemeProps {
+    color: string;
+    arrow: string;
+    hover: string;
+}
+export interface InputBoxThemeProps {
+    border: string;
+    hoverBorder: string;
+    color: string;
     backgroundColor: string;
-    buttons: TabButtonProps$1;
-    borders: string;
-  };
-  horizontal?: {
+    placeholderColor: string;
+    error: string;
+    disabledBorder: string;
+    disabledBackground: string;
+    disabledText: string;
+    disabledPlaceholder: string;
+}
+export interface BreadcrumbsThemeProps {
+    elementsColor: string;
+    selectedColor: string;
+    hoverColor: string;
+    hoverBG: string;
+}
+export interface ActionsListThemeProps {
+    titleColor: string;
+    containerBorderColor: string;
     backgroundColor: string;
-    selectedIndicatorColor: string;
-    buttons: TabButtonProps$1;
-    bottomBorder?: string;
-  };
+    optionsTextColor: string;
+    optionsBorder: string;
+    optionsHoverTextColor: string;
+    disabledOptionsTextColor: string;
 }
-interface CodeEditorThemeProps {
-  backgroundColor: string;
-  textColor: string;
-  helpToolsBarBG: string;
-  comment: string;
-  entityTag: string;
-  entity: string;
-  sublimelinterGutterMark: string;
-  constant: string;
-  string: string;
-  keyword: string;
-  markupBold: string;
-  codeEditorRegexp: string;
+export interface ScreenTitleThemeProps {
+    subtitleColor: string;
+    titleColor: string;
 }
-interface TagVariantProps {
-  background: string;
-  outlineColor?: string;
-  label: string;
-  deleteColor: string;
+export interface IconThemeColorProps {
+    accept: string;
+    delete: string;
+    default: string;
 }
-interface TagThemeProps {
-  default: TagVariantProps;
-  secondary: TagVariantProps;
-  warn: TagVariantProps;
-  alert: TagVariantProps;
-  ok: TagVariantProps;
-  grey: TagVariantProps;
+export interface ModalBoxThemeProps {
+    overlayColor: string;
+    containerColor: string;
+    closeColor: string;
+    closeHoverColor: string;
+    closeHoverBG: string;
+    titleColor: string;
+    border?: string;
+    iconColor: IconThemeColorProps;
+}
+export interface SwitchThemeProps {
+    onLabelColor: string;
+    offLabelColor: string;
+    switchBackground: string;
+    onBackgroundColor: string;
+    bulletBorderColor: string;
+    bulletBGColor: string;
+    disabledBackground: string;
+    disabledBulletBorderColor: string;
+    disabledBulletBGColor: string;
+    disabledOnBackground: string;
+}
+export interface DropdownSelectorThemeProps {
+    backgroundColor: string;
+    optionTextColor: string;
+    selectedTextColor: string;
+    selectedBGColor: string;
+    hoverText: string;
+    hoverBG: string;
+    disabledText: string;
+    border?: string;
+}
+export interface ReadBoxThemeProps {
+    borderColor: string;
+    backgroundColor: string;
+    textColor: string;
+}
+export interface SignalColorsThemeProps {
+    main: string;
+    danger: string;
+    warning: string;
+    good: string;
+    info: string;
+    disabled: string;
+    dark: string;
+    clear: string;
+    selectBlue?: string;
+}
+export interface MenuThemeProps {
+    vertical?: {
+        background: string;
+        textColor: string;
+        iconBorderColor: string;
+        iconBGColor: string;
+        hoverSelectedIconBorder: string;
+        hoverSelectedBackground: string;
+        hoverSelectedColor: string;
+        sectionDividerColor: string;
+        notificationColor: string;
+        dropArrowBackground: string;
+        dropArrowColor: string;
+        menuCollapseColor: string;
+        sectionLabelColor: string;
+    };
+    horizontal?: {
+        menuHeaderBackground: string;
+        barBackground: string;
+        textColor: string;
+        iconBorderColor: string;
+        iconBGColor: string;
+        hoverSelectedIconBorder: string;
+        hoverSelectedBackground: string;
+        hoverSelectedColor: string;
+        sectionDividerColor: string;
+        notificationColor: string;
+        dropArrowBackground: string;
+        dropArrowColor: string;
+        dropBackground: string;
+        dropHoverSelectedColor: string;
+        noOptionsBar: string;
+    };
+}
+interface _TabButtonProps1 {
+    labelColor: string;
+    backgroundColor: string;
+    hoverBackground: string;
+    hoverLabelColor: string;
+    selectedBackground: string;
+    selectedLabelColor: string;
+    disabledBackgroundColor: string;
+    disabledColor: string;
+}
+export interface TabThemeProps {
+    vertical?: {
+        backgroundColor: string;
+        buttons: _TabButtonProps1;
+        borders: string;
+    };
+    horizontal?: {
+        backgroundColor: string;
+        selectedIndicatorColor: string;
+        buttons: _TabButtonProps1;
+        bottomBorder?: string;
+    };
+}
+export interface CodeEditorThemeProps {
+    backgroundColor: string;
+    textColor: string;
+    helpToolsBarBG: string;
+    comment: string;
+    entityTag: string;
+    entity: string;
+    sublimelinterGutterMark: string;
+    constant: string;
+    string: string;
+    keyword: string;
+    markupBold: string;
+    codeEditorRegexp: string;
+}
+export interface TagVariantProps {
+    background: string;
+    outlineColor?: string;
+    label: string;
+    deleteColor: string;
+}
+export interface TagThemeProps {
+    default: TagVariantProps;
+    secondary: TagVariantProps;
+    warn: TagVariantProps;
+    alert: TagVariantProps;
+    ok: TagVariantProps;
+    grey: TagVariantProps;
 }
 interface SnackBarColorElements {
-  backgroundColor: string;
-  labelColor: string;
+    backgroundColor: string;
+    labelColor: string;
 }
-interface SnackBarThemeProps {
-  default: SnackBarColorElements;
-  success: SnackBarColorElements;
-  warning: SnackBarColorElements;
-  error: SnackBarColorElements;
+export interface SnackBarThemeProps {
+    default: SnackBarColorElements;
+    success: SnackBarColorElements;
+    warning: SnackBarColorElements;
+    error: SnackBarColorElements;
 }
-interface InformativeColorElements {
-  backgroundColor: string;
-  borderColor: string;
-  textColor: string;
+export interface InformativeColorElements {
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
 }
-interface InformativeMessageThemeProps {
-  default: InformativeColorElements;
-  success: InformativeColorElements;
-  warning: InformativeColorElements;
-  error: InformativeColorElements;
+export interface InformativeMessageThemeProps {
+    default: InformativeColorElements;
+    success: InformativeColorElements;
+    warning: InformativeColorElements;
+    error: InformativeColorElements;
 }
-interface BadgeColorElements {
-  backgroundColor: string;
-  textColor: string;
+export interface BadgeColorElements {
+    backgroundColor: string;
+    textColor: string;
 }
-interface BadgeStyleProps {
-  alert: BadgeColorElements;
-  default: BadgeColorElements;
-  secondary: BadgeColorElements;
-  warn: BadgeColorElements;
-  ok: BadgeColorElements;
-  grey: BadgeColorElements;
+export interface BadgeStyleProps {
+    alert: BadgeColorElements;
+    default: BadgeColorElements;
+    secondary: BadgeColorElements;
+    warn: BadgeColorElements;
+    ok: BadgeColorElements;
+    grey: BadgeColorElements;
 }
-interface WizardStepColorProps {
-  stepLabelColor: string;
-  selectedStepBG: string;
-  selectedStepLabelColor: string;
-  disabledLabelColor: string;
-  borderColor?: string;
-  buttonHoverBG?: string;
+export interface WizardStepColorProps {
+    stepLabelColor: string;
+    selectedStepBG: string;
+    selectedStepLabelColor: string;
+    disabledLabelColor: string;
+    borderColor?: string;
+    buttonHoverBG?: string;
 }
-interface WizardColorProps {
-  stepsBackground: string;
-  vertical: WizardStepColorProps;
-  modal: WizardStepColorProps;
+export interface WizardColorProps {
+    stepsBackground: string;
+    vertical: WizardStepColorProps;
+    modal: WizardStepColorProps;
 }
-interface SliderColorProps {
-  railBG: string;
-  bulletBG: string;
-  disabledRail: string;
-  disabledBullet: string;
+export interface SliderColorProps {
+    railBG: string;
+    bulletBG: string;
+    disabledRail: string;
+    disabledBullet: string;
 }
-interface BoxThemeProps {
-  border: string;
-  backgroundColor: string;
-  shadow: string;
+export interface BoxThemeProps {
+    border: string;
+    backgroundColor: string;
+    shadow: string;
 }
-interface ValuePairThemeProps {
-  labelColor: string;
-  textColor: string;
-  linkColor: string;
+export interface ValuePairThemeProps {
+    labelColor: string;
+    textColor: string;
+    linkColor: string;
 }
-interface ButtonGroupThemeProps {
-  border: string;
-  labelColor: string;
-  background: string;
-  hoverBackground: string;
-  hoverLabelColor: string;
-  activeBackground: string;
-  activeLabelColor: string;
-  disabledLabelColor: string;
-  disabledBackground: string;
-  secondaryLabelColor: string;
-  secondaryBackground: string;
+export interface ButtonGroupThemeProps {
+    border: string;
+    labelColor: string;
+    background: string;
+    hoverBackground: string;
+    hoverLabelColor: string;
+    activeBackground: string;
+    activeLabelColor: string;
+    disabledLabelColor: string;
+    disabledBackground: string;
+    secondaryLabelColor: string;
+    secondaryBackground: string;
 }
-interface DropdownOptionsThemeProps {
-  hoverOptionBG: string;
-  activeOptionBG: string;
-  optionBG: string;
-  optionLabel: string;
-  dangerLabel: string;
-  disabledLabel: string;
+export interface DropdownOptionsThemeProps {
+    hoverOptionBG: string;
+    activeOptionBG: string;
+    optionBG: string;
+    optionLabel: string;
+    dangerLabel: string;
+    disabledLabel: string;
 }
-interface BoxedIconThemeProps {
-  bgColor: string;
-  iconColor: string;
+export interface BoxedIconThemeProps {
+    bgColor: string;
+    iconColor: string;
 }
-interface PillElementThemeProps {
-  bgColor: string;
-  labelColor: string;
-  borderColor: string;
+export interface PillElementThemeProps {
+    bgColor: string;
+    labelColor: string;
+    borderColor: string;
 }
-interface PillThemeProps {
-  current: PillElementThemeProps;
-  secondary: PillElementThemeProps;
-  default: PillElementThemeProps;
+export interface PillThemeProps {
+    current: PillElementThemeProps;
+    secondary: PillElementThemeProps;
+    default: PillElementThemeProps;
 }
-interface ThemeDefinitionProps {
-  bgColor: string;
-  fontColor: string;
-  borderColor: string;
-  bulletColor: string;
-  logoColor: string;
-  logoLabelColor: string;
-  logoLabelInverse: string;
-  loaderColor: string;
-  linkColor?: string;
-  secondaryLinkColor?: string;
-  boxBackground: string;
-  mutedText: string;
-  secondaryText: string;
-  colors: {
-    [key: string]: string;
-  };
-  box?: BoxThemeProps;
-  signalColors?: SignalColorsThemeProps;
-  buttons?: {
-    regular?: ButtonThemeStatesProps;
-    callAction?: ButtonThemeStatesProps;
-    secondary?: ButtonThemeStatesProps;
-    text?: ButtonThemeStatesProps;
-    subAction?: ButtonThemeStatesProps;
-  };
-  roundedButtons?: {
-    regular?: ButtonThemeStatesProps;
-  };
-  login?: LoginPageThemeProps;
-  pageHeader?: PageHeaderThemeProps;
-  tooltip?: TooltipThemeProps;
-  commonInput?: CommonInputThemeProps;
-  checkbox?: CheckBoxThemeProps;
-  iconButton?: IconButtonThemeProps;
-  dataTable?: DataTableThemeProps;
-  backLink?: BackLinkThemeProps;
-  inputBox?: InputBoxThemeProps;
-  breadcrumbs?: BreadcrumbsThemeProps;
-  actionsList?: ActionsListThemeProps;
-  screenTitle?: ScreenTitleThemeProps;
-  modalBox?: ModalBoxThemeProps;
-  switchButton?: SwitchThemeProps;
-  dropdownSelector?: DropdownSelectorThemeProps;
-  readBox?: ReadBoxThemeProps;
-  menu?: MenuThemeProps;
-  tabs?: TabThemeProps;
-  codeEditor?: CodeEditorThemeProps;
-  tag?: TagThemeProps;
-  snackbar?: SnackBarThemeProps;
-  informativeMessage?: InformativeMessageThemeProps;
-  badge?: BadgeStyleProps;
-  wizard?: WizardColorProps;
-  slider?: SliderColorProps;
-  valuePair?: ValuePairThemeProps;
-  buttonGroup?: ButtonGroupThemeProps;
-  dropdownOptions?: DropdownOptionsThemeProps;
-  boxedIcon?: BoxedIconThemeProps;
-  pill?: PillThemeProps;
-}
-interface SelectOption {
-  label: string;
-  value: string;
-  icon?: React__default.ReactNode;
-  indicator?: React__default.ReactNode;
-  extraValue?: any;
-  disabled?: boolean;
-}
-interface IBytesCalc {
-  total: number;
-  unit: string;
-}
-type OverrideTheme =
-  | CSSObject
-  | ((theme: ThemeDefinitionProps) => CSSObject)
-  | undefined;
-
-declare const breakPoints: {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-};
-declare const calculateBytes: (
-  x: string | number,
-  showDecimals?: boolean,
-  roundFloor?: boolean,
-) => IBytesCalc;
-
-interface ThemeHandlerProps {
-  darkMode?: boolean;
-  customTheme?: ThemeDefinitionProps;
-  children: any;
-}
-
-declare const ThemeHandler: FC<ThemeHandlerProps>;
-
-declare const GlobalStyles: styled_components.GlobalStyleComponent<
-  {},
-  styled_components.DefaultTheme
->;
-
-interface ButtonProps {
-  id: string;
-  name?: string;
-  label?: string;
-  variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
-  icon?: ReactNode;
-  iconLocation?: "start" | "end";
-  fullWidth?: boolean;
-  disabled?: boolean;
-  collapseOnSmall?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode | string;
-  compact?: boolean;
-  sx?: OverrideTheme;
-}
-interface ConstructProps {
-  parentChildren: ReactNode | string | undefined;
-}
-
-declare const Button: FC<
-  ButtonProps & React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface ApplicationLogoProps {
-  applicationName:
-    | "console"
-    | "operator"
-    | "directpv"
-    | "kes"
-    | "subnet"
-    | "subnetops"
-    | "cloud"
-    | "releases"
-    | "vmbroker"
-    | "eureka"
-    | "kms"
-    | "loadbalancer"
-    | "index"
-    | "cache"
-    | "monitor"
-    | "observe"
-    | "missioncontrol"
-    | "globalconsole"
-    | "minio"
-    | "enterprise";
-  subVariant?:
-    | "simple"
-    | "AGPL"
-    | "standard"
-    | "enterprise"
-    | "new"
-    | "enterpriseos"
-    | "enterpriseosvertical";
-  inverse?: boolean;
-  onClick?: React__default.MouseEventHandler<any> | undefined;
-}
-
-declare const ApplicationLogo: FC<ApplicationLogoProps>;
-
-declare const ThemedLogo: FC<SVGProps<any>>;
-
-interface GridCommonProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
-  sx?: OverrideTheme;
-}
-type ConditionalProps =
-  | {
-      container?: boolean;
-      item?: never;
-      wrap?: "nowrap" | "wrap-reverse" | "wrap";
-      direction?: "column-reverse" | "column" | "row-reverse" | "row";
-      columnSpacing?: number;
-      rowSpacing?: number;
-      xs?: never;
-      sm?: never;
-      md?: never;
-      lg?: never;
-      xl?: never;
-    }
-  | {
-      container?: never;
-      item?: boolean;
-      wrap?: never;
-      direction?: never;
-      columnSpacing?: never;
-      rowSpacing?: never;
-      xs?: "auto" | "hidden" | number | boolean;
-      sm?: "auto" | "hidden" | number | boolean;
-      md?: "auto" | "hidden" | number | boolean;
-      lg?: "auto" | "hidden" | number | boolean;
-      xl?: "auto" | "hidden" | number | boolean;
+export interface ThemeDefinitionProps {
+    bgColor: string;
+    fontColor: string;
+    borderColor: string;
+    bulletColor: string;
+    logoColor: string;
+    logoLabelColor: string;
+    logoLabelInverse: string;
+    loaderColor: string;
+    linkColor?: string;
+    secondaryLinkColor?: string;
+    boxBackground: string;
+    mutedText: string;
+    secondaryText: string;
+    colors: {
+        [key: string]: string;
     };
-type GridProps = GridCommonProps & ConditionalProps;
-
-declare const Grid: FC<GridProps>;
-
+    box?: BoxThemeProps;
+    signalColors?: SignalColorsThemeProps;
+    buttons?: {
+        regular?: ButtonThemeStatesProps;
+        callAction?: ButtonThemeStatesProps;
+        secondary?: ButtonThemeStatesProps;
+        text?: ButtonThemeStatesProps;
+        subAction?: ButtonThemeStatesProps;
+    };
+    roundedButtons?: {
+        regular?: ButtonThemeStatesProps;
+    };
+    login?: LoginPageThemeProps;
+    pageHeader?: PageHeaderThemeProps;
+    tooltip?: TooltipThemeProps;
+    commonInput?: CommonInputThemeProps;
+    checkbox?: CheckBoxThemeProps;
+    iconButton?: IconButtonThemeProps;
+    dataTable?: DataTableThemeProps;
+    backLink?: BackLinkThemeProps;
+    inputBox?: InputBoxThemeProps;
+    breadcrumbs?: BreadcrumbsThemeProps;
+    actionsList?: ActionsListThemeProps;
+    screenTitle?: ScreenTitleThemeProps;
+    modalBox?: ModalBoxThemeProps;
+    switchButton?: SwitchThemeProps;
+    dropdownSelector?: DropdownSelectorThemeProps;
+    readBox?: ReadBoxThemeProps;
+    menu?: MenuThemeProps;
+    tabs?: TabThemeProps;
+    codeEditor?: CodeEditorThemeProps;
+    tag?: TagThemeProps;
+    snackbar?: SnackBarThemeProps;
+    informativeMessage?: InformativeMessageThemeProps;
+    badge?: BadgeStyleProps;
+    wizard?: WizardColorProps;
+    slider?: SliderColorProps;
+    valuePair?: ValuePairThemeProps;
+    buttonGroup?: ButtonGroupThemeProps;
+    dropdownOptions?: DropdownOptionsThemeProps;
+    boxedIcon?: BoxedIconThemeProps;
+    pill?: PillThemeProps;
+}
+export interface SelectOption {
+    label: string;
+    value: string;
+    icon?: React.ReactNode;
+    indicator?: React.ReactNode;
+    extraValue?: any;
+    disabled?: boolean;
+}
+export interface IBytesCalc {
+    total: number;
+    unit: string;
+}
+export type OverrideTheme = CSSObject | ((theme: DefaultTheme) => CSSObject) | undefined;
+export const themeColors: ThemeColorItem;
+export const breakPoints: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+};
+export const calculateBytes: (x: string | number, showDecimals?: boolean, roundFloor?: boolean) => IBytesCalc;
+interface ThemeHandlerProps {
+    darkMode?: boolean;
+    customTheme?: ThemeDefinitionProps;
+    children: any;
+}
+export const lightColors: {
+    white: string;
+    sectionOneBG: string;
+    defaultFontColor: string;
+    bulletColor: string;
+    borderColor: string;
+    boxBackground: string;
+    mainGrey: string;
+    disabledGrey: string;
+    hoverGrey: string;
+    pressedGrey: string;
+    actionDisabledGrey: string;
+    mainBlue: string;
+    hoverBlue: string;
+    pressedBlue: string;
+    mainRed: string;
+    hoverRed: string;
+    lightRed: string;
+    divisorColor: string;
+    disabledBGGrey: string;
+    disabledInnerGrey: string;
+    logoLabel: string;
+    logoLabelInverse: string;
+    promoBlue: string;
+    footerDivider: string;
+    promoBG: string;
+    loaderColor: string;
+    headerBG: string;
+    headerBorder: string;
+    headerColor: string;
+    tooltipBG: string;
+    tooltipColor: string;
+    labelColor: string;
+    mainGreen: string;
+    checkBoxBorder: string;
+    iconButtonBG: string;
+    iconButtonActive: string;
+    iconButtonHover: string;
+    iconButtonDisabled: string;
+    iconButtonColor: string;
+    backLinkColor: string;
+    backLinkArrow: string;
+    backLinkHover: string;
+    commonLinkColor: string;
+    breadcrumbsBackground: string;
+    breadcrumbsBackBorder: string;
+    breadcrumbsText: string;
+    actionsListBorder: string;
+    disabledActionsColor: string;
+    optionTextColor: string;
+    modalCloseColor: string;
+    modalCloseHoverBG: string;
+    modalOverlayBG: string;
+    bulletBGColor: string;
+    placeholder: string;
+    readBoxTextColor: string;
+    secondAction: string;
+    secondActionHover: string;
+    secondActionActive: string;
+    mainOrange: string;
+    menuBackground: string;
+    menuDropArrowColor: string;
+    menuDropArrowBackground: string;
+    menuSelectedOption: string;
+    menuCommonColor: string;
+    menuColorDivider: string;
+    menuCollapseColor: string;
+    menuIconBG: string;
+    menuIconBorder: string;
+    tabBorder: string;
+    codeEditorComment: string;
+    codeEditorEntityTag: string;
+    codeEditorEntity: string;
+    codeEditorSublimelinterGutterMark: string;
+    codeEditorConstant: string;
+    codeEditorString: string;
+    codeEditorKeyword: string;
+    codeEditorMarkupBold: string;
+    codeEditorRegexp: string;
+    linkColor: string;
+    mutedText: string;
+    disabledOnSwitchBG: string;
+    sliderDisabledBG: string;
+};
+export const darkColors: {
+    dark: string;
+    sectionOneBG: string;
+    defaultFontColor: string;
+    bulletColor: string;
+    borderColor: string;
+    boxBackground: string;
+    mainGrey: string;
+    disabledGrey: string;
+    hoverGrey: string;
+    borderPressedGrey: string;
+    pressedGrey: string;
+    mainWhite: string;
+    disabledWhite: string;
+    hoverWhite: string;
+    pressedWhite: string;
+    mainRed: string;
+    hoverRed: string;
+    divisorColor: string;
+    disabledBGGrey: string;
+    disabledInnerGrey: string;
+    logoLabel: string;
+    logoLabelInverse: string;
+    footerDivider: string;
+    footerColor: string;
+    promoBG: string;
+    loaderColor: string;
+    headerBG: string;
+    headerBorder: string;
+    headerColor: string;
+    tooltipBG: string;
+    tooltipColor: string;
+    labelColor: string;
+    mainGreen: string;
+    checkBoxBorder: string;
+    iconButtonBG: string;
+    iconButtonActive: string;
+    iconButtonHover: string;
+    iconButtonDisabled: string;
+    iconButtonColor: string;
+    backLinkColor: string;
+    backLinkArrow: string;
+    backLinkHover: string;
+    modalCloseColor: string;
+    modalCloseHoverBG: string;
+    modalOverlayBG: string;
+    bulletBGColor: string;
+    disabledSwitchBG: string;
+    disabledOnSwitchBG: string;
+    disabledBulletBG: string;
+    placeholder: string;
+    readBoxTextColor: string;
+    secondAction: string;
+    secondActionHover: string;
+    secondActionActive: string;
+    mainOrange: string;
+    menuBackground: string;
+    menuDropArrowColor: string;
+    menuDropArrowBackground: string;
+    menuSelectedOption: string;
+    menuCommonColor: string;
+    menuColorDivider: string;
+    menuCollapseColor: string;
+    menuIconBG: string;
+    menuIconBorder: string;
+    menuHoverSelectedBorderIcon: string;
+    menuHoverSelectedBG: string;
+    codeEditorComment: string;
+    codeEditorEntityTag: string;
+    codeEditorEntity: string;
+    codeEditorSublimelinterGutterMark: string;
+    codeEditorConstant: string;
+    codeEditorString: string;
+    codeEditorKeyword: string;
+    codeEditorMarkupBold: string;
+    codeEditorRegexp: string;
+    linkColor: string;
+    mutedText: string;
+    disabledSliderBullet: string;
+};
+export const lightV2: {
+    white: string;
+    fontColor: string;
+    mainBackgroundColor: string;
+    menuSelectionColor: string;
+    switchBG: string;
+    secondaryBlue: string;
+    green: string;
+    lightGreen: string;
+    orange: string;
+    lightOrange: string;
+    danger: string;
+    lightRed: string;
+    borderColor: string;
+    disabledGrey: string;
+    disabledGreyText: string;
+    disabledBlue: string;
+    disabledBlueText: string;
+    disabledBlueRegular: string;
+    disabledSecondary: string;
+    disabledSecondaryText: string;
+    blueBorderActionButton: string;
+    redBorder: string;
+    disabledRed: string;
+    disabledRedText: string;
+    mutedText: string;
+    headerLabelText: string;
+    plainIconButtonBorder: string;
+    plainIconButtonBG: string;
+    plainIconButtonColor: string;
+    linkColor: string;
+    modalCloseColor: string;
+    modalBorderColor: string;
+    modalOverlayBG: string;
+    modalTitleColor: string;
+    buttonDisabledBG: string;
+    buttonDisabledLabel: string;
+    defaultButtonPressed: string;
+    bgColorBgShell: string;
+    colorTextLabel: string;
+    colorBorderSubtle: string;
+    colorBgHover: string;
+    errorColorPrimaryText: string;
+    colorBorder: string;
+    colorText: string;
+    colorBgDisabled: string;
+    colorTextDisabled: string;
+};
+export const lightTheme: ThemeDefinitionProps;
+export const darkTheme: ThemeDefinitionProps;
+export const ThemeHandler: FC<ThemeHandlerProps>;
+export const GlobalStyles: import("react").NamedExoticComponent<import("styled-components").ExecutionProps & object>;
+export interface ButtonProps {
+    id: string;
+    name?: string;
+    label?: string;
+    variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
+    icon?: ReactNode;
+    iconLocation?: "start" | "end";
+    fullWidth?: boolean;
+    disabled?: boolean;
+    collapseOnSmall?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    children?: ReactNode | string;
+    compact?: boolean;
+    sx?: OverrideTheme;
+}
+export interface ConstructProps {
+    parentChildren: ReactNode | string | undefined;
+}
+export const Button: FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export interface ApplicationLogoProps {
+    applicationName: "console" | "operator" | "directpv" | "kes" | "subnet" | "subnetops" | "cloud" | "releases" | "vmbroker" | "eureka" | "kms" | "loadbalancer" | "index" | "cache" | "monitor" | "observe" | "missioncontrol" | "globalconsole" | "minio" | "enterprise";
+    subVariant?: "simple" | "AGPL" | "standard" | "enterprise" | "new" | "enterpriseos" | "enterpriseosvertical";
+    inverse?: boolean;
+    onClick?: React.MouseEventHandler<any> | undefined;
+}
+export const ThemedLogo: FC<SVGProps<any>>;
+export const ApplicationLogo: FC<ApplicationLogoProps>;
+interface GridCommonProps extends HTMLAttributes<HTMLDivElement> {
+    children?: ReactNode;
+    sx?: OverrideTheme;
+}
+type ConditionalProps = {
+    container?: boolean;
+    item?: never;
+    wrap?: "nowrap" | "wrap-reverse" | "wrap";
+    direction?: "column-reverse" | "column" | "row-reverse" | "row";
+    columnSpacing?: number;
+    rowSpacing?: number;
+    xs?: never;
+    sm?: never;
+    md?: never;
+    lg?: never;
+    xl?: never;
+} | {
+    container?: never;
+    item?: boolean;
+    wrap?: never;
+    direction?: never;
+    columnSpacing?: never;
+    rowSpacing?: never;
+    xs?: "auto" | "hidden" | number | boolean;
+    sm?: "auto" | "hidden" | number | boolean;
+    md?: "auto" | "hidden" | number | boolean;
+    lg?: "auto" | "hidden" | number | boolean;
+    xl?: "auto" | "hidden" | number | boolean;
+};
+export type GridProps = GridCommonProps & ConditionalProps;
+export const Grid: FC<GridProps>;
 interface LoginWrapperProps {
-  logoProps: ApplicationLogoProps;
-  form: ReactNode;
-  formFooter?: ReactNode;
-  promoHeader?: ReactNode;
-  promoInfo?: ReactNode;
-  backgroundAnimation?: boolean;
+    logoProps: ApplicationLogoProps;
+    form: ReactNode;
+    formFooter?: ReactNode;
+    promoHeader?: ReactNode;
+    promoInfo?: ReactNode;
+    backgroundAnimation?: boolean;
 }
-
-declare const LoginWrapper: FC<LoginWrapperProps>;
-
-declare const Loader: FC<SVGProps<any>>;
-
-interface PageHeaderMainProps {
-  label: React__default.ReactNode;
-  middleComponent?: React__default.ReactNode;
-  actions?: React__default.ReactNode;
+export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
+    sx?: OverrideTheme;
+    children?: React.ReactNode;
+    withBorders?: boolean;
+    customBorderPadding?: number | string;
+    useBackground?: boolean;
 }
-interface PageHeaderConstruct {
-  sx?: OverrideTheme;
+export const Box: React.ForwardRefExoticComponent<BoxProps & React.RefAttributes<React.HTMLAttributes<HTMLDivElement>>>;
+export const LoginWrapper: FC<LoginWrapperProps>;
+export const Loader: FC<SVGProps<any>>;
+export interface PageHeaderMainProps {
+    label: React.ReactNode;
+    middleComponent?: React.ReactNode;
+    actions?: React.ReactNode;
 }
-type PageHeaderProps = PageHeaderMainProps & PageHeaderConstruct;
-
-declare const PageHeader: FC<PageHeaderProps & HTMLAttributes<HTMLDivElement>>;
-
-interface TooltipProps {
-  children: React__default.ReactElement;
-  tooltip: React__default.ReactNode;
-  errorProps?: any;
-  placement?: "bottom" | "left" | "right" | "top";
+export interface PageHeaderConstruct {
+    sx?: OverrideTheme;
 }
-interface TooltipBuild {
-  placement: "bottom" | "left" | "right" | "top";
+export type PageHeaderProps = PageHeaderMainProps & PageHeaderConstruct;
+export const PageHeader: FC<PageHeaderProps & HTMLAttributes<HTMLDivElement>>;
+export interface TooltipProps {
+    children: React.ReactElement;
+    tooltip: React.ReactNode;
+    errorProps?: any;
+    placement?: "bottom" | "left" | "right" | "top";
 }
-interface TooltipConstructProps {
-  placement: "bottom" | "left" | "right" | "top";
-  content: React__default.ReactNode;
-  anchorEl: (EventTarget & HTMLSpanElement) | null;
+export interface TooltipBuild {
+    placement: "bottom" | "left" | "right" | "top";
 }
-
-declare const Tooltip: FC<TooltipProps>;
-
-type CommonHelpTipPlacement = "bottom" | "left" | "right" | "top";
-interface HelpTipProps {
-  children: any;
-  content: React__default.ReactNode;
-  errorProps?: any;
-  placement?: CommonHelpTipPlacement;
+export interface TooltipConstructProps {
+    placement: "bottom" | "left" | "right" | "top";
+    content: React.ReactNode;
+    anchorEl: (EventTarget & HTMLSpanElement) | null;
 }
-interface HelpTipBuild {
-  placement: CommonHelpTipPlacement;
+export const Tooltip: FC<TooltipProps>;
+export type CommonHelpTipPlacement = "bottom" | "left" | "right" | "top";
+export interface HelpTipProps {
+    children: any;
+    content: React.ReactNode;
+    errorProps?: any;
+    placement?: CommonHelpTipPlacement;
 }
-interface HelpTipConstructProps {
-  placement: CommonHelpTipPlacement;
-  content: React__default.ReactNode;
-  anchorEl: (EventTarget & HTMLSpanElement) | null;
+export interface HelpTipBuild {
+    placement: CommonHelpTipPlacement;
 }
-
+export interface HelpTipConstructProps {
+    placement: CommonHelpTipPlacement;
+    content: React.ReactNode;
+    anchorEl: (EventTarget & HTMLSpanElement) | null;
+}
 interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
-  label?: string;
-  tooltip?: string;
-  overrideLabelClasses?: string;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
+    label?: string;
+    tooltip?: string;
+    overrideLabelClasses?: string;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
 }
-
-declare const Checkbox: FC<
-  CheckboxProps & React__default.InputHTMLAttributes<HTMLInputElement>
->;
-
-interface InputLabelProps extends HTMLAttributes<HTMLLabelElement> {
-  children?: ReactNode;
-  sx?: OverrideTheme;
-  noMinWidth?: boolean;
-  htmlFor?: string;
-  helpTip?: ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-  orientation?: "horizontal" | "vertical";
+export interface InputLabelProps extends HTMLAttributes<HTMLLabelElement> {
+    children?: ReactNode;
+    sx?: OverrideTheme;
+    noMinWidth?: boolean;
+    htmlFor?: string;
+    helpTip?: ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+    orientation?: "horizontal" | "vertical";
 }
-
-declare const InputLabel: FC<InputLabelProps>;
-
-interface IconBase {
-  label?: string;
-  size?: "small" | "medium" | "large" | string;
-  sx?: OverrideTheme;
-  children: React__default.ReactNode;
+export const EditorThemeSwitchIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DisabledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FormatDrivesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SpeedtestIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const StorageIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const VersionIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LambdaBalloonIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HelpIconFilled: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ShareIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EditIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const JSONIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WarnIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CircleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectBrowserFolderIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RedoIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ChangeAccessPolicyIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ServersIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ClosePanelIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MinIOTierIconXs: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DashboardIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ClustersIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MirroringIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ToolsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ServiceAccountIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OnlineRegistrationBackIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConfigurationsListIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WatchIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ServiceAccountCredentialsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HealIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const S3TierIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowRightIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PreviewIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketQuotaIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SelectMultipleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EditYamlIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ReportedUsageIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PrometheusIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConfirmModalIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NextArrowIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PermissionIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const GoogleTierIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AccountIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AddAccessRuleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UptimeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EnabledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectPreviewIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TenantsOutlineIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DrivesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CreateNewPathIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HelpIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ReportedUsageFullIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AddNewTagIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OnlineRegistrationIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DiagnosticsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectBrowser1Icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MinIOTierIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WarpIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CopyIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OpenListIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MultipleBucketsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AddMembersToGroupIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OfflineRegistrationBackIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PrometheusErrorIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LifecycleConfigIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DriveFormatErrorsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const VerifiedIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CallHomeFeatureIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TraceIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AddIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const GoogleTierIconXs: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LambdaNotificationsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BackSettingsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LicenseIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RemoveIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TiersNotAvailableIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PerformanceFeatureIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AddFolderIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const S3TierIconXs: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const IAMPoliciesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UsersIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EgressIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketEncryptionIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DocumentationIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DiagnosticsFeatureIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PasswordKeyIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TrashIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EventSubscriptionIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ComputerLineIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AllBucketsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LambdaIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const GroupsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DownloadStatIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UploadFolderIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TiersIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NewAccountIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CreateGroupIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CollapseIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConfirmDeleteIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OfflineRegistrationIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TenantsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UploadFile: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CreateIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NewPoolIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SyncIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LogoutIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AzureTierIconXs: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TotalObjectsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CreateUserIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UploadStatIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketReplicationIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectManagerIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectBrowserIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RecoverIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AzureTierIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CalendarIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ServiceAccountsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LogsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HardBucketQuotaIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConsoleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ChangePasswordIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LockIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BackCaretIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const VersionsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NewPathIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectInfoIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MetadataIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LegalHoldIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RetentionIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TagsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AlertCloseIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OpenSourceIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowRightLink: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LicenseDocIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SelectAllIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BackIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DeleteNonCurrentIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EditTenantIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SuccessIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NetworkGetIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NetworkPutIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RemoveAllIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CancelledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EditTagIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LinkIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AlertIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const InfoIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConsoleAgpl: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConsoleStandard: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ConsoleEnterprise: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AGPLV3LightLogo: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AGPLV3Logo: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EnterpriseLightLogo: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const StandardLightLogo: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AGPLV3DarkLogo: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LDAPIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const OIDCIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const StarIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ExtraFeaturesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CollapseCaret: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ExpandCaret: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CertificateIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TierOnlineIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TierOfflineIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WarnFilledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BoxArrowUp: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BoxArrowDown: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UserFilledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LockFilledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FilterIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FolderIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ViewColumnIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowDropUp: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowDropDown: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CloudIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DisableIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FormatDriveIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ReportIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const VisibilityOnIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const VisibilityOffIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AccessRuleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TimeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CollapseMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AudioIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AudioIconMute: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ChatIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SendMessageIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CancelledAudioIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ThumbsUpIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ThumbsDownIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AttachFileIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CheckCircleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CodeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CompressIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FindReplaceIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FirstAidIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LockOpenIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LoginIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PendingItemsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PublicIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const KeyIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WebhookIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ExpandIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NextCaretIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PrevCaretIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DarkModeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LightModeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AutoModeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ShuffleIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LanguageIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EventBusyIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ExpandLeftCaret: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CacheIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CatalogMetricsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CatalogIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CountObjectsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DBIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EnvironmentVariablesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FirewallIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ImagesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const IngestIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const KeyManagementIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const NetworkingIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObjectsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObservabilityOverviewIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ObservabilityIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PodPlacementIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PoliciesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const QueryEditorIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ResourcesIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SettingsInMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SystemIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ExpandOptionsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HelpTip: FC<HelpTipProps>;
+export const InputLabel: FC<InputLabelProps>;
+export const Checkbox: FC<CheckboxProps & React.InputHTMLAttributes<HTMLInputElement>>;
+export interface IconBase {
+    label?: string;
+    size?: "small" | "medium" | "large" | string;
+    sx?: OverrideTheme;
+    children: React.ReactNode;
 }
-type IconButtonProps = IconBase &
-  React__default.ButtonHTMLAttributes<HTMLButtonElement>;
-
-declare const IconButton: FC<IconButtonProps>;
-
-declare const actionsTypes: readonly [
-  "view",
-  "edit",
-  "delete",
-  "description",
-  "share",
-  "cloud",
-  "console",
-  "download",
-  "disable",
-  "format",
-  "preview",
-];
-type PredefinedActionTypes = (typeof actionsTypes)[number];
-interface ItemActions {
-  tooltip?: string;
-  type: PredefinedActionTypes | React__default.ReactNode;
-  sendOnlyId?: boolean;
-  isDisabled?: boolean | ((itemValue: any) => boolean);
-  showLoader?: boolean | ((itemValue: any) => boolean);
-  onClick?(valueToSend: any): any;
+export type IconButtonProps = IconBase & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export const IconButton: FC<IconButtonProps>;
+export const actionsTypes: readonly ["view", "edit", "delete", "description", "share", "cloud", "console", "download", "disable", "format", "preview"];
+export type PredefinedActionTypes = (typeof actionsTypes)[number];
+export interface ItemActions {
+    tooltip?: string;
+    type: PredefinedActionTypes | React.ReactNode;
+    sendOnlyId?: boolean;
+    isDisabled?: boolean | ((itemValue: any) => boolean);
+    showLoader?: boolean | ((itemValue: any) => boolean);
+    onClick?(valueToSend: any): any;
 }
-interface IColumns {
-  label: string;
-  elementKey?: string;
-  renderFunction?: (input: any) => any;
-  renderFullObject?: boolean;
-  globalClass?: any;
-  rowClass?: any;
-  width?: number;
-  headerTextAlign?: string;
-  contentTextAlign?: string;
-  enableSort?: boolean;
+export interface IColumns {
+    label: string;
+    elementKey?: string;
+    renderFunction?: (input: any) => any;
+    renderFullObject?: boolean;
+    globalClass?: any;
+    rowClass?: any;
+    width?: number;
+    headerTextAlign?: string;
+    contentTextAlign?: string;
+    enableSort?: boolean;
 }
-interface IInfiniteScrollConfig {
-  loadMoreRecords: (indexElements: {
-    startIndex: number;
-    stopIndex: number;
-  }) => Promise<any>;
-  recordsCount: number;
+export interface IInfiniteScrollConfig {
+    loadMoreRecords: (indexElements: {
+        startIndex: number;
+        stopIndex: number;
+    }) => Promise<any>;
+    recordsCount: number;
 }
-interface ITableSortInfo {
-  sortBy: string;
-  sortDirection: SortDirectionType;
+export interface ITableSortInfo {
+    sortBy: string;
+    sortDirection: SortDirectionType;
 }
-interface ISortConfig {
-  onSortClick: (val: ITableSortInfo) => any;
-  currentSort: string;
-  currentDirection: "ASC" | "DESC" | undefined;
+export interface ISortConfig {
+    onSortClick: (val: ITableSortInfo) => any;
+    currentSort: string;
+    currentDirection: "ASC" | "DESC" | undefined;
 }
-interface DataTableProps {
-  itemActions?: ItemActions[] | null;
-  columns: IColumns[];
-  onSelect?: (e: React__default.ChangeEvent<HTMLInputElement>) => void;
-  idField?: string;
-  isLoading?: boolean;
-  loadingMessage?: React__default.ReactNode;
-  records: any[];
-  entityName?: string;
-  selectedItems?: string[];
-  customEmptyMessage?: string;
-  customPaperHeight?: string;
-  noBackground?: boolean;
-  columnsSelector?: boolean;
-  textSelectable?: boolean;
-  columnsShown?: string[];
-  onColumnChange?: (column: string) => any;
-  autoScrollToBottom?: boolean;
-  infiniteScrollConfig?: IInfiniteScrollConfig;
-  disabled?: boolean;
-  onSelectAll?: () => void;
-  rowStyle?: ({
-    index,
-  }: {
-    index: number;
-  }) => "deleted" | "" | React__default.CSSProperties;
-  parentClassName?: string;
-  sx?: OverrideTheme;
-  rowHeight?: number;
-  sortEnabled?: boolean | string[] | ISortConfig;
-  sortCallBack?: (info: ITableSortInfo) => void;
+export interface DataTableProps {
+    itemActions?: ItemActions[] | null;
+    columns: IColumns[];
+    onSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    idField?: string;
+    isLoading?: boolean;
+    loadingMessage?: React.ReactNode;
+    records: any[];
+    entityName?: string;
+    selectedItems?: string[];
+    customEmptyMessage?: string;
+    customPaperHeight?: string;
+    noBackground?: boolean;
+    columnsSelector?: boolean;
+    textSelectable?: boolean;
+    columnsShown?: string[];
+    onColumnChange?: (column: string) => any;
+    autoScrollToBottom?: boolean;
+    infiniteScrollConfig?: IInfiniteScrollConfig;
+    disabled?: boolean;
+    onSelectAll?: () => void;
+    rowStyle?: ({ index, }: {
+        index: number;
+    }) => "deleted" | "" | React.CSSProperties;
+    parentClassName?: string;
+    sx?: OverrideTheme;
+    rowHeight?: number;
+    sortEnabled?: boolean | string[] | ISortConfig;
+    sortCallBack?: (info: ITableSortInfo) => void;
 }
-interface DataTableWrapperProps extends HTMLAttributes<HTMLDivElement> {
-  disabled?: boolean;
-  customPaperHeight?: string | number;
-  noBackground?: boolean;
-  sx?: OverrideTheme;
-  rowHeight: number;
+export interface DataTableWrapperProps extends HTMLAttributes<HTMLDivElement> {
+    disabled?: boolean;
+    customPaperHeight?: string | number;
+    noBackground?: boolean;
+    sx?: OverrideTheme;
+    rowHeight: number;
 }
-interface IActionButton {
-  tooltip?: string;
-  type: PredefinedActionTypes | React__default.ReactNode;
-  onClick?: (id: string) => any;
-  valueToSend: any;
-  selected: boolean;
-  sendOnlyId?: boolean;
-  idField: string;
-  disabled: boolean;
+export interface IActionButton {
+    tooltip?: string;
+    type: PredefinedActionTypes | React.ReactNode;
+    onClick?: (id: string) => any;
+    valueToSend: any;
+    selected: boolean;
+    sendOnlyId?: boolean;
+    idField: string;
+    disabled: boolean;
 }
-interface ColumnSelectorProps {
-  open: boolean;
-  closeTriggerAction: () => void;
-  onSelect: (column: string) => void;
-  columns: IColumns[];
-  selectedOptionIDs: string[];
-  sx?: OverrideTheme;
-  anchorEl?: (EventTarget & HTMLElement) | null;
+export interface ColumnSelectorProps {
+    open: boolean;
+    closeTriggerAction: () => void;
+    onSelect: (column: string) => void;
+    columns: IColumns[];
+    selectedOptionIDs: string[];
+    sx?: OverrideTheme;
+    anchorEl?: (EventTarget & HTMLElement) | null;
 }
-interface ColumnSelectorConstructProps {
-  sx?: OverrideTheme;
+export interface ColumnSelectorConstructProps {
+    sx?: OverrideTheme;
 }
-
-declare const DataTable: FC<DataTableProps>;
-
-interface BackLinkProps
-  extends React__default.ButtonHTMLAttributes<HTMLButtonElement> {
-  sx?: OverrideTheme;
-  label?: string;
+export const DownloadIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DataTable: FC<DataTableProps>;
+export interface BackLinkProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    sx?: OverrideTheme;
+    label?: string;
 }
-
-declare const BackLink: FC<BackLinkProps>;
-
-interface HelpBoxProps {
-  icon?: React__default.ReactNode;
-  title: string;
-  help: string | React__default.ReactNode | React__default.ReactNode[];
+export const BackLink: FC<BackLinkProps>;
+export interface HelpBoxProps {
+    icon?: React.ReactNode;
+    title: string;
+    help: string | React.ReactNode | React.ReactNode[];
 }
-
-declare const HelpBox: FC<HelpBoxProps & HTMLAttributes<HTMLDivElement>>;
-
-interface SectionTitleProps {
-  separator?: boolean;
-  actions?: React__default.ReactNode;
-  icon?: React__default.ReactNode;
-  children: React__default.ReactNode;
-  sx?: OverrideTheme;
+export interface ScreenTitleProps {
+    icon: React.ReactNode;
+    subTitle?: React.ReactNode;
+    title: string;
+    actions: React.ReactNode;
+    titleOptions?: ScreenTitleOptions[];
+    sx?: OverrideTheme;
 }
-
-declare const SectionTitle: FC<
-  SectionTitleProps & HTMLAttributes<HTMLDivElement>
->;
-
-interface BoxProps extends React__default.HTMLAttributes<HTMLDivElement> {
-  sx?: OverrideTheme;
-  children?: React__default.ReactNode;
-  withBorders?: boolean;
-  customBorderPadding?: number | string;
-  useBackground?: boolean;
+export interface ScreenTitleContainerProps {
+    subTitle?: React.ReactNode;
+    titleOptions?: ScreenTitleOptions[];
+    sx?: OverrideTheme;
+    bottomBorder?: boolean;
 }
-
-declare const Box: React__default.ForwardRefExoticComponent<
-  BoxProps &
-    React__default.RefAttributes<React__default.HTMLAttributes<HTMLDivElement>>
->;
-
-interface FormLayoutProps {
-  sx?: OverrideTheme;
-  children?: React__default.ReactNode;
-  title?: string;
-  icon?: React__default.ReactNode;
-  helpBox?: React__default.ReactNode;
-  withBorders?: boolean;
-  containerPadding?: boolean;
+export interface ScreenTitleOptions {
+    title: string;
+    value: string;
 }
-
-declare const FormLayout: FC<FormLayoutProps>;
-
-interface PageLayoutProps {
-  variant?: "constrained" | "full";
-  children: React__default.ReactNode;
-  className?: string;
-  sx?: OverrideTheme;
+export interface IBoxedIconProps {
+    children: React.ReactNode;
+    sx?: OverrideTheme;
 }
-
-declare const PageLayout: FC<PageLayoutProps & HTMLAttributes<HTMLDivElement>>;
-
+export const BoxedIcon: FC<IBoxedIconProps>;
+export const ScreenTitle: FC<ScreenTitleProps & HTMLAttributes<HTMLDivElement>>;
+export const HelpBox: FC<HelpBoxProps & HTMLAttributes<HTMLDivElement>>;
+export interface SectionTitleProps {
+    separator?: boolean;
+    actions?: React.ReactNode;
+    icon?: React.ReactNode;
+    children: React.ReactNode;
+    sx?: OverrideTheme;
+}
+export const SectionTitle: FC<SectionTitleProps & HTMLAttributes<HTMLDivElement>>;
+export interface FormLayoutProps {
+    sx?: OverrideTheme;
+    children?: React.ReactNode;
+    title?: string;
+    icon?: React.ReactNode;
+    helpBox?: React.ReactNode;
+    withBorders?: boolean;
+    containerPadding?: boolean;
+}
+export const FormLayout: FC<FormLayoutProps>;
+export interface PageLayoutProps {
+    variant?: "constrained" | "full";
+    children: React.ReactNode;
+    className?: string;
+    sx?: OverrideTheme;
+}
+export const PageLayout: FC<PageLayoutProps & HTMLAttributes<HTMLDivElement>>;
 interface MainContainerProps {
-  menu?: React__default.ReactElement;
-  children: React__default.ReactElement;
-  horizontal?: boolean;
-  mobileModeAuto?: boolean;
-  sx?: OverrideTheme;
-}
-
-declare const MainContainer: FC<MainContainerProps>;
-
-interface InputBoxProps
-  extends React__default.InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  fullWidth?: boolean;
-  label?: string;
-  tooltip?: string;
-  sx?: OverrideTheme;
-  index?: number;
-  overlayId?: "index";
-  overlayIcon?: React__default.ReactNode;
-  overlayAction?: () => void;
-  overlayObject?: React__default.ReactNode;
-  noLabelMinWidth?: boolean;
-  startIcon?: React__default.ReactNode;
-  required?: boolean;
-  className?: string;
-  helper?: string;
-  state?: "normal" | "error" | "success" | "warning";
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-  sizeMode?: "small" | "large";
-  orientation?: "horizontal" | "vertical";
-  disableErrorUntilFocus?: boolean;
-}
-interface InputContainerProps {
-  children?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  startIcon?: React__default.ReactNode;
-  className?: string;
-  sizeMode?: "small" | "large";
-}
-interface ExtraInputProps {
-  originType?: string;
-}
-
-declare const InputBox$1: FC<InputBoxProps>;
-
-interface BreadcrumbsProps {
-  sx?: OverrideTheme;
-  options: BreadcrumbsOption[];
-  goBackFunction?: () => void;
-  displayLastItems?: false | number;
-  onClickOption?: (to?: string) => void;
-  children?: React__default.ReactNode;
-  markCurrentItem?: boolean;
-}
-interface BreadcrumbsOption {
-  label: string;
-  to?: string;
-  onClick?: (to?: string) => void;
-}
-interface BreadcrumbsContainerProps {
-  sx?: OverrideTheme;
-}
-interface BreadcrumbsOptionProps {
-  id: string;
-  name?: string;
-  label?: string;
-  icon?: ReactNode;
-  iconLocation?: "start" | "end";
-  disabled?: boolean;
-  current?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  children?: ReactNode | string;
-  sx?: OverrideTheme;
-}
-
-declare const Breadcrumbs: FC<BreadcrumbsProps>;
-
-declare const BreadcrumbButton: FC<
-  BreadcrumbsOptionProps &
-    React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface ActionItem {
-  action: () => void;
-  label: string;
-  disabled: boolean;
-  icon: React__default.ReactNode;
-  tooltip: string;
-}
-interface ActionsListProps {
-  sx?: OverrideTheme;
-  items: ActionItem[];
-  title: React__default.ReactNode;
-}
-interface ActionsListPanelProps {
-  sx?: OverrideTheme;
-}
-interface ActionButtonProps
-  extends React__default.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
-  icon: React__default.ReactNode;
-}
-
-declare const ActionsList: FC<ActionsListProps>;
-
-interface SimpleHeaderProps {
-  label: React__default.ReactNode;
-  icon?: React__default.ReactNode;
-  sx?: OverrideTheme;
-}
-interface SimpleHeaderContainerProps {
-  sx?: OverrideTheme;
-}
-
-declare const SimpleHeader: FC<
-  SimpleHeaderProps & HTMLAttributes<HTMLDivElement>
->;
-
-interface ScreenTitleProps {
-  icon: React__default.ReactNode;
-  subTitle?: React__default.ReactNode;
-  title: string;
-  actions: React__default.ReactNode;
-  titleOptions?: ScreenTitleOptions[];
-  sx?: OverrideTheme;
-}
-interface ScreenTitleContainerProps {
-  subTitle?: React__default.ReactNode;
-  titleOptions?: ScreenTitleOptions[];
-  sx?: OverrideTheme;
-  bottomBorder?: boolean;
-}
-interface ScreenTitleOptions {
-  title: string;
-  value: string;
-}
-
-declare const ScreenTitle: FC<
-  ScreenTitleProps & HTMLAttributes<HTMLDivElement>
->;
-
-interface ModalBoxProps {
-  onClose: () => void;
-  open: boolean;
-  title: React__default.ReactNode;
-  children: React__default.ReactNode;
-  widthLimit?: boolean;
-  titleIcon?: React__default.ReactNode;
-  backgroundOverlay?: boolean;
-  iconColor?: "accept" | "delete" | "default";
-  customMaxWidth?: number | string;
-  sx?: OverrideTheme;
-}
-interface ModalBoxContainerProps {
-  backgroundOverlay?: boolean;
-  widthLimit?: boolean;
-  iconColor?: "accept" | "delete" | "default";
-  customMaxWidth?: number | string;
-  sx?: OverrideTheme;
-}
-
-declare const ModalBox: FC<ModalBoxProps>;
-
-interface MainSwitchProps {
-  id: string;
-  label?: string;
-  tooltip?: string;
-  sx?: OverrideTheme;
-  className?: string;
-  switchOnly?: boolean;
-  indicatorLabels?: string[];
-  description?: string;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface IndicatorProps {
-  active: boolean;
-  children: React__default.ReactNode;
-}
-interface SwitchContainerProps {
-  sx?: OverrideTheme;
-}
-type SwitchProps = MainSwitchProps &
-  React__default.InputHTMLAttributes<HTMLInputElement>;
-
-declare const Switch: FC<
-  SwitchProps & React__default.InputHTMLAttributes<HTMLInputElement>
->;
-
-interface SelectProps {
-  options: SelectOption[];
-  value?: string;
-  id: string;
-  name?: string;
-  required?: boolean;
-  className?: string;
-  disabled?: boolean;
-  label?: string;
-  tooltip?: string;
-  noLabelMinWidth?: boolean;
-  fixedLabel?: string;
-  placeholder?: string;
-  onChange: (newValue: string, extraValue?: any) => void;
-  sx?: OverrideTheme;
-  helpTip?: React.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-  sizeMode?: "small" | "large";
-  orientation?: "horizontal" | "vertical";
-  state?: "normal" | "error" | "success" | "warning";
-  readOnly?: boolean;
-  helper?: string;
-}
-
-declare const Select: FC<SelectProps>;
-
-interface DropdownSelectorProps {
-  id: string;
-  options: SelectOption[];
-  selectedOption?: string;
-  onSelect: (
-    value: string,
-    extraValue?: any,
-    label?: string,
-    selectedIndex?: number,
-  ) => void;
-  hideTriggerAction: () => void;
-  open: boolean;
-  anchorEl?: (EventTarget & HTMLElement) | null;
-  anchorOrigin?: "start" | "end";
-  useAnchorWidth?: boolean;
-  forSelectInput?: boolean;
-}
-interface DropDownBlockProps {
-  useAnchorWidth: boolean;
-  forSelectInput: boolean;
-  sx: OverrideTheme;
-}
-interface DropdownItemProps {
-  icon?: React__default.ReactNode;
-  label: string;
-  indicator?: React__default.ReactNode;
-}
-
-declare const DropdownSelector: FC<DropdownSelectorProps>;
-
-interface RadioGroupProps {
-  label?: string;
-  tooltip?: string;
-  selectorOptions: SelectOption[];
-  currentValue: string;
-  id: string;
-  name: string;
-  disableOptions?: boolean;
-  displayInColumn?: boolean;
-  className?: string;
-  onChange: (
-    event: React__default.ChangeEvent<HTMLInputElement>,
-    extraValue?: any,
-  ) => void;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface OptionsContainerProps {
-  inColumn: boolean;
-}
-
-declare const RadioGroup: FC<RadioGroupProps>;
-
-interface ReadBoxProps {
-  label?: string;
-  children: React__default.ReactNode;
-  multiLine?: boolean;
-  actionButton?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface ReadBoxBaseProps {
-  label?: string;
-  sx?: OverrideTheme;
-  multiLine?: boolean;
-}
-
-declare const ReadBox: FC<ReadBoxProps>;
-
-interface CommentBoxProps
-  extends React__default.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  id: string;
-  fullWidth?: boolean;
-  label?: string;
-  tooltip?: string;
-  sx?: OverrideTheme;
-  index?: number;
-  noLabelMinWidth?: boolean;
-  required?: boolean;
-  className?: string;
-  error?: string;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface CommentContainerProps {
-  children?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  error?: boolean;
-  startIcon?: React__default.ReactNode;
-  className?: string;
-}
-interface ExtraCommentProps {
-  originType?: string;
-}
-
-declare const InputBox: FC<CommentBoxProps>;
-
-interface MenuProps {
-  options?: MenuItemProps[];
-  sx?: OverrideTheme;
-  applicationLogo: ApplicationLogoProps;
-  callPathAction: (path: string) => void;
-  horizontal?: boolean;
-  isOpen: boolean;
-  collapseAction: () => void;
-  displayGroupTitles?: boolean;
-  signOutAction?: () => void;
-  currentPath?: string;
-  middleComponent?: React__default.ReactNode;
-  endComponent?: React__default.ReactNode;
-  mobileModeAuto?: boolean;
-}
-interface MenuItemProps {
-  group?: string;
-  path?: string;
-  name: string;
-  id?: string;
-  icon: React__default.ReactNode;
-  onClick?: (path: string) => void;
-  children?: MenuItemProps[];
-  badge?: boolean;
-  currentPath?: string;
-  visibleTooltip?: boolean;
-  isVisible?: boolean;
-}
-interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  label: string;
-  divider?: boolean;
-}
-interface MainHeaderProps {
-  divider?: boolean;
-}
-interface MenuConstructProps {
-  sx?: OverrideTheme;
-}
-interface SubItemsBoxProps {
-  anchorEl: (EventTarget & HTMLElement) | null;
-  hideTriggerAction: () => void;
-  children: React__default.ReactNode;
-  open: boolean;
-}
-
-declare const Menu: FC<MenuProps>;
-
-interface ExpandOptionsButtonProps {
-  label: string;
-  open: boolean;
-  sx?: OverrideTheme;
-}
-interface ConstructExpandOptionsProps {
-  sx?: OverrideTheme;
-}
-
-declare const ExpandOptionsButton: FC<
-  ExpandOptionsButtonProps &
-    React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface TabProps {
-  label: string;
-  icon?: React__default.ReactNode;
-  disabled?: boolean;
-  to?: string;
-  id: string;
-}
-interface TabItemProps {
-  tabConfig: TabProps;
-  content?: React__default.ReactNode;
-}
-interface TabsProps {
-  horizontal?: boolean;
-  options: TabItemProps[];
-  currentTabOrPath: string;
-  useRouteTabs?: boolean;
-  routes?: React__default.ReactElement | null;
-  onTabClick: (selectedItem: string) => void;
-  optionsInitialComponent?: React__default.ReactNode;
-  optionsEndComponent?: React__default.ReactNode;
-  horizontalBarBackground?: boolean;
-  sx?: OverrideTheme;
-}
-interface TabsContainerProps {
-  horizontal: boolean;
-  horizontalBarBackground: boolean;
-  sx?: OverrideTheme;
-}
-interface TabButtonProps {
-  id: string;
-  horizontal?: boolean;
-  label: string;
-  onClick: () => void;
-  disabled: boolean;
-  icon?: React__default.ReactNode;
-  selected?: boolean;
-}
-interface TabButtonConstructProps {
-  horizontal: boolean;
-}
-interface TabPanelProps {
-  id: string;
-  selectedTab?: string;
-  useRouteTabs: boolean;
-  children: React__default.ReactNode;
-}
-
-declare const Tabs: FC<TabsProps & HTMLAttributes<HTMLDivElement>>;
-
-interface CodeEditorProps {
-  value: string;
-  label?: string;
-  mode?: string;
-  tooltip?: string;
-  editorHeight?: string | number;
-  onChange: (value: string) => any;
-  className?: string;
-  helpTools?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface CodeEditorBaseProps {
-  editorHeight: string | number;
-  sx?: OverrideTheme;
-  className?: string;
-}
-
-declare const CodeMirrorWrapper: FC<CodeEditorProps>;
-
-interface TagMainProps {
-  label: string;
-  onDelete?: (item: string) => void;
-  id: string;
-  icon?: React__default.ReactNode;
-}
-interface TagConstructProps {
-  color?: "default" | "secondary" | "warn" | "alert" | "ok" | "grey";
-  sx?: OverrideTheme;
-  variant?: "regular" | "outlined";
-  square?: boolean;
-}
-type TagProps = TagMainProps & TagConstructProps;
-
-declare const Tag: FC<
-  TagProps & React__default.HTMLAttributes<HTMLSpanElement>
->;
-
-interface CommonActionLinkProps {
-  isLoading?: boolean;
-  label?: any;
-}
-interface BaseActionLinkProps {
-  sx?: OverrideTheme;
-}
-type ActionLinkProps = CommonActionLinkProps & BaseActionLinkProps;
-
-declare const ActionLink: FC<
-  ActionLinkProps & React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface ValuePairMain {
-  label?: ReactNode;
-  value?: ReactNode;
-}
-interface ValuePairCommon {
-  direction?: "column" | "row";
-  sx?: OverrideTheme;
-}
-type ValuePairProps = ValuePairMain & ValuePairCommon;
-
-declare const ValuePair: FC<ValuePairProps>;
-
-interface MainProgressProps {
-  variant?: "determinate" | "indeterminate";
-  notificationLabel?: string;
-  value?: number;
-  maxValue?: number;
-  progressLabel?: boolean;
-}
-interface CommonProgressBar {
-  sx?: OverrideTheme;
-  color?: "blue" | "red" | "green" | "orange" | "grey";
-  barHeight?: number;
-  transparentBG?: boolean;
-}
-type ProgressBarProps = MainProgressProps & CommonProgressBar;
-
-declare const ProgressBar: FC<ProgressBarProps>;
-
-interface FileSelectorProps {
-  label: string;
-  onChange: (
-    event: React__default.ChangeEvent<HTMLInputElement>,
-    fileName: string,
-    data?: string,
-  ) => void;
-  returnEncodedData?: boolean;
-  id: string;
-  name: string;
-  disabled?: boolean;
-  tooltip?: string;
-  required?: boolean;
-  error?: string;
-  accept?: string;
-  value: string;
-  className?: string;
-  noLabelMinWidth?: boolean;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-interface FileSelectorConstructorProps {
-  children?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  error?: boolean;
-  startIcon?: React__default.ReactNode;
-  className?: string;
-}
-
-declare const FileSelector: FC<FileSelectorProps>;
-
-interface SizeChartMain {
-  label: boolean;
-  width?: string;
-  height?: string;
-}
-interface SizeChartConstructProps {
-  usedBytes: number;
-  totalBytes: number;
-  chartLabel?: string;
-  sx?: OverrideTheme;
-}
-type SizeChartProps = SizeChartMain & SizeChartConstructProps;
-
-declare const SizeChart: FC<SizeChartProps>;
-
-interface SnackbarMainProps {
-  autoHideDuration?: number;
-  message?: ReactNode;
-  onClose: () => void;
-  closeButton?: boolean;
-  mode?: "inline" | "portal";
-}
-interface SnackbarConstructProps {
-  open: boolean;
-  condensed?: boolean;
-  variant?: "default" | "success" | "warning" | "error";
-  sx?: OverrideTheme;
-}
-interface SnackbarButtonProps {
-  variant: "default" | "success" | "warning" | "error";
-  condensed: boolean;
-}
-type SnackbarProps = SnackbarMainProps & SnackbarConstructProps;
-
-declare const Snackbar: FC<SnackbarProps>;
-
-interface AccordionProps {
-  expanded: boolean;
-  onTitleClick: () => void;
-  id: string;
-  title: ReactNode;
-  children: ReactNode;
-  disabled?: boolean;
-  sx?: OverrideTheme;
-}
-interface AccordionMainProps {
-  sx?: OverrideTheme;
-}
-interface AccordionContentProps {
-  expanded: boolean;
-}
-
-declare const Accordion: FC<AccordionProps>;
-
-declare const HelpTip: FC<HelpTipProps>;
-
-interface AutocompleteProps {
-  options: SelectOption[];
-  value?: string;
-  id: string;
-  name?: string;
-  required?: boolean;
-  className?: string;
-  disabled?: boolean;
-  displayDropArrow?: boolean;
-  label?: string;
-  tooltip?: string;
-  noLabelMinWidth?: boolean;
-  placeholder?: string;
-  onChange: (newValue: string, extraValue?: any) => void;
-  sx?: OverrideTheme;
-  helpTip?: React.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-}
-
-declare const Autocomplete: FC<AutocompleteProps>;
-
-interface BadgeMain {
-  invisible?: boolean;
-  max?: number;
-  showZero?: boolean;
-  badgeContent?: number;
-}
-interface BadgeConstruct {
-  horizontalPosition?: "left" | "right";
-  verticalPosition?: "bottom" | "top";
-  sx?: OverrideTheme;
-  color?: "default" | "secondary" | "warn" | "alert" | "ok" | "grey";
-  shape?: "circular" | "rectangular";
-  dotOnly?: boolean;
-}
-type BadgeProps = BadgeMain & BadgeConstruct;
-
-declare const Badge: FC<HTMLAttributes<HTMLSpanElement> & BadgeProps>;
-
-interface WizardButton {
-  label?: string;
-  type?: "next" | "back" | "to" | "custom";
-  action?: (nextFunction: (to: string | number) => void) => void;
-  enabled?: boolean;
-  toPage?: number;
-  componentRender?: React__default.ReactNode;
-}
-interface WizardElement {
-  label: string;
-  componentRender: any;
-  buttons: WizardButton[];
-  advancedOnly?: boolean;
-  loadingStep?: boolean;
-}
-interface WizardPage {
-  page: WizardElement;
-  pageChange: (to: string | number) => void;
-  loadingStep?: boolean;
-}
-interface WizardMain {
-  loadingStep?: boolean;
-  wizardSteps: WizardElement[];
-  linearMode?: boolean;
-}
-interface WizardConstruct {
-  sx?: OverrideTheme;
-  forModal?: boolean;
-  actionButtonsPortalID?: HTMLElement;
-}
-type WizardProps = WizardMain & WizardConstruct;
-type WizardPageProps = WizardPage & WizardConstruct;
-
-declare const GenericWizard: ({
-  wizardSteps,
-  loadingStep,
-  forModal,
-  linearMode,
-  actionButtonsPortalID,
-  sx,
-}: WizardProps) => React__default.JSX.Element | null;
-
-interface InformativeMessageMain {
-  title: React__default.ReactNode;
-  message: React__default.ReactNode;
-}
-interface InformativeConstructProps {
-  variant?: "default" | "success" | "warning" | "error";
-  sx?: OverrideTheme;
-}
-type InformativeMessageProps = InformativeMessageMain &
-  InformativeConstructProps;
-
-declare const InformativeMessage: FC<InformativeMessageProps>;
-
-interface DateTimeInputMain {
-  pickerStartComponent?: React__default.ReactNode;
-  className?: string;
-  label?: string;
-  required?: boolean;
-  tooltip?: string;
-  disabled?: boolean;
-  openPickerIcon?: "arrow" | React__default.ReactNode;
-  displayFormat?: string;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-  noLabelMinWidth?: boolean;
-  pickerSx?: OverrideTheme;
-}
-interface DateTimeConstruct {
-  id: string;
-  sx?: OverrideTheme;
-  mode?: "all" | "date";
-  value: DateTime | null;
-  onChange: (value: DateTime | null) => void;
-  minDate?: DateTime;
-  maxDate?: DateTime;
-  usePortal?: boolean;
-}
-interface DateTimeSelectorMain {
-  open?: boolean;
-  anchorEl?: (EventTarget & HTMLElement) | null;
-  onClose?: () => void;
-}
-interface TimeSelectorProps {
-  value: DateTime | null;
-  onChange: (value: DateTime | null) => void;
-  completeCallback?: () => void;
-  timeFormat?: "12h" | "24h";
-  secondsSelector: boolean;
-}
-interface DateSelectorProps {
-  minDate?: DateTime;
-  maxDate?: DateTime;
-  value: DateTime | null;
-  onChange: (value: DateTime | null) => void;
-}
-interface StylesOverrideProps {
-  isPortal: boolean;
-  mode: "all" | "date";
-  coords: CSSObject;
-  sx?: OverrideTheme;
-}
-type DateTimeInputProps = DateTimeInputMain &
-  DateTimeConstruct &
-  TimeSelectorProps;
-type DateTimeSelectorProps = DateTimeSelectorMain &
-  DateTimeConstruct &
-  TimeSelectorProps;
-
-declare const DateTimeInput: FC<DateTimeInputProps>;
-
-declare const DateTimeSelector: FC<DateTimeSelectorProps>;
-
-interface LinkProps {
-  sx?: OverrideTheme;
-}
-
-declare const Link: FC<
-  LinkProps & React__default.AnchorHTMLAttributes<HTMLAnchorElement>
->;
-
-declare const RoundedButton: FC<
-  ButtonProps & React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface SliderProps {
-  id: string;
-  label?: string;
-  noLabelMinWidth?: boolean;
-  error?: string;
-  tooltip?: string;
-  sx?: OverrideTheme;
-  helpTip?: React__default.ReactNode;
-  helpTipPlacement?: CommonHelpTipPlacement;
-  displayValue?: boolean;
-  displayValueFunction?: (value: any) => React__default.ReactNode;
-}
-interface SliderContainerProps {
-  children?: React__default.ReactNode;
-  sx?: OverrideTheme;
-  error?: boolean;
-  className?: string;
-}
-
-declare const Slider: FC<
-  SliderProps & React__default.InputHTMLAttributes<HTMLInputElement>
->;
-
-interface ButtonGroupProps
-  extends React__default.HTMLAttributes<HTMLDivElement> {
-  children: React__default.ReactNode;
-  displayLabels?: boolean;
-  sx?: OverrideTheme;
-}
-
-declare const ButtonGroup: FC<ButtonGroupProps>;
-
-interface FormActionsTrayProps
-  extends React__default.HTMLAttributes<HTMLDivElement> {
-  marginTop?: number;
-  separator?: boolean;
-  sx?: OverrideTheme;
-}
-
-declare const FormActionsTray: FC<FormActionsTrayProps>;
-
-interface ExpandMenuProps {
-  id: string;
-  name?: string;
-  label?: string;
-  variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
-  icon?: ReactNode;
-  iconLocation?: "start" | "end";
-  children?: ReactNode | string;
-  dropMenuPosition?: "start" | "end";
-  compact?: boolean;
-  sx?: OverrideTheme;
-}
-interface ExpandMenuOptionProps {
-  id: string;
-  variant?: "regular" | "secondary";
-  icon?: ReactNode;
-  sx?: OverrideTheme;
-  children: ReactNode;
-}
-interface ExpandDropBaseProps {
-  selectedOption?: string;
-  hideTriggerAction: () => void;
-  open: boolean;
-  anchorEl?: (EventTarget & HTMLElement) | null;
-  anchorOrigin?: "start" | "end";
-  children: React__default.ReactNode;
-}
-interface DropdownMainProps {
-  sx?: OverrideTheme;
-}
-type ExpandDropdownProps = DropdownMainProps & ExpandDropBaseProps;
-
-declare const ExpandMenu: FC<
-  ExpandMenuProps & React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-declare const ExpandMenuOption: FC<
-  ExpandMenuOptionProps & React__default.ButtonHTMLAttributes<HTMLButtonElement>
->;
-
-interface IBoxedIconProps {
-  children: React__default.ReactNode;
-  sx?: OverrideTheme;
-}
-
-declare const BoxedIcon: FC<IBoxedIconProps>;
-
-interface PillProps {
-  type: "current" | "secondary" | "default";
-  sx?: OverrideTheme;
-}
-
-declare const Pill: FC<
-  PillProps & React__default.HTMLAttributes<HTMLSpanElement>
->;
-
-interface SearchBoxProps {
-  id: string;
-  placeholder?: string;
-  sx?: OverrideTheme;
-  icon?: React__default.ReactNode;
-}
-
-declare const SearchBox: FC<
-  SearchBoxProps & React__default.InputHTMLAttributes<HTMLInputElement>
->;
-
-declare const EditorThemeSwitchIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const DisabledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const FormatDrivesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SpeedtestIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const StorageIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const VersionIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LambdaBalloonIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const HelpIconFilled: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ShareIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EditIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const JSONIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const WarnIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const CircleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObjectBrowserFolderIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RedoIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const ChangeAccessPolicyIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ServersIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ClosePanelIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MinIOTierIconXs: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const DashboardIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ClustersIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MirroringIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ToolsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ArrowIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ServiceAccountIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const OnlineRegistrationBackIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ConfigurationsListIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const WatchIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ServiceAccountCredentialsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const HealIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const S3TierIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ArrowRightIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PreviewIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketQuotaIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SelectMultipleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EditYamlIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ReportedUsageIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PrometheusIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ConfirmModalIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NextArrowIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PermissionIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const GoogleTierIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const AccountIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AddAccessRuleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UptimeIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EnabledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ObjectPreviewIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TenantsOutlineIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DrivesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CreateNewPathIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const HelpIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const ReportedUsageFullIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const AddNewTagIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const OnlineRegistrationIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DiagnosticsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ObjectBrowser1Icon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MinIOTierIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const WarpIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const CopyIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const OpenListIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MultipleBucketsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AddMembersToGroupIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const OfflineRegistrationBackIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PrometheusErrorIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LifecycleConfigIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DriveFormatErrorsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const VerifiedIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CallHomeFeatureIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TraceIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AddIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const GoogleTierIconXs: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const LambdaNotificationsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const BackSettingsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LicenseIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RemoveIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TiersNotAvailableIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const PerformanceFeatureIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AddFolderIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const S3TierIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const IAMPoliciesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UsersIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EgressIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketEncryptionIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DocumentationIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DiagnosticsFeatureIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PasswordKeyIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const TrashIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const EventSubscriptionIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ComputerLineIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AllBucketsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LambdaIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const GroupsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DownloadStatIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UploadFile$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const TiersIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NewAccountIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const CreateGroupIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CollapseIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ConfirmDeleteIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const OfflineRegistrationIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TenantsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UploadFile: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const CreateIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NewPoolIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SyncIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const LogoutIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AzureTierIconXs: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const TotalObjectsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CreateUserIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketsIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UploadStatIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketReplicationIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObjectManagerIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObjectBrowserIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RecoverIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AzureTierIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const CalendarIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ServiceAccountsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const LogsIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const HardBucketQuotaIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ConsoleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ChangePasswordIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LockIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BackCaretIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const VersionsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NewPathIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObjectInfoIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MetadataIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LegalHoldIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RetentionIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TagsIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const AlertCloseIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const OpenSourceIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ArrowRightLink: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const LicenseDocIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SelectAllIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BackIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const DeleteNonCurrentIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EditTenantIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SuccessIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const NetworkGetIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const NetworkPutIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ObjectManagerIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CancelledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EditTagIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LinkIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const AlertIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const InfoIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const ConsoleAgpl: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ConsoleStandard: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ConsoleEnterprise: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const AGPLV3LightLogo: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AGPLV3Logo: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EnterpriseLightLogo: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const StandardLightLogo: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AGPLV3DarkLogo: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LDAPIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const OIDCIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const StarIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const AccountIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CollapseCaret: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ExpandCaret: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CertificateIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TierOnlineIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TierOfflineIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const WarnFilledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BoxArrowUp: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BoxArrowDown: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UserFilledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LockFilledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FilterIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const FolderIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ViewColumnIcon$2: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ArrowDropUp$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ArrowDropUp: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CloudIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DisableIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FormatDriveIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ReportIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ViewColumnIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ViewColumnIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AccessRuleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TimeIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const CollapseMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AudioIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AudioIconMute: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ChatIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const SendMessageIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CancelledAudioIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React__default.JSX.Element;
-
-declare const ThumbsUpIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ThumbsDownIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AttachFileIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CheckCircleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CodeIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const CompressIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FindReplaceIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FirstAidIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LockIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const LoginIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PendingItemsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FirstAidIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LoginIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const WebhookIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ExpandIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NextCaretIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NextCaretIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DarkModeIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LightModeIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AutoModeIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ShuffleIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LanguageIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ShuffleIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ExpandLeftCaret: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CatalogMetricsIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CatalogIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CatalogMetricsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DBIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const EnvironmentVariablesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FirewallIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ImagesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const IngestIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const KeyManagementIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const NetworkingIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObjectsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObservabilityOverviewIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ObservabilityIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PorPlacementIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PoliciesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const QueryEditorIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ResourcesIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SettingsInMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SystemIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ExpandOptionsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const InspectMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AuditLogsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const HealthMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MenuCollapsedIcon$1: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TraceMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const GroupsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MenuCollapsedIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MetricsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const IdentityMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LogsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const MonitoringMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SupportMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PerformanceMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DiagnosticsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AccessMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RegisterMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DrivesMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const AccountsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ProfileMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CallHomeMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UsersMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const KeysMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const StatusMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SecretsMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PoliciesMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const IdentitiesMenuIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileConfigIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FilePdfIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileFontIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileLinkIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileImageIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileWorldIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileBookIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileMissingIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileCodeIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FilePptIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileDbIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileTxtIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileVideoIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileLockIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileXlsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileZipIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FolderBrowserIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileCloudIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileMusicIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const FileNonType: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CaretFilledIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CaretIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ErrorAlertIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EyeIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const EyeOffIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SuccessAlertIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const WarningAlertIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ListFilterIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PanelLeftOpenIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const BucketIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const HistoryIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RefreshIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const PenLineIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const UploadIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DownloadIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const TagIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const EllipsisVerticalIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ArrowLeftIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SquareStackIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const RefreshCCWDotIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const CheckIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const XIcon: (props: SVGProps<SVGSVGElement>) => React$1.JSX.Element;
-
-declare const CircleHelpIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SettingsIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const LogOutIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const SearchIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ChevronLeftIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const ChevronRightIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const EllipsisIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
-declare const DeleteIcon: (
-  props: SVGProps<SVGSVGElement>,
-) => React$1.JSX.Element;
-
+    menu?: React.ReactElement;
+    children: React.ReactElement;
+    horizontal?: boolean;
+    mobileModeAuto?: boolean;
+    sx?: OverrideTheme;
+}
+export const MainContainer: FC<MainContainerProps>;
+export interface InputBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    id: string;
+    fullWidth?: boolean;
+    label?: string;
+    tooltip?: string;
+    sx?: OverrideTheme;
+    index?: number;
+    overlayId?: "index";
+    overlayIcon?: React.ReactNode;
+    overlayAction?: () => void;
+    overlayObject?: React.ReactNode;
+    noLabelMinWidth?: boolean;
+    startIcon?: React.ReactNode;
+    required?: boolean;
+    className?: string;
+    helper?: string;
+    state?: "normal" | "error" | "success" | "warning";
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+    sizeMode?: "small" | "large";
+    orientation?: "horizontal" | "vertical";
+    disableErrorUntilFocus?: boolean;
+}
+export interface InputContainerProps {
+    children?: React.ReactNode;
+    sx?: OverrideTheme;
+    startIcon?: React.ReactNode;
+    className?: string;
+    sizeMode?: "small" | "large";
+}
+export interface ExtraInputProps {
+    originType?: string;
+}
+export const EyeOffIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EyeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ErrorAlertIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const WarningAlertIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SuccessAlertIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const InputBox: FC<InputBoxProps>;
+export interface BreadcrumbsProps {
+    sx?: OverrideTheme;
+    options: BreadcrumbsOption[];
+    goBackFunction?: () => void;
+    displayLastItems?: false | number;
+    onClickOption?: (to?: string) => void;
+    children?: React.ReactNode;
+    markCurrentItem?: boolean;
+}
+export interface BreadcrumbsOption {
+    label: string;
+    to?: string;
+    onClick?: (to?: string) => void;
+}
+export interface BreadcrumbsContainerProps {
+    sx?: OverrideTheme;
+}
+export interface BreadcrumbsOptionProps {
+    id: string;
+    name?: string;
+    label?: string;
+    icon?: ReactNode;
+    iconLocation?: "start" | "end";
+    disabled?: boolean;
+    current?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    children?: ReactNode | string;
+    sx?: OverrideTheme;
+}
+export interface ExpandMenuProps {
+    id: string;
+    name?: string;
+    label?: string;
+    variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
+    icon?: ReactNode;
+    iconLocation?: "start" | "end";
+    children?: ReactNode | string;
+    dropMenuPosition?: "start" | "end";
+    compact?: boolean;
+    sx?: OverrideTheme;
+}
+export interface ExpandMenuOptionProps {
+    id: string;
+    variant?: "regular" | "secondary";
+    icon?: ReactNode;
+    sx?: OverrideTheme;
+    children: ReactNode;
+}
+export interface ExpandDropBaseProps {
+    selectedOption?: string;
+    hideTriggerAction: () => void;
+    open: boolean;
+    anchorEl?: (EventTarget & HTMLElement) | null;
+    anchorOrigin?: "start" | "end";
+    children: React.ReactNode;
+}
+export interface DropdownMainProps {
+    sx?: OverrideTheme;
+}
+export type ExpandDropdownProps = DropdownMainProps & ExpandDropBaseProps;
+export const ExpandMenu: FC<ExpandMenuProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export const ExpandMenuOption: FC<ExpandMenuOptionProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export const BreadcrumbButton: FC<BreadcrumbsOptionProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export const Breadcrumbs: FC<BreadcrumbsProps>;
+export interface ActionItem {
+    action: () => void;
+    label: string;
+    disabled: boolean;
+    icon: React.ReactNode;
+    tooltip: string;
+}
+export interface ActionsListProps {
+    sx?: OverrideTheme;
+    items: ActionItem[];
+    title: React.ReactNode;
+}
+export interface ActionsListPanelProps {
+    sx?: OverrideTheme;
+}
+export interface ActionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    label: string;
+    icon: React.ReactNode;
+}
+export const ActionsList: FC<ActionsListProps>;
+export interface SimpleHeaderProps {
+    label: React.ReactNode;
+    icon?: React.ReactNode;
+    sx?: OverrideTheme;
+}
+export interface SimpleHeaderContainerProps {
+    sx?: OverrideTheme;
+}
+export const SimpleHeader: FC<SimpleHeaderProps & HTMLAttributes<HTMLDivElement>>;
+export interface ModalBoxProps {
+    onClose: () => void;
+    open: boolean;
+    title: React.ReactNode;
+    children: React.ReactNode;
+    widthLimit?: boolean;
+    titleIcon?: React.ReactNode;
+    backgroundOverlay?: boolean;
+    iconColor?: "accept" | "delete" | "default";
+    customMaxWidth?: number | string;
+    sx?: OverrideTheme;
+}
+export interface ModalBoxContainerProps {
+    backgroundOverlay?: boolean;
+    widthLimit?: boolean;
+    iconColor?: "accept" | "delete" | "default";
+    customMaxWidth?: number | string;
+    sx?: OverrideTheme;
+}
+export const ModalBox: FC<ModalBoxProps>;
+export interface MainSwitchProps {
+    id: string;
+    label?: string;
+    tooltip?: string;
+    sx?: OverrideTheme;
+    className?: string;
+    switchOnly?: boolean;
+    indicatorLabels?: string[];
+    description?: string;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface IndicatorProps {
+    active: boolean;
+    children: React.ReactNode;
+}
+export interface SwitchContainerProps {
+    sx?: OverrideTheme;
+}
+export type SwitchProps = MainSwitchProps & React.InputHTMLAttributes<HTMLInputElement>;
+export const Switch: FC<SwitchProps & React.InputHTMLAttributes<HTMLInputElement>>;
+export interface SelectProps {
+    options: SelectOption[];
+    value?: string;
+    id: string;
+    name?: string;
+    required?: boolean;
+    className?: string;
+    disabled?: boolean;
+    label?: string;
+    tooltip?: string;
+    noLabelMinWidth?: boolean;
+    fixedLabel?: string;
+    placeholder?: string;
+    onChange: (newValue: string, extraValue?: any) => void;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+    sizeMode?: "small" | "large";
+    orientation?: "horizontal" | "vertical";
+    state?: "normal" | "error" | "success" | "warning";
+    readOnly?: boolean;
+    helper?: string;
+}
+export interface DropdownSelectorProps {
+    id: string;
+    options: SelectOption[];
+    selectedOption?: string;
+    onSelect: (value: string, extraValue?: any, label?: string, selectedIndex?: number) => void;
+    hideTriggerAction: () => void;
+    open: boolean;
+    anchorEl?: (EventTarget & HTMLElement) | null;
+    anchorOrigin?: "start" | "end";
+    useAnchorWidth?: boolean;
+    forSelectInput?: boolean;
+}
+export interface DropDownBlockProps {
+    useAnchorWidth: boolean;
+    forSelectInput: boolean;
+    sx: OverrideTheme;
+}
+export interface DropdownItemProps {
+    icon?: React.ReactNode;
+    label: string;
+    indicator?: React.ReactNode;
+}
+export const DropdownSelector: FC<DropdownSelectorProps>;
+export const CaretIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CaretFilledIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const Select: FC<SelectProps>;
+export interface RadioGroupProps {
+    label?: string;
+    tooltip?: string;
+    selectorOptions: SelectOption[];
+    currentValue: string;
+    id: string;
+    name: string;
+    disableOptions?: boolean;
+    displayInColumn?: boolean;
+    className?: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, extraValue?: any) => void;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface OptionsContainerProps {
+    inColumn: boolean;
+}
+export const RadioGroup: FC<RadioGroupProps>;
+export interface ReadBoxProps {
+    label?: string;
+    children: React.ReactNode;
+    multiLine?: boolean;
+    actionButton?: React.ReactNode;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface ReadBoxBaseProps {
+    label?: string;
+    sx?: OverrideTheme;
+    multiLine?: boolean;
+}
+export const ReadBox: FC<ReadBoxProps>;
+export interface CommentBoxProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    id: string;
+    fullWidth?: boolean;
+    label?: string;
+    tooltip?: string;
+    sx?: OverrideTheme;
+    index?: number;
+    noLabelMinWidth?: boolean;
+    required?: boolean;
+    className?: string;
+    error?: string;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface CommentContainerProps {
+    children?: React.ReactNode;
+    sx?: OverrideTheme;
+    error?: boolean;
+    startIcon?: React.ReactNode;
+    className?: string;
+}
+export interface ExtraCommentProps {
+    originType?: string;
+}
+export const CommentBox: FC<CommentBoxProps>;
+export interface MenuProps {
+    options?: MenuItemProps[];
+    sx?: OverrideTheme;
+    applicationLogo: ApplicationLogoProps;
+    callPathAction: (path: string) => void;
+    horizontal?: boolean;
+    isOpen: boolean;
+    collapseAction: () => void;
+    displayGroupTitles?: boolean;
+    signOutAction?: () => void;
+    currentPath?: string;
+    middleComponent?: React.ReactNode;
+    endComponent?: React.ReactNode;
+    mobileModeAuto?: boolean;
+}
+export interface MenuItemProps {
+    group?: string;
+    path?: string;
+    name: string;
+    id?: string;
+    icon: React.ReactNode;
+    onClick?: (path: string) => void;
+    children?: MenuItemProps[];
+    badge?: boolean;
+    currentPath?: string;
+    visibleTooltip?: boolean;
+    isVisible?: boolean;
+}
+export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
+    label: string;
+    divider?: boolean;
+}
+export interface MainHeaderProps {
+    divider?: boolean;
+}
+export interface MenuConstructProps {
+    sx?: OverrideTheme;
+}
+export interface SubItemsBoxProps {
+    anchorEl: (EventTarget & HTMLElement) | null;
+    hideTriggerAction: () => void;
+    children: React.ReactNode;
+    open: boolean;
+}
+export const Menu: FC<MenuProps>;
+export interface ExpandOptionsButtonProps {
+    label: string;
+    open: boolean;
+    sx?: OverrideTheme;
+}
+export interface ConstructExpandOptionsProps {
+    sx?: OverrideTheme;
+}
+export const ExpandOptionsButton: FC<ExpandOptionsButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export interface TabProps {
+    label: string;
+    icon?: React.ReactNode;
+    disabled?: boolean;
+    to?: string;
+    id: string;
+}
+export interface TabItemProps {
+    tabConfig: TabProps;
+    content?: React.ReactNode;
+}
+export interface TabsProps {
+    horizontal?: boolean;
+    options: TabItemProps[];
+    currentTabOrPath: string;
+    useRouteTabs?: boolean;
+    routes?: React.ReactElement | null;
+    onTabClick: (selectedItem: string) => void;
+    optionsInitialComponent?: React.ReactNode;
+    optionsEndComponent?: React.ReactNode;
+    horizontalBarBackground?: boolean;
+    sx?: OverrideTheme;
+}
+export interface TabsContainerProps {
+    horizontal: boolean;
+    horizontalBarBackground: boolean;
+    sx?: OverrideTheme;
+}
+export interface TabButtonProps {
+    id: string;
+    horizontal?: boolean;
+    label: string;
+    onClick: () => void;
+    disabled: boolean;
+    icon?: React.ReactNode;
+    selected?: boolean;
+}
+export interface TabButtonConstructProps {
+    horizontal: boolean;
+}
+export interface TabPanelProps {
+    id: string;
+    selectedTab?: string;
+    useRouteTabs: boolean;
+    children: React.ReactNode;
+}
+export const Tabs: FC<TabsProps & HTMLAttributes<HTMLDivElement>>;
+export interface CodeEditorProps {
+    value: string;
+    label?: string;
+    mode?: string;
+    tooltip?: string;
+    editorHeight?: string | number;
+    onChange: (value: string) => any;
+    className?: string;
+    helpTools?: React.ReactNode;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface CodeEditorBaseProps {
+    editorHeight: string | number;
+    sx?: OverrideTheme;
+    className?: string;
+}
+export const CodeEditor: FC<CodeEditorProps>;
+export interface TagMainProps {
+    label: string;
+    onDelete?: (item: string) => void;
+    id: string;
+    icon?: React.ReactNode;
+}
+export interface TagConstructProps {
+    color?: "default" | "secondary" | "warn" | "alert" | "ok" | "grey";
+    sx?: OverrideTheme;
+    variant?: "regular" | "outlined";
+    square?: boolean;
+}
+export type TagProps = TagMainProps & TagConstructProps;
+export const Tag: FC<TagProps & React.HTMLAttributes<HTMLSpanElement>>;
+export interface CommonActionLinkProps {
+    isLoading?: boolean;
+    label?: any;
+}
+export interface BaseActionLinkProps {
+    sx?: OverrideTheme;
+}
+export type ActionLinkProps = CommonActionLinkProps & BaseActionLinkProps;
+export const ActionLink: FC<ActionLinkProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export interface ValuePairMain {
+    label?: ReactNode;
+    value?: ReactNode;
+}
+export interface ValuePairCommon {
+    direction?: "column" | "row";
+    sx?: OverrideTheme;
+}
+export type ValuePairProps = ValuePairMain & ValuePairCommon;
+export const ValuePair: FC<ValuePairProps>;
+export interface MainProgressProps {
+    variant?: "determinate" | "indeterminate";
+    notificationLabel?: string;
+    value?: number;
+    maxValue?: number;
+    progressLabel?: boolean;
+}
+export interface CommonProgressBar {
+    sx?: OverrideTheme;
+    color?: "blue" | "red" | "green" | "orange" | "grey";
+    barHeight?: number;
+    transparentBG?: boolean;
+}
+export type ProgressBarProps = MainProgressProps & CommonProgressBar;
+export const ProgressBar: FC<ProgressBarProps>;
+export interface FileSelectorProps {
+    label: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, fileName: string, data?: string) => void;
+    returnEncodedData?: boolean;
+    id: string;
+    name: string;
+    disabled?: boolean;
+    tooltip?: string;
+    required?: boolean;
+    error?: string;
+    accept?: string;
+    value: string;
+    className?: string;
+    noLabelMinWidth?: boolean;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export interface FileSelectorConstructorProps {
+    children?: React.ReactNode;
+    sx?: OverrideTheme;
+    error?: boolean;
+    startIcon?: React.ReactNode;
+    className?: string;
+}
+export const FileSelector: FC<FileSelectorProps>;
+export interface SizeChartMain {
+    label: boolean;
+    width?: string;
+    height?: string;
+}
+export interface SizeChartConstructProps {
+    usedBytes: number;
+    totalBytes: number;
+    chartLabel?: string;
+    sx?: OverrideTheme;
+}
+export type SizeChartProps = SizeChartMain & SizeChartConstructProps;
+export const SizeChart: FC<SizeChartProps>;
+export interface SnackbarMainProps {
+    autoHideDuration?: number;
+    message?: ReactNode;
+    onClose: () => void;
+    closeButton?: boolean;
+    mode?: "inline" | "portal";
+}
+export interface SnackbarConstructProps {
+    open: boolean;
+    condensed?: boolean;
+    variant?: "default" | "success" | "warning" | "error";
+    sx?: OverrideTheme;
+}
+export interface SnackbarButtonProps {
+    variant: "default" | "success" | "warning" | "error";
+    condensed: boolean;
+}
+export type SnackbarProps = SnackbarMainProps & SnackbarConstructProps;
+export const Snackbar: FC<SnackbarProps>;
+export interface AccordionProps {
+    expanded: boolean;
+    onTitleClick: () => void;
+    id: string;
+    title: ReactNode;
+    children: ReactNode;
+    disabled?: boolean;
+    sx?: OverrideTheme;
+}
+export interface AccordionMainProps {
+    sx?: OverrideTheme;
+}
+export interface AccordionContentProps {
+    expanded: boolean;
+}
+export const Accordion: FC<AccordionProps>;
+export interface AutocompleteProps {
+    options: SelectOption[];
+    value?: string;
+    id: string;
+    name?: string;
+    required?: boolean;
+    className?: string;
+    disabled?: boolean;
+    displayDropArrow?: boolean;
+    label?: string;
+    tooltip?: string;
+    noLabelMinWidth?: boolean;
+    placeholder?: string;
+    onChange: (newValue: string, extraValue?: any) => void;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+}
+export const Autocomplete: FC<AutocompleteProps>;
+export interface BadgeMain {
+    invisible?: boolean;
+    max?: number;
+    showZero?: boolean;
+    badgeContent?: number;
+}
+export interface BadgeConstruct {
+    horizontalPosition?: "left" | "right";
+    verticalPosition?: "bottom" | "top";
+    sx?: OverrideTheme;
+    color?: "default" | "secondary" | "warn" | "alert" | "ok" | "grey";
+    shape?: "circular" | "rectangular";
+    dotOnly?: boolean;
+}
+export type BadgeProps = BadgeMain & BadgeConstruct;
+export const Badge: FC<HTMLAttributes<HTMLSpanElement> & BadgeProps>;
+export interface WizardButton {
+    label?: string;
+    type?: "next" | "back" | "to" | "custom";
+    action?: (nextFunction: (to: string | number) => void) => void;
+    enabled?: boolean;
+    toPage?: number;
+    componentRender?: React.ReactNode;
+}
+export interface WizardElement {
+    label: string;
+    componentRender: any;
+    buttons: WizardButton[];
+    advancedOnly?: boolean;
+    loadingStep?: boolean;
+}
+export interface WizardPage {
+    page: WizardElement;
+    pageChange: (to: string | number) => void;
+    loadingStep?: boolean;
+}
+export interface WizardMain {
+    loadingStep?: boolean;
+    wizardSteps: WizardElement[];
+    linearMode?: boolean;
+}
+export interface WizardConstruct {
+    sx?: OverrideTheme;
+    forModal?: boolean;
+    actionButtonsPortalID?: HTMLElement;
+}
+export type WizardProps = WizardMain & WizardConstruct;
+export type WizardPageProps = WizardPage & WizardConstruct;
+export const Wizard: ({ wizardSteps, loadingStep, forModal, linearMode, actionButtonsPortalID, sx, }: WizardProps) => React.JSX.Element | null;
+export interface InformativeMessageMain {
+    title: React.ReactNode;
+    message: React.ReactNode;
+}
+export interface InformativeConstructProps {
+    variant?: "default" | "success" | "warning" | "error";
+    sx?: OverrideTheme;
+}
+export type InformativeMessageProps = InformativeMessageMain & InformativeConstructProps;
+export const InformativeMessage: FC<InformativeMessageProps>;
+export interface DateTimeInputMain {
+    pickerStartComponent?: React.ReactNode;
+    className?: string;
+    label?: string;
+    required?: boolean;
+    tooltip?: string;
+    disabled?: boolean;
+    openPickerIcon?: "arrow" | React.ReactNode;
+    displayFormat?: string;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+    noLabelMinWidth?: boolean;
+    pickerSx?: OverrideTheme;
+}
+export interface DateTimeConstruct {
+    id: string;
+    sx?: OverrideTheme;
+    mode?: "all" | "date";
+    value: DateTime | null;
+    onChange: (value: DateTime | null) => void;
+    minDate?: DateTime;
+    maxDate?: DateTime;
+    usePortal?: boolean;
+}
+export interface DateTimeSelectorMain {
+    open?: boolean;
+    anchorEl?: (EventTarget & HTMLElement) | null;
+    onClose?: () => void;
+}
+export interface TimeSelectorProps {
+    value: DateTime | null;
+    onChange: (value: DateTime | null) => void;
+    completeCallback?: () => void;
+    timeFormat?: "12h" | "24h";
+    secondsSelector: boolean;
+}
+export interface DateSelectorProps {
+    minDate?: DateTime;
+    maxDate?: DateTime;
+    value: DateTime | null;
+    onChange: (value: DateTime | null) => void;
+}
+export interface StylesOverrideProps {
+    isPortal: boolean;
+    mode: "all" | "date";
+    coords: CSSObject;
+    sx?: OverrideTheme;
+}
+export type DateTimeInputProps = DateTimeInputMain & DateTimeConstruct & TimeSelectorProps;
+export type DateTimeSelectorProps = DateTimeSelectorMain & DateTimeConstruct & TimeSelectorProps;
+export const DateTimeSelector: FC<DateTimeSelectorProps>;
+export const DateTimeInput: FC<DateTimeInputProps>;
+export interface LinkProps {
+    sx?: OverrideTheme;
+}
+export const Link: FC<LinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>>;
+export const RoundedButton: FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export interface SliderProps {
+    id: string;
+    label?: string;
+    noLabelMinWidth?: boolean;
+    error?: string;
+    tooltip?: string;
+    sx?: OverrideTheme;
+    helpTip?: React.ReactNode;
+    helpTipPlacement?: CommonHelpTipPlacement;
+    displayValue?: boolean;
+    displayValueFunction?: (value: any) => React.ReactNode;
+}
+export interface SliderContainerProps {
+    children?: React.ReactNode;
+    sx?: OverrideTheme;
+    error?: boolean;
+    className?: string;
+}
+export const Slider: FC<SliderProps & React.InputHTMLAttributes<HTMLInputElement>>;
+export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
+    displayLabels?: boolean;
+    sx?: OverrideTheme;
+}
+export const ButtonGroup: FC<ButtonGroupProps>;
+export interface FormActionsTrayProps extends React.HTMLAttributes<HTMLDivElement> {
+    marginTop?: number;
+    separator?: boolean;
+    sx?: OverrideTheme;
+}
+export const FormActionsTray: FC<FormActionsTrayProps>;
+export interface PillProps {
+    type: "current" | "secondary" | "default";
+    sx?: OverrideTheme;
+}
+export const Pill: FC<PillProps & React.HTMLAttributes<HTMLSpanElement>>;
+export interface SearchBoxProps {
+    id: string;
+    placeholder?: string;
+    sx?: OverrideTheme;
+    icon?: React.ReactNode;
+}
+export const SearchBox: FC<SearchBoxProps & React.InputHTMLAttributes<HTMLInputElement>>;
+export const InspectMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AuditLogsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HealthMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MenuExpandedIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TraceMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const GroupsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MenuCollapsedIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MetricsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const IdentityMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LogsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const MonitoringMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SupportMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PerformanceMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DiagnosticsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AccessMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RegisterMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DrivesMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const AccountsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ProfileMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CallHomeMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UsersMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const KeysMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const StatusMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SecretsMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PoliciesMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const IdentitiesMenuIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileConfigIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FilePdfIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileFontIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileLinkIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileImageIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileWorldIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileBookIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileMissingIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileCodeIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FilePptIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileDbIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileTxtIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileVideoIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileLockIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileXlsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileZipIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FolderBrowserIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileCloudIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileMusicIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const FileNonType: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ListFilterIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PanelLeftOpenIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const BucketIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const HistoryIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RefreshIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const PenLineIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const UploadIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const TagIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EllipsisVerticalIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ArrowLeftIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SquareStackIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const RefreshCCWDotIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CheckIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const XIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const CircleHelpIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SettingsIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const LogOutIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const SearchIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ChevronLeftIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const ChevronRightIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const EllipsisIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+export const DeleteIcon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
 interface TableComponentsExtraProps {
-  sx?: OverrideTheme;
+    sx?: OverrideTheme;
 }
+export const Table: FC<TableComponentsExtraProps & React.TableHTMLAttributes<HTMLTableElement>>;
+export const TableBody: FC<TableComponentsExtraProps & React.HTMLAttributes<HTMLTableSectionElement>>;
+export const TableCell: FC<TableComponentsExtraProps & React.TdHTMLAttributes<HTMLTableDataCellElement>>;
+export const TableHead: FC<TableComponentsExtraProps & React.HTMLAttributes<HTMLTableSectionElement>>;
+export const TableHeadCell: FC<TableComponentsExtraProps & React.ThHTMLAttributes<HTMLTableHeaderCellElement>>;
+export const TableRow: FC<TableComponentsExtraProps & React.HTMLAttributes<HTMLTableRowElement>>;
 
-declare const Table: FC<
-  TableComponentsExtraProps &
-    React__default.TableHTMLAttributes<HTMLTableElement>
->;
-
-declare const TableBody: FC<
-  TableComponentsExtraProps &
-    React__default.HTMLAttributes<HTMLTableSectionElement>
->;
-
-declare const TableCell: FC<
-  TableComponentsExtraProps &
-    React__default.TdHTMLAttributes<HTMLTableDataCellElement>
->;
-
-declare const TableHead: FC<
-  TableComponentsExtraProps &
-    React__default.HTMLAttributes<HTMLTableSectionElement>
->;
-
-declare const TableHeadCell: FC<
-  TableComponentsExtraProps &
-    React__default.ThHTMLAttributes<HTMLTableHeaderCellElement>
->;
-
-declare const TableRow: FC<
-  TableComponentsExtraProps & React__default.HTMLAttributes<HTMLTableRowElement>
->;
-
-declare const lightColors: {
-  white: string;
-  sectionOneBG: string;
-  defaultFontColor: string;
-  bulletColor: string;
-  borderColor: string;
-  boxBackground: string;
-  mainGrey: string;
-  disabledGrey: string;
-  hoverGrey: string;
-  pressedGrey: string;
-  actionDisabledGrey: string;
-  mainBlue: string;
-  hoverBlue: string;
-  pressedBlue: string;
-  mainRed: string;
-  hoverRed: string;
-  lightRed: string;
-  divisorColor: string;
-  disabledBGGrey: string;
-  disabledInnerGrey: string;
-  logoLabel: string;
-  logoLabelInverse: string;
-  promoBlue: string;
-  footerDivider: string;
-  promoBG: string;
-  loaderColor: string;
-  headerBG: string;
-  headerBorder: string;
-  headerColor: string;
-  tooltipBG: string;
-  tooltipColor: string;
-  labelColor: string;
-  mainGreen: string;
-  checkBoxBorder: string;
-  iconButtonBG: string;
-  iconButtonActive: string;
-  iconButtonHover: string;
-  iconButtonDisabled: string;
-  iconButtonColor: string;
-  backLinkColor: string;
-  backLinkArrow: string;
-  backLinkHover: string;
-  commonLinkColor: string;
-  breadcrumbsBackground: string;
-  breadcrumbsBackBorder: string;
-  breadcrumbsText: string;
-  actionsListBorder: string;
-  disabledActionsColor: string;
-  optionTextColor: string;
-  modalCloseColor: string;
-  modalCloseHoverBG: string;
-  modalOverlayBG: string;
-  bulletBGColor: string;
-  placeholder: string;
-  readBoxTextColor: string;
-  secondAction: string;
-  secondActionHover: string;
-  secondActionActive: string;
-  mainOrange: string;
-  menuBackground: string;
-  menuDropArrowColor: string;
-  menuDropArrowBackground: string;
-  menuSelectedOption: string;
-  menuCommonColor: string;
-  menuColorDivider: string;
-  menuCollapseColor: string;
-  menuIconBG: string;
-  menuIconBorder: string;
-  tabBorder: string;
-  codeEditorComment: string;
-  codeEditorEntityTag: string;
-  codeEditorEntity: string;
-  codeEditorSublimelinterGutterMark: string;
-  codeEditorConstant: string;
-  codeEditorString: string;
-  codeEditorKeyword: string;
-  codeEditorMarkupBold: string;
-  codeEditorRegexp: string;
-  linkColor: string;
-  mutedText: string;
-  disabledOnSwitchBG: string;
-  sliderDisabledBG: string;
-};
-declare const darkColors: {
-  dark: string;
-  sectionOneBG: string;
-  defaultFontColor: string;
-  bulletColor: string;
-  borderColor: string;
-  boxBackground: string;
-  mainGrey: string;
-  disabledGrey: string;
-  hoverGrey: string;
-  borderPressedGrey: string;
-  pressedGrey: string;
-  mainWhite: string;
-  disabledWhite: string;
-  hoverWhite: string;
-  pressedWhite: string;
-  mainRed: string;
-  hoverRed: string;
-  divisorColor: string;
-  disabledBGGrey: string;
-  disabledInnerGrey: string;
-  logoLabel: string;
-  logoLabelInverse: string;
-  footerDivider: string;
-  footerColor: string;
-  promoBG: string;
-  loaderColor: string;
-  headerBG: string;
-  headerBorder: string;
-  headerColor: string;
-  tooltipBG: string;
-  tooltipColor: string;
-  labelColor: string;
-  mainGreen: string;
-  checkBoxBorder: string;
-  iconButtonBG: string;
-  iconButtonActive: string;
-  iconButtonHover: string;
-  iconButtonDisabled: string;
-  iconButtonColor: string;
-  backLinkColor: string;
-  backLinkArrow: string;
-  backLinkHover: string;
-  modalCloseColor: string;
-  modalCloseHoverBG: string;
-  modalOverlayBG: string;
-  bulletBGColor: string;
-  disabledSwitchBG: string;
-  disabledOnSwitchBG: string;
-  disabledBulletBG: string;
-  placeholder: string;
-  readBoxTextColor: string;
-  secondAction: string;
-  secondActionHover: string;
-  secondActionActive: string;
-  mainOrange: string;
-  menuBackground: string;
-  menuDropArrowColor: string;
-  menuDropArrowBackground: string;
-  menuSelectedOption: string;
-  menuCommonColor: string;
-  menuColorDivider: string;
-  menuCollapseColor: string;
-  menuIconBG: string;
-  menuIconBorder: string;
-  menuHoverSelectedBorderIcon: string;
-  menuHoverSelectedBG: string;
-  codeEditorComment: string;
-  codeEditorEntityTag: string;
-  codeEditorEntity: string;
-  codeEditorSublimelinterGutterMark: string;
-  codeEditorConstant: string;
-  codeEditorString: string;
-  codeEditorKeyword: string;
-  codeEditorMarkupBold: string;
-  codeEditorRegexp: string;
-  linkColor: string;
-  mutedText: string;
-  disabledSliderBullet: string;
-};
-declare const lightV2: {
-  white: string;
-  fontColor: string;
-  mainBackgroundColor: string;
-  menuSelectionColor: string;
-  switchBG: string;
-  secondaryBlue: string;
-  green: string;
-  lightGreen: string;
-  orange: string;
-  lightOrange: string;
-  danger: string;
-  lightRed: string;
-  borderColor: string;
-  disabledGrey: string;
-  disabledGreyText: string;
-  disabledBlue: string;
-  disabledBlueText: string;
-  disabledBlueRegular: string;
-  disabledSecondary: string;
-  disabledSecondaryText: string;
-  blueBorderActionButton: string;
-  redBorder: string;
-  disabledRed: string;
-  disabledRedText: string;
-  mutedText: string;
-  headerLabelText: string;
-  plainIconButtonBorder: string;
-  plainIconButtonBG: string;
-  plainIconButtonColor: string;
-  linkColor: string;
-  modalCloseColor: string;
-  modalBorderColor: string;
-  modalOverlayBG: string;
-  modalTitleColor: string;
-  buttonDisabledBG: string;
-  buttonDisabledLabel: string;
-  defaultButtonPressed: string;
-  bgColorBgShell: string;
-  colorTextLabel: string;
-  colorBorderSubtle: string;
-  colorBgHover: string;
-  errorColorPrimaryText: string;
-  colorBorder: string;
-  colorText: string;
-  colorBgDisabled: string;
-  colorTextDisabled: string;
-};
-declare const lightTheme: ThemeDefinitionProps;
-declare const darkTheme: ThemeDefinitionProps;
-
-declare const themeColors: ThemeColorItem;
-
-export {
-  AGPLV3DarkLogo,
-  AGPLV3LightLogo,
-  AGPLV3Logo,
-  AccessMenuIcon,
-  AccessRuleIcon,
-  Accordion,
-  AccordionContentProps,
-  AccordionMainProps,
-  AccordionProps,
-  AccountIcon$1 as AccountIcon,
-  AccountsMenuIcon,
-  ActionButtonProps,
-  ActionCustomButton,
-  ActionItem,
-  ActionLink,
-  ActionLinkProps,
-  ActionsList,
-  ActionsListPanelProps,
-  ActionsListProps,
-  ActionsListThemeProps,
-  AddAccessRuleIcon,
-  AddFolderIcon,
-  AddIcon,
-  AddMembersToGroupIcon,
-  AddNewTagIcon,
-  AlertCloseIcon,
-  AlertIcon,
-  AllBucketsIcon,
-  ApplicationLogo,
-  ApplicationLogoProps,
-  ArrowDropUp as ArrowDropDown,
-  ArrowDropUp$1 as ArrowDropUp,
-  ArrowIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowRightLink,
-  AttachFileIcon,
-  AudioIcon,
-  AudioIconMute,
-  AuditLogsMenuIcon,
-  AutoModeIcon,
-  Autocomplete,
-  AutocompleteProps,
-  AzureTierIcon,
-  AzureTierIconXs,
-  BackCaretIcon,
-  BackIcon,
-  BackLink,
-  BackLinkProps,
-  BackLinkThemeProps,
-  BackSettingsIcon,
-  Badge,
-  BadgeColorElements,
-  BadgeConstruct,
-  BadgeMain,
-  BadgeProps,
-  BadgeStyleProps,
-  BaseActionLinkProps,
-  Box,
-  BoxArrowDown,
-  BoxArrowUp,
-  BoxProps,
-  BoxThemeProps,
-  BoxedIcon,
-  BoxedIconThemeProps,
-  BreadcrumbButton,
-  Breadcrumbs,
-  BreadcrumbsContainerProps,
-  BreadcrumbsOption,
-  BreadcrumbsOptionProps,
-  BreadcrumbsProps,
-  BreadcrumbsThemeProps,
-  BucketEncryptionIcon,
-  BucketIcon,
-  BucketQuotaIcon,
-  BucketReplicationIcon,
-  BucketsIcon$1 as BucketsIcon,
-  BucketsMenuIcon,
-  Button,
-  ButtonGroup,
-  ButtonGroupProps,
-  ButtonGroupThemeProps,
-  ButtonProps,
-  ButtonThemeProps,
-  ButtonThemeStatesProps,
-  BucketsIcon as CacheIcon,
-  CalendarIcon,
-  CallHomeFeatureIcon,
-  CallHomeMenuIcon,
-  CancelledAudioIcon,
-  CancelledIcon,
-  CaretFilledIcon,
-  CaretIcon,
-  CatalogIcon,
-  CatalogMetricsIcon$1 as CatalogMetricsIcon,
-  CertificateIcon,
-  ChangeAccessPolicyIcon,
-  ChangePasswordIcon,
-  ChatIcon,
-  CheckBoxThemeProps,
-  CheckCircleIcon,
-  CheckIcon,
-  Checkbox,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  CircleHelpIcon,
-  CircleIcon,
-  ClosePanelIcon,
-  CloudIcon,
-  ClustersIcon,
-  CodeMirrorWrapper as CodeEditor,
-  CodeEditorBaseProps,
-  CodeEditorProps,
-  CodeEditorThemeProps,
-  CodeIcon,
-  CollapseCaret,
-  CollapseIcon,
-  CollapseMenuIcon,
-  ColorVariant,
-  ColumnSelectorConstructProps,
-  ColumnSelectorProps,
-  InputBox as CommentBox,
-  CommentBoxProps,
-  CommentContainerProps,
-  CommonActionLinkProps,
-  CommonHelpTipPlacement,
-  CommonInputThemeProps,
-  CommonProgressBar,
-  CompressIcon,
-  ComputerLineIcon,
-  ConfigurationsListIcon,
-  ConfirmDeleteIcon,
-  ConfirmModalIcon,
-  ConsoleAgpl,
-  ConsoleEnterprise,
-  ConsoleIcon,
-  ConsoleStandard,
-  ConstructExpandOptionsProps,
-  ConstructProps,
-  CopyIcon,
-  CatalogMetricsIcon as CountObjectsIcon,
-  CreateGroupIcon,
-  CreateIcon,
-  CreateNewPathIcon,
-  CreateUserIcon,
-  DBIcon,
-  DarkModeIcon,
-  DashboardIcon,
-  DataTable,
-  DataTableProps,
-  DataTableThemeProps,
-  DataTableWrapperProps,
-  DateSelectorProps,
-  DateTimeConstruct,
-  DateTimeInput,
-  DateTimeInputMain,
-  DateTimeInputProps,
-  DateTimeSelector,
-  DateTimeSelectorMain,
-  DateTimeSelectorProps,
-  DeleteIcon,
-  DeleteNonCurrentIcon,
-  DiagnosticsFeatureIcon,
-  DiagnosticsIcon,
-  DiagnosticsMenuIcon,
-  DisableIcon,
-  DisabledIcon,
-  DocumentationIcon,
-  DownloadIcon,
-  DownloadStatIcon,
-  DriveFormatErrorsIcon,
-  DrivesIcon,
-  DrivesMenuIcon,
-  DropDownBlockProps,
-  DropdownItemProps,
-  DropdownMainProps,
-  DropdownOptionsThemeProps,
-  DropdownSelector,
-  DropdownSelectorProps,
-  DropdownSelectorThemeProps,
-  EditIcon,
-  EditTagIcon,
-  EditTenantIcon,
-  EditYamlIcon,
-  EditorThemeSwitchIcon,
-  EgressIcon,
-  EllipsisIcon,
-  EllipsisVerticalIcon,
-  EnabledIcon,
-  EnterpriseLightLogo,
-  EnvironmentVariablesIcon,
-  ErrorAlertIcon,
-  ShuffleIcon as EventBusyIcon,
-  EventSubscriptionIcon,
-  ExpandCaret,
-  ExpandDropBaseProps,
-  ExpandDropdownProps,
-  ExpandIcon,
-  ExpandLeftCaret,
-  ExpandMenu,
-  ExpandMenuOption,
-  ExpandMenuOptionProps,
-  ExpandMenuProps,
-  ExpandOptionsButton,
-  ExpandOptionsButtonProps,
-  ExpandOptionsIcon,
-  ExtraCommentProps,
-  AccountIcon as ExtraFeaturesIcon,
-  ExtraInputProps,
-  EyeIcon,
-  EyeOffIcon,
-  FileBookIcon,
-  FileCloudIcon,
-  FileCodeIcon,
-  FileConfigIcon,
-  FileDbIcon,
-  FileFontIcon,
-  FileImageIcon,
-  FileLinkIcon,
-  FileLockIcon,
-  FileMissingIcon,
-  FileMusicIcon,
-  FileNonType,
-  FilePdfIcon,
-  FilePptIcon,
-  FileSelector,
-  FileSelectorConstructorProps,
-  FileSelectorProps,
-  FileTxtIcon,
-  FileVideoIcon,
-  FileWorldIcon,
-  FileXlsIcon,
-  FileZipIcon,
-  FilterIcon,
-  FindReplaceIcon,
-  FirewallIcon,
-  FirstAidIcon$1 as FirstAidIcon,
-  FolderBrowserIcon,
-  FolderIcon,
-  FormActionsTray,
-  FormActionsTrayProps,
-  FormLayout,
-  FormLayoutProps,
-  FormatDriveIcon,
-  FormatDrivesIcon,
-  GlobalStyles,
-  GoogleTierIcon,
-  GoogleTierIconXs,
-  Grid,
-  GridProps,
-  GroupsIcon,
-  GroupsMenuIcon,
-  HardBucketQuotaIcon,
-  HealIcon,
-  HealthMenuIcon,
-  HelpBox,
-  HelpBoxProps,
-  HelpIcon,
-  HelpIconFilled,
-  HelpTip,
-  HelpTipBuild,
-  HelpTipConstructProps,
-  HelpTipProps,
-  HistoryIcon,
-  IAMPoliciesIcon,
-  IActionButton,
-  IBoxedIconProps,
-  IBytesCalc,
-  IColumns,
-  IInfiniteScrollConfig,
-  ISortConfig,
-  ITableSortInfo,
-  IconBase,
-  IconButton,
-  IconButtonProps,
-  IconButtonThemeProps,
-  IconThemeColorProps,
-  IdentitiesMenuIcon,
-  IdentityMenuIcon,
-  ImagesIcon,
-  IndicatorProps,
-  InfoIcon,
-  InformativeColorElements,
-  InformativeConstructProps,
-  InformativeMessage,
-  InformativeMessageMain,
-  InformativeMessageProps,
-  InformativeMessageThemeProps,
-  IngestIcon,
-  InputBox$1 as InputBox,
-  InputBoxProps,
-  InputBoxThemeProps,
-  InputContainerProps,
-  InputLabel,
-  InputLabelProps,
-  InspectMenuIcon,
-  ItemActions,
-  JSONIcon,
-  LoginIcon as KeyIcon,
-  KeyManagementIcon,
-  KeysMenuIcon,
-  LDAPIcon,
-  LambdaBalloonIcon,
-  LambdaIcon,
-  LambdaNotificationsIcon,
-  LanguageIcon,
-  LegalHoldIcon,
-  LicenseDocIcon,
-  LicenseIcon,
-  LifecycleConfigIcon,
-  LightModeIcon,
-  Link,
-  LinkIcon,
-  LinkProps,
-  ListFilterIcon,
-  Loader,
-  LockFilledIcon,
-  LockIcon$1 as LockIcon,
-  LockIcon as LockOpenIcon,
-  LogOutIcon,
-  LoginIcon$1 as LoginIcon,
-  LoginPageThemeProps,
-  LoginWrapper,
-  LogoutIcon,
-  LogsIcon,
-  LogsMenuIcon,
-  MainContainer,
-  MainHeaderProps,
-  MainProgressProps,
-  MainSwitchProps,
-  Menu,
-  MenuCollapsedIcon,
-  MenuConstructProps,
-  MenuCollapsedIcon$1 as MenuExpandedIcon,
-  MenuItemProps,
-  MenuProps,
-  MenuThemeProps,
-  MetadataIcon,
-  MetricsMenuIcon,
-  MinIOTierIcon,
-  MinIOTierIconXs,
-  MirroringIcon,
-  ModalBox,
-  ModalBoxContainerProps,
-  ModalBoxProps,
-  ModalBoxThemeProps,
-  MonitoringMenuIcon,
-  MultipleBucketsIcon,
-  NetworkGetIcon,
-  NetworkPutIcon,
-  NetworkingIcon,
-  NewAccountIcon,
-  NewPathIcon,
-  NewPoolIcon,
-  NextArrowIcon,
-  NextCaretIcon$1 as NextCaretIcon,
-  OIDCIcon,
-  ObjectBrowser1Icon,
-  ObjectBrowserFolderIcon,
-  ObjectBrowserIcon,
-  ObjectInfoIcon,
-  ObjectManagerIcon$1 as ObjectManagerIcon,
-  ObjectPreviewIcon,
-  ObjectsIcon,
-  ObservabilityIcon,
-  ObservabilityOverviewIcon,
-  OfflineRegistrationBackIcon,
-  OfflineRegistrationIcon,
-  OnlineRegistrationBackIcon,
-  OnlineRegistrationIcon,
-  OpenListIcon,
-  OpenSourceIcon,
-  OptionsContainerProps,
-  OverrideTheme,
-  PageHeader,
-  PageHeaderConstruct,
-  PageHeaderMainProps,
-  PageHeaderProps,
-  PageHeaderThemeProps,
-  PageLayout,
-  PageLayoutProps,
-  PanelLeftOpenIcon,
-  PasswordKeyIcon,
-  PenLineIcon,
-  PendingItemsIcon,
-  PerformanceFeatureIcon,
-  PerformanceMenuIcon,
-  PermissionIcon,
-  Pill,
-  PillElementThemeProps,
-  PillProps,
-  PillThemeProps,
-  PorPlacementIcon as PodPlacementIcon,
-  PoliciesIcon,
-  PoliciesMenuIcon,
-  PredefinedActionTypes,
-  NextCaretIcon as PrevCaretIcon,
-  PreviewIcon,
-  ProfileMenuIcon,
-  ProgressBar,
-  ProgressBarProps,
-  PrometheusErrorIcon,
-  PrometheusIcon,
-  FirstAidIcon as PublicIcon,
-  QueryEditorIcon,
-  RadioGroup,
-  RadioGroupProps,
-  ReadBox,
-  ReadBoxBaseProps,
-  ReadBoxProps,
-  ReadBoxThemeProps,
-  RecoverIcon,
-  RedoIcon,
-  RefreshCCWDotIcon,
-  RefreshIcon,
-  RegisterMenuIcon,
-  ObjectManagerIcon as RemoveAllIcon,
-  RemoveIcon,
-  ReportIcon,
-  ReportedUsageFullIcon,
-  ReportedUsageIcon,
-  ResourcesIcon,
-  RetentionIcon,
-  RoundedButton,
-  S3TierIcon$1 as S3TierIcon,
-  S3TierIcon as S3TierIconXs,
-  ScreenTitle,
-  ScreenTitleContainerProps,
-  ScreenTitleOptions,
-  ScreenTitleProps,
-  ScreenTitleThemeProps,
-  SearchBox,
-  SearchBoxProps,
-  SearchIcon,
-  SecretsMenuIcon,
-  SectionHeaderProps,
-  SectionTitle,
-  SectionTitleProps,
-  Select,
-  SelectAllIcon,
-  SelectMultipleIcon,
-  SelectOption,
-  SelectProps,
-  SendMessageIcon,
-  ServersIcon,
-  ServiceAccountCredentialsIcon,
-  ServiceAccountIcon,
-  ServiceAccountsIcon,
-  SettingsIcon,
-  SettingsInMenuIcon,
-  ShareIcon,
-  ShuffleIcon$1 as ShuffleIcon,
-  SignalColorsThemeProps,
-  SimpleHeader,
-  SimpleHeaderContainerProps,
-  SimpleHeaderProps,
-  SizeChart,
-  SizeChartConstructProps,
-  SizeChartMain,
-  SizeChartProps,
-  Slider,
-  SliderColorProps,
-  SliderContainerProps,
-  SliderProps,
-  SnackBarThemeProps,
-  Snackbar,
-  SnackbarButtonProps,
-  SnackbarConstructProps,
-  SnackbarMainProps,
-  SnackbarProps,
-  SpeedtestIcon,
-  SquareStackIcon,
-  StandardLightLogo,
-  StarIcon,
-  StatusMenuIcon,
-  StorageIcon,
-  StylesOverrideProps,
-  SubItemsBoxProps,
-  SuccessAlertIcon,
-  SuccessIcon,
-  SupportMenuIcon,
-  Switch,
-  SwitchContainerProps,
-  SwitchProps,
-  SwitchThemeProps,
-  SyncIcon,
-  SystemIcon,
-  TabButtonConstructProps,
-  TabButtonProps,
-  TabItemProps,
-  TabPanelProps,
-  TabProps,
-  TabThemeProps,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeadCell,
-  TableRow,
-  Tabs,
-  TabsContainerProps,
-  TabsProps,
-  Tag,
-  TagConstructProps,
-  TagIcon,
-  TagMainProps,
-  TagProps,
-  TagThemeProps,
-  TagVariantProps,
-  TagsIcon,
-  TenantsIcon,
-  TenantsOutlineIcon,
-  ThemeColorItem,
-  ThemeDefinitionProps,
-  ThemeHandler,
-  ThemedLogo,
-  ThumbsDownIcon,
-  ThumbsUpIcon,
-  TierOfflineIcon,
-  TierOnlineIcon,
-  TiersIcon,
-  TiersNotAvailableIcon,
-  TimeIcon,
-  TimeSelectorProps,
-  ToolsIcon,
-  Tooltip,
-  TooltipBuild,
-  TooltipConstructProps,
-  TooltipProps,
-  TooltipThemeProps,
-  TotalObjectsIcon,
-  TraceIcon,
-  TraceMenuIcon,
-  TrashIcon,
-  UploadFile,
-  UploadFile$1 as UploadFolderIcon,
-  UploadIcon,
-  UploadStatIcon,
-  UptimeIcon,
-  UserFilledIcon,
-  UsersIcon,
-  UsersMenuIcon,
-  ValuePair,
-  ValuePairCommon,
-  ValuePairMain,
-  ValuePairProps,
-  ValuePairThemeProps,
-  VerifiedIcon,
-  VersionIcon,
-  VersionsIcon,
-  ViewColumnIcon$2 as ViewColumnIcon,
-  ViewColumnIcon as VisibilityOffIcon,
-  ViewColumnIcon$1 as VisibilityOnIcon,
-  WarnFilledIcon,
-  WarnIcon,
-  WarningAlertIcon,
-  WarpIcon,
-  WatchIcon,
-  WebhookIcon,
-  GenericWizard as Wizard,
-  WizardButton,
-  WizardColorProps,
-  WizardConstruct,
-  WizardElement,
-  WizardMain,
-  WizardPage,
-  WizardPageProps,
-  WizardProps,
-  WizardStepColorProps,
-  XIcon,
-  actionsTypes,
-  breakPoints,
-  calculateBytes,
-  darkColors,
-  darkTheme,
-  lightColors,
-  lightTheme,
-  lightV2,
-  themeColors,
-};
+//# sourceMappingURL=mds.d.ts.map
