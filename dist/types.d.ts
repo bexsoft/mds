@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactNode, FC, SVGProps, HTMLAttributes } from "react";
+import React, { FC, MouseEventHandler, ReactNode, SVGProps, HTMLAttributes } from "react";
 import { CSSObject, DefaultTheme } from "styled-components";
 import { SortDirectionType } from "react-virtualized";
 import { DateTime } from "luxon";
@@ -426,24 +426,6 @@ export interface IBytesCalc {
     unit: string;
 }
 export type OverrideTheme = CSSObject | ((theme: DefaultTheme) => CSSObject) | undefined;
-export interface ButtonProps {
-    id: string;
-    name?: string;
-    label?: string;
-    variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
-    icon?: ReactNode;
-    iconLocation?: "start" | "end";
-    fullWidth?: boolean;
-    disabled?: boolean;
-    collapseOnSmall?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    children?: ReactNode | string;
-    compact?: boolean;
-    sx?: OverrideTheme;
-}
-export interface ConstructProps {
-    parentChildren: ReactNode | string | undefined;
-}
 export const themeColors: ThemeColorItem;
 export const breakPoints: {
     xs: number;
@@ -453,7 +435,6 @@ export const breakPoints: {
     xl: number;
 };
 export const calculateBytes: (x: string | number, showDecimals?: boolean, roundFloor?: boolean) => IBytesCalc;
-export default Button;
 interface ThemeHandlerProps {
     darkMode?: boolean;
     customTheme?: ThemeDefinitionProps;
@@ -674,7 +655,26 @@ export const lightV2: {
 export const lightTheme: ThemeDefinitionProps;
 export const darkTheme: ThemeDefinitionProps;
 export const ThemeHandler: FC<ThemeHandlerProps>;
-export const GlobalStyles: import("styled-components").GlobalStyleComponent<{}, import("styled-components").DefaultTheme>;
+export const GlobalStyles: import("react").NamedExoticComponent<import("styled-components").ExecutionProps & object>;
+export interface ButtonProps {
+    id: string;
+    name?: string;
+    label?: string;
+    variant?: "regular" | "callAction" | "secondary" | "text" | "subAction";
+    icon?: ReactNode;
+    iconLocation?: "start" | "end";
+    fullWidth?: boolean;
+    disabled?: boolean;
+    collapseOnSmall?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    children?: ReactNode | string;
+    compact?: boolean;
+    sx?: OverrideTheme;
+}
+export interface ConstructProps {
+    parentChildren: ReactNode | string | undefined;
+}
+export const Button: FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>;
 export interface ApplicationLogoProps {
     applicationName: "console" | "operator" | "directpv" | "kes" | "subnet" | "subnetops" | "cloud" | "releases" | "vmbroker" | "eureka" | "kms" | "loadbalancer" | "index" | "cache" | "monitor" | "observe" | "missioncontrol" | "globalconsole" | "minio" | "enterprise";
     subVariant?: "simple" | "AGPL" | "standard" | "enterprise" | "new" | "enterpriseos" | "enterpriseosvertical";

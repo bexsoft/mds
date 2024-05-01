@@ -177,7 +177,7 @@ const DateSelector: FC<DateSelectorProps> = ({
   return (
     <DateSelectorContainer>
       <Calendar
-        onChange={(value) => {
+        onChange={(value: any) => {
           if (value) {
             onChange(DateTime.fromJSDate(value as Date));
           }

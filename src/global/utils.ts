@@ -18,7 +18,6 @@ import {
   ColorVariant,
   IBytesCalc,
   OverrideTheme,
-  ThemeDefinitionProps,
 } from "./global.types";
 import { themeColors } from "./themeColors";
 import { DefaultTheme } from "styled-components";
@@ -125,4 +124,6 @@ export const overridePropsParse = (
 
     return overrideValue;
   }
+
+  return {};
 };
