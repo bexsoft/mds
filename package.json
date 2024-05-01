@@ -4,7 +4,6 @@
   "description": "A MinIO Components Library",
   "homepage": ".",
   "license": "AGPL-3.0-or-later",
-  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
