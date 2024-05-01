@@ -1,5 +1,5 @@
-declare const GlobalStyles: import("styled-components").GlobalStyleComponent<
-  {},
-  import("styled-components").DefaultTheme
+/// <reference types="react" />
+declare const GlobalStyles: import("react").NamedExoticComponent<
+  import("styled-components").ExecutionProps & object
 >;
 export default GlobalStyles;
