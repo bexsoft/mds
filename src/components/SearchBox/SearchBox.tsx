@@ -31,7 +31,6 @@ const SearchBoxContainer = styled.div(({ theme }) => ({
     marginLeft: 8,
     top: "50%",
     transform: "translateY(-50%)",
-    zIndex: 200,
     width: 16,
     height: 16,
     color: get(
@@ -55,7 +54,6 @@ const SearchBoxBase = styled.input<SearchBoxProps>(({ sx, theme }) => {
   );
 
   return {
-    zIndex: 100,
     position: "relative",
     width: "100%",
     height: 30,
