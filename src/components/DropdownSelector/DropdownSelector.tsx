@@ -185,7 +185,7 @@ const calcElementPosition = (
     window.innerHeight - bounds.top - bounds.height - defaultMaxHeight;
 
   if (calcHeight < 0) {
-    returnItem.maxHeight = window.innerHeight - bounds.top - 40;
+    returnItem.maxHeight = window.innerHeight - bounds.top - bounds.height - 40;
   }
 
   return returnItem;
