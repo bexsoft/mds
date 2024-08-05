@@ -181,11 +181,12 @@ const calcElementPosition = (
   let defaultMaxHeight = 450;
   returnItem.maxHeight = defaultMaxHeight;
 
-  const calcHeight = window.innerHeight - bounds.top - bounds.height - defaultMaxHeight;
+  const calcHeight =
+    window.innerHeight - bounds.top - bounds.height - defaultMaxHeight;
 
-    if (calcHeight < 0) {
-      returnItem.maxHeight = window.innerHeight - bounds.top - 40;
-    }
+  if (calcHeight < 0) {
+    returnItem.maxHeight = window.innerHeight - bounds.top - 40;
+  }
 
   return returnItem;
 };
