@@ -42,7 +42,6 @@ const DropdownBlock = styled.div<DropDownBlockProps>(
       lightV2.white,
     ),
     padding: 8,
-    maxHeight: 450,
     minWidth: useAnchorWidth ? 160 : 0,
     overflowX: "hidden",
     overflowY: "auto",
@@ -176,6 +175,17 @@ const calcElementPosition = (
   if (useAnchorWidth) {
     returnItem.width = bounds.width;
   }
+
+  //max height of dropdown
+
+  let defaultMaxHeight = 450;
+  returnItem.maxHeight = defaultMaxHeight;
+
+  const calcHeight = window.innerHeight - bounds.top - bounds.height - defaultMaxHeight;
+
+    if (calcHeight < 0) {
+      returnItem.maxHeight = window.innerHeight - bounds.top - 40;
+    }
 
   return returnItem;
 };
