@@ -24,56 +24,108 @@ import Box from "../Box/Box";
 import { SliderContainerProps, SliderProps } from "./Slider.types";
 import { lightColors } from "../../global/themes";
 import { overridePropsParse } from "../../global/utils";
+import { themeColors, themeShadows } from "../../global/themeColors";
 
 const InputBase = styled.input(({ theme }) => {
   const thumb: CSSObject = {
     "-webkit-appearance": "none",
+    boxSizing: "border-box",
     appearance: "none",
-    backgroundColor: get(theme, "slider.bulletBG", lightColors.bulletColor),
-    height: 15,
-    width: 15,
+    backgroundColor: get(
+      theme,
+      "slider.bulletBG",
+      themeColors["Color/Brand/Primary/colorPrimary"].lightMode,
+    ),
+    border: `4px solid ${get(theme, "slider.bulletBorder", themeColors["Color/Base/White"].lightMode)}`,
+    height: 16,
+    width: 16,
     borderRadius: "100%",
+    boxShadow: themeShadows["boxShadow-02"],
   };
 
   return {
-    '&[type="range"]': {
+    "&[type='range']": {
       width: "100%",
-      height: 6,
-      zIndex: 100,
-      margin: 0,
+      overflow: "hidden",
       "-webkit-appearance": "none",
-      appearance: "none",
-      background: "transparent",
-      cursor: "pointer",
-      "&:focus": {
-        outline: "none",
+      backgroundColor: "#9a905d",
+      "&::-webkit-slider-runnable-track": {
+        height: 10,
+        "-webkit-appearance": "none",
+        color: "#13bba4",
+        marginTop: -1,
       },
       "&::-webkit-slider-thumb": {
-        ...thumb,
+        width: 10,
+        "-webkit-appearance": "none",
+        height: 10,
+        cursor: "ew-resize",
+        background: "#434343",
+        color: "#43e5f7",
       },
-      "&::-moz-range-thumb": {
-        ...thumb,
-        border: "none",
+      "&::-moz-range-progress": {
+        backgroundColor: "#43e5f7",
       },
-    },
-    '&[type="range"]:disabled': {
-      cursor: "not-allowed",
-      "&::-webkit-slider-thumb": {
-        backgroundColor: get(
-          theme,
-          "slider.disabledBullet",
-          lightColors.disabledGrey,
-        ),
-      },
-      "&::-moz-range-thumb": {
-        backgroundColor: get(
-          theme,
-          "slider.disabledBullet",
-          lightColors.disabledGrey,
-        ),
+      "&::-moz-range-track": {
+        backgroundColor: "#9a905d",
       },
     },
   };
+
+  /*return {
+            '&[type="range"]': {
+              width: "100%",
+              height: 8,
+              zIndex: 500,
+              margin: 0,
+              cursor: "pointer",
+              "-webkit-appearance" : "none",
+              backgroundColor: get(theme, "slider.railBG", themeColors["Color/Brand/Neutral/colorPrimaryBg"].lightMode),
+              borderRadius: 15,
+              "&:focus": {
+                outline: "none",
+              },
+              "&::-webkit-slider-thumb": {
+                ...thumb,
+                marginTop: -4,
+              },
+              "&::-moz-range-thumb": {
+                ...thumb,
+                backgroundColor: "#f09",
+              },
+              "&::-moz-range-progress": {
+                backgroundColor: get(
+                  theme,
+                  "slider.progressColor",
+                  themeColors["Color/Brand/Primary/colorPrimary"].lightMode,
+                ),
+                height: 8,
+                borderRadius: 15,
+              },
+              "&::-moz-range-track": {
+                backgroundColor: get(theme, "slider.railBG", themeColors["Color/Brand/Neutral/colorPrimaryBg"].lightMode),
+                height: 8,
+                borderRadius: 15,
+              },
+            },
+            '&[type="range"]:disabled': {
+              cursor: "not-allowed",
+              "&::-webkit-slider-thumb": {
+                backgroundColor: get(
+                  theme,
+                  "slider.disabledBullet",
+                  lightColors.disabledGrey,
+                ),
+              },
+              "&::-moz-range-thumb": {
+                backgroundColor: get(
+                  theme,
+                  "slider.disabledBullet",
+                  lightColors.disabledGrey,
+                ),
+              },
+            },
+          };*/
 });
 
 const SliderContainer = styled.div<SliderContainerProps>(

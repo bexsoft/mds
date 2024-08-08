@@ -1039,10 +1039,13 @@ export const lightTheme: ThemeDefinitionProps = {
     },
   },
   slider: {
-    bulletBG: lightColors.bulletColor,
-    railBG: lightColors.borderColor,
-    disabledRail: lightColors.sliderDisabledBG,
-    disabledBullet: lightColors.disabledInnerGrey,
+    bulletBG: themeColors["Color/Brand/Primary/colorPrimary"].lightMode,
+    bulletBorder: themeColors["Color/Base/White"].lightMode,
+    railBG: themeColors["Color/Brand/Neutral/colorPrimaryBg"].lightMode,
+    disabledRail: themeColors["Color/Neutral/Bg/colorBgDisabled"].lightMode,
+    disabledBullet: themeColors["Color/Neutral/Text/colorTextPlaceholder"].lightMode,
+    disabledBulletBorder: themeColors["Color/Neutral/Text/colorTextPlaceholder"].lightMode,
+    progressColor: themeColors["Color/Brand/Primary/colorPrimary"].lightMode,
   },
   valuePair: {
     labelColor: lightV2.modalTitleColor,
@@ -1929,10 +1932,13 @@ export const darkTheme: ThemeDefinitionProps = {
     },
   },
   slider: {
-    bulletBG: darkColors.defaultFontColor,
-    railBG: darkColors.footerDivider,
-    disabledRail: darkColors.disabledSwitchBG,
-    disabledBullet: darkColors.disabledSliderBullet,
+    bulletBG: themeColors["Color/Brand/Primary/colorPrimary"].darkMode,
+    bulletBorder: themeColors["Color/Base/White"].darkMode,
+    railBG: themeColors["Color/Brand/Neutral/colorPrimaryBg"].darkMode,
+    disabledRail: themeColors["Color/Neutral/Bg/colorBgDisabled"].darkMode,
+    disabledBullet: themeColors["Color/Neutral/Text/colorTextPlaceholder"].darkMode,
+    disabledBulletBorder: themeColors["Color/Neutral/Text/colorTextPlaceholder"].darkMode,
+    progressColor: themeColors["Color/Brand/Primary/colorPrimary"].darkMode,
   },
   pill: {
     default: {

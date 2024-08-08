@@ -397,8 +397,11 @@ export interface WizardColorProps {
 export interface SliderColorProps {
   railBG: string;
   bulletBG: string;
+  bulletBorder: string;
   disabledRail: string;
   disabledBullet: string;
+  disabledBulletBorder: string;
+  progressColor: string;
 }
 
 export interface BoxThemeProps {
