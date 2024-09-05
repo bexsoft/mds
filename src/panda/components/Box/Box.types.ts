@@ -14,23 +14,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import type { Meta, StoryObj } from '@storybook/react';
+import React from "react";
 
-import Box from "./Box";
+import { OverrideTheme } from "../../global/global.types";
 
-const meta = {
-  title: 'MDS/Layout/Box',
-  component: Box,
-  tags: ['autodocs'],
-} satisfies Meta<typeof Box>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {
-    children: 'Hello 🐼!',
-  },
-};
-
-
+export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
+  sx?: OverrideTheme;
+  children?: React.ReactNode;
+  withBorders?: boolean;
+  customBorderPadding?: number | string;
+  customBorderRadius?: number | string;
+  useBackground?: boolean;
+}

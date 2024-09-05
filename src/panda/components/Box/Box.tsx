@@ -15,9 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import React, { RefObject } from "react";
-import { styled } from "../../../styled-system/jsx";
+import { styled } from "../../../../styled-system/jsx";
 import { BoxProps } from "./Box.types";
-import { css } from "../../../styled-system/css";
+import { css } from "../../../../styled-system/css";
 
 const BoxParent = styled("div", {
   base: {
@@ -75,11 +75,12 @@ const Box = React.forwardRef<React.HTMLAttributes<HTMLDivElement>, BoxProps>(
     ref,
   ) => {
     return (
-      <BoxParent className={css({
+      <div className={css({
+        backgroundColor: "#009",
         width: "100%",
         height: "50px",
         color: "#ff0"
-      })}>{children}</BoxParent>
+      })}>{children}</div>
     );
     /*return (
       <BoxParent

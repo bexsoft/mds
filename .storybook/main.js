@@ -1,7 +1,7 @@
 import remarkGfm from "remark-gfm";
 
 module.exports = {
-  stories: ["../src/**/**/*.mdx", "../src/**/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/panda/**/**/*.mdx", "../src/panda/**/**/*.stories.@(js|jsx|ts|tsx)"],
 
   core: {
     disableTelemetry: true,
