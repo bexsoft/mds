@@ -1,3 +1,4 @@
+import "../src/index.css";
 import { themes } from "@storybook/theming";
 import { darkColors, lightColors } from "../src/global/themes";
 

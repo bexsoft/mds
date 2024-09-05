@@ -16,7 +16,7 @@
 
 import React, { RefObject } from "react";
 import get from "lodash/get";
-import styled from "styled-components";
+import styled from "../../../styled-system/css";
 
 import { lightV2 } from "../../global/themes";
 import { overridePropsParse } from "../../global/utils";
