@@ -17,11 +17,10 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 
-import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import TestIcon from "../../utils/TestIcon";
-import GlobalStyles from "../GlobalStyles/GlobalStyles";
-import Button from "./Button";
 import { ButtonProps } from "./Button.types";
+import StoryThemeProvider from "../../utils/StoryThemeProvider";
+import Button from "./";
+import TestIcon from "../../utils/TestIcon";
 
 export default {
   title: "MDS/Forms/Button",
@@ -31,7 +30,6 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => (
   <StoryThemeProvider>
-    <GlobalStyles />
     <Button {...args} onClick={() => alert("You clicked me!")} />
     <br />
     <Button id={"random_btn1"} variant={args.variant}>

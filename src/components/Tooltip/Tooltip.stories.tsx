@@ -18,24 +18,21 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import Button from "../Button/Button";
-import GlobalStyles from "../GlobalStyles/GlobalStyles";
-import Grid from "../Grid/Grid";
-import Tooltip from "./Tooltip";
+import Index from "./index";
 import { TooltipProps } from "./Tooltip.types";
+import Button from "../Button";
 
 export default {
   title: "MDS/Graphics/Tooltip",
-  component: Tooltip,
+  component: Index,
   argTypes: {},
-} as Meta<typeof Tooltip>;
+} as Meta<typeof Index>;
 
 const Template: Story<TooltipProps> = (args) => (
   <StoryThemeProvider>
-    <GlobalStyles />
     <Grid container>
       <Grid item xs={4}>
-        <Tooltip {...args} />
+        <Index {...args} />
       </Grid>
       <Grid item xs={4}>
         <Grid
@@ -57,7 +54,7 @@ const Template: Story<TooltipProps> = (args) => (
               alignItems: "flex-start",
             }}
           >
-            <Tooltip {...args} />
+            <Index {...args} />
           </Grid>
           <Grid
             item
@@ -70,7 +67,7 @@ const Template: Story<TooltipProps> = (args) => (
               alignItems: "center",
             }}
           >
-            <Tooltip {...args} />
+            <Index {...args} />
           </Grid>
           <Grid
             item
@@ -83,12 +80,12 @@ const Template: Story<TooltipProps> = (args) => (
               alignItems: "flex-end",
             }}
           >
-            <Tooltip {...args} />
+            <Index {...args} />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={4} sx={{ textAlign: "right" }}>
-        <Tooltip {...args} />
+        <Index {...args} />
       </Grid>
     </Grid>
   </StoryThemeProvider>

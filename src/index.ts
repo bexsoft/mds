@@ -14,4 +14,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-export * from "./components";
+export { default as Accordion } from "./components/Accordion";
+export { default as Badge } from "./components/Badge";
+export { default as Box } from "./components/Box";
+export { default as ButtonGroup } from "./components/ButtonGroup";
+export { default as Button } from "./components/Button";
+export { default as ExpandMenu } from "./components/ExpandMenu";
+export { default as MDSCacheProvider } from "./components/MDSCacheProvider";
+export { default as ThemeHandler } from "./components/ThemeHandler";

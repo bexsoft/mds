@@ -27,11 +27,11 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
       css({ alwaysOutput: true, minify: true }),
-      copy({
+      /*copy({
         targets: [{ src: "src/components/assets", dest: "dist" }],
-      }),
+      }),*/
     ],
-    external: ["react", "react-dom", "styled-components"],
+    external: ["react", "react-dom", "emotion", "emotion/react"],
   },
   {
     input: "dist/esm/types/src/index.d.ts",

@@ -17,10 +17,10 @@
 import React, { useEffect, useRef } from "react";
 import { Meta, Story } from "@storybook/react";
 
-import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import { GlobalStyles, ThemeDefinitionProps } from "../index";
-import Box from "./Box";
+import Box from "./";
 import { BoxProps } from "./Box.types";
+import StoryThemeProvider from "../../utils/StoryThemeProvider";
+import { Theme } from "@emotion/react";
 
 export default {
   title: "MDS/Layout/Box",
@@ -32,12 +32,12 @@ const Template: Story<BoxProps> = (args) => {
   const reference = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    console.log(reference.current.id);
+    console.log(reference);
+    console.log(reference?.current?.className);
   }, [reference]);
 
   return (
     <StoryThemeProvider>
-      <GlobalStyles />
       <Box {...args} ref={reference}>
         Box Content
       </Box>
@@ -53,12 +53,6 @@ Default.args = {
 export const WithBorder = Template.bind({});
 WithBorder.args = {
   withBorders: true,
-};
-
-export const WithBackgroundColor = Template.bind({});
-WithBackgroundColor.args = {
-  withBorders: true,
-  useBackground: true,
 };
 
 export const WithCustomBorderPadding = Template.bind({});
@@ -86,9 +80,9 @@ BoxWithCustomStyles.args = {
 export const BoxWithFunctionCustomStyles = Template.bind({});
 BoxWithFunctionCustomStyles.args = {
   withBorders: true,
-  sx: (theme: ThemeDefinitionProps) => ({
-    backgroundColor: theme.signalColors?.danger || "#000",
-    color: theme.bgColor,
+  sx: (theme: Theme) => ({
+    backgroundColor: "#f0f",
+    color: theme.colors["Color/Neutral/Text/colorTextPrimary"],
     borderRadius: 5,
     padding: 8,
   }),

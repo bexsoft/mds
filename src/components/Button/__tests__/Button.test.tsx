@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
+import Button from "../";
 import TestIcon from "../../../utils/TestIcon";
-import Button from "../Button";
 
 describe("Running Test for Button", () => {
   test("Check Button Disabled", () => {

@@ -17,13 +17,12 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 
-import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import TestIcon from "../../utils/TestIcon";
-import EyeIcon from "../Icons/NewDesignIcons/EyeIcon";
-import HomeIcon from "../Icons/NewDesignIcons/HomeIcon";
-import { GlobalStyles } from "../index";
-import Breadcrumbs from "./Breadcrumbs";
 import { BreadcrumbsOption, BreadcrumbsProps } from "./Breadcrumbs.types";
+import Breadcrumbs from "./";
+import StoryThemeProvider from "../../utils/StoryThemeProvider";
+import HomeIcon from "../../icons/HomeIcon";
+import TestIcon from "../../utils/TestIcon";
+import EyeIcon from "../../icons/EyeIcon";
 
 export default {
   title: "MDS/Layout/Breadcrumbs",
@@ -33,7 +32,6 @@ export default {
 
 const Template: Story<BreadcrumbsProps> = (args) => (
   <StoryThemeProvider>
-    <GlobalStyles />
     <Breadcrumbs {...args} />
   </StoryThemeProvider>
 );

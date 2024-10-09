@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { MouseEventHandler, ReactNode } from "react";
-
 import { OverrideTheme } from "../../global/global.types";
 
 export type ButtonVariant =
@@ -38,7 +37,6 @@ export interface ButtonProps {
   iconLocation?: "start" | "end";
   secondaryIcon?: ReactNode;
   fullWidth?: boolean;
-  disabled?: boolean;
   collapseOnSmall?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode | string;
@@ -48,6 +46,23 @@ export interface ButtonProps {
   isLoading?: boolean;
 }
 
+export interface ButtonStatesProps {
+  enabled: ButtonStyleProps;
+  disabled: ButtonStyleProps;
+  hover: ButtonStyleProps;
+  pressed: ButtonStyleProps;
+}
+
+export interface ButtonStyleProps {
+  border: string;
+  text: string;
+  background: string;
+  iconColor: string;
+  shadow?: string;
+}
+
 export interface ConstructProps {
   parentChildren: ReactNode | string | undefined;
 }
+
+export type ButtonThemeProps = Record<ButtonVariant, ButtonStatesProps>;
