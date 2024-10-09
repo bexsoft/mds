@@ -17,10 +17,9 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 
-import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import GlobalStyles from "../GlobalStyles/GlobalStyles";
-import Checkbox from "./Checkbox";
+import Checkbox from "./";
 import { CheckboxProps } from "./Checkbox.types";
+import StoryThemeProvider from "../../utils/StoryThemeProvider";
 
 export default {
   title: "MDS/Forms/Checkbox",
@@ -30,7 +29,6 @@ export default {
 
 const Template: Story<CheckboxProps> = (args) => (
   <StoryThemeProvider>
-    <GlobalStyles />
     <Checkbox {...args} />
   </StoryThemeProvider>
 );

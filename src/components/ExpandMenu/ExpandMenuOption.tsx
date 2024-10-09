@@ -14,20 +14,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import React, { FC } from "react";
-import styled from "styled-components";
+/** @jsx jsx */
+import React, { FC, useMemo } from "react";
 
-import { expandMenuOptionStyles } from "../../utils/GlobalUtils";
-import {
-  ExpandMenuConstructProps,
-  ExpandMenuOptionProps,
-} from "./ExpandMenu.types";
-
-const ExpandMenuOptionBase = styled.button<
-  ExpandMenuOptionProps & ExpandMenuConstructProps
->(({ theme, inButtonGroup = false, icon, parentChildren }) =>
-  expandMenuOptionStyles(theme, inButtonGroup, icon, parentChildren),
-);
+import { ExpandMenuOptionProps } from "./ExpandMenu.types";
+import { css, jsx, useTheme } from "@emotion/react";
+import { overridePropsParse } from "../../global/utils";
+import { expandMenuOptionStyles } from "./ExpandMenu.variants";
 
 const ExpandMenuOption: FC<
   ExpandMenuOptionProps & React.ButtonHTMLAttributes<HTMLButtonElement>
@@ -40,20 +33,32 @@ const ExpandMenuOption: FC<
   inButtonGroup = false,
   ...restProps
 }) => {
+  const theme = useTheme();
+
+  const overrideThemes = useMemo(() => {
+    if (sx) {
+      return css({ ...overridePropsParse(sx, theme) });
+    }
+
+    return {};
+  }, [sx, theme]);
+
+  let extraPadding = {};
+
+  if (inButtonGroup) {
+    extraPadding = { padding: icon && !children ? "6px" : "4px 12px" };
+  }
+
   return (
-    <ExpandMenuOptionBase
+    <button
       id={id}
-      sx={sx}
-      variant={variant}
       className={`option-element ${variant}`}
-      inButtonGroup={inButtonGroup}
-      icon={icon}
-      parentChildren={children}
+      css={[expandMenuOptionStyles(theme), extraPadding, overrideThemes]}
       {...restProps}
     >
       {icon && <span className={"menu-icon"}>{icon}</span>}
       <span className={"menu-option"}>{children}</span>
-    </ExpandMenuOptionBase>
+    </button>
   );
 };
 

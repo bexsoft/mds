@@ -1,3 +1,4 @@
+/** @jsx jsx */
 import React, { FC } from "react";
 import { BreadcrumbsOptionProps } from "./Breadcrumbs.types";
 declare const BreadcrumbButton: FC<

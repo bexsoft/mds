@@ -14,11 +14,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import React, { FC, HTMLAttributes } from "react";
-import styled from "styled-components";
+/** @jsx jsx */
+import React, { FC, useMemo } from "react";
 
 import { OverrideTheme } from "./global.types";
 import { breakPoints, overridePropsParse } from "./utils";
+import { css, jsx, useTheme } from "@emotion/react";
 
 export interface FieldContainerProps {
   children: React.ReactNode;
@@ -26,9 +27,7 @@ export interface FieldContainerProps {
   sx?: OverrideTheme;
 }
 
-const MainContainer = styled.div<
-  HTMLAttributes<HTMLDivElement> & FieldContainerProps
->(({ sx, theme }) => ({
+const mainStyle = css({
   position: "relative",
   display: "flex",
   flexWrap: "wrap",
@@ -45,18 +44,27 @@ const MainContainer = styled.div<
       width: 13,
     },
   },
-  ...overridePropsParse(sx, theme),
-}));
+});
 
 export const FieldContainer: FC<FieldContainerProps> = ({
   children,
   sx,
   className,
 }) => {
+  const theme = useTheme();
+
+  const overrideThemes = useMemo(() => {
+    if (sx) {
+      return css({ ...overridePropsParse(sx, theme) });
+    }
+
+    return {};
+  }, [sx, theme]);
+
   return (
-    <MainContainer sx={sx} className={className}>
+    <div css={[mainStyle, overrideThemes]} className={className}>
       {children}
-    </MainContainer>
+    </div>
   );
 };
 

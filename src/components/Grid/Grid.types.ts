@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { HTMLAttributes, ReactNode } from "react";
-
 import { OverrideTheme } from "../../global/global.types";
 
 interface GridCommonProps extends HTMLAttributes<HTMLDivElement> {
@@ -23,7 +22,7 @@ interface GridCommonProps extends HTMLAttributes<HTMLDivElement> {
   sx?: OverrideTheme;
 }
 
-type ConditionalProps =
+export type ConditionalProps =
   | {
       container?: boolean;
       item?: never;

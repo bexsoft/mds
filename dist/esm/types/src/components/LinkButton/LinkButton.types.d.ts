@@ -1,11 +1,17 @@
 import { OverrideTheme } from "../../global/global.types";
+import React from "react";
 export type LinkButtonVariant = "primary" | "neutral" | "destructive";
-export interface CommonLinkButtonProps {
+export interface LinkButtonStyle {
+  default: string;
+  hover: string;
+  active: string;
+  disabled: string;
+}
+export interface LinkButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   label?: any;
-}
-export interface BaseLinkButtonProps {
   variant?: LinkButtonVariant;
   sx?: OverrideTheme;
 }
-export type LinkButtonProps = CommonLinkButtonProps & BaseLinkButtonProps;
+export type LinkButtonThemeVariant = Record<LinkButtonVariant, LinkButtonStyle>;

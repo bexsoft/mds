@@ -18,11 +18,10 @@ import React from "react";
 import { Meta, Story } from "@storybook/react";
 
 import StoryThemeProvider from "../../utils/StoryThemeProvider";
-import Box from "../Box/Box";
-import GlobalStyles from "../GlobalStyles/GlobalStyles";
-import PlusIcon from "../Icons/NewDesignIcons/PlusIcon";
-import Badge from "./Badge";
+import Badge from "./";
 import { BadgeProps } from "./Badge.types";
+import Box from "../Box";
+import PlusIcon from "../../icons/PlusIcon";
 
 export default {
   title: "MDS/Information/Badge",
@@ -33,7 +32,6 @@ export default {
 const Template: Story<BadgeProps> = ({ label, id, sx, color }) => {
   return (
     <StoryThemeProvider>
-      <GlobalStyles />
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
         <Badge label={label} color={color} id={id} sx={sx} />
 

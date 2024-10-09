@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import React from "react";
-
 import { OverrideTheme } from "../../global/global.types";
 
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,5 +23,4 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   withBorders?: boolean;
   customBorderPadding?: number | string;
   customBorderRadius?: number | string;
-  useBackground?: boolean;
 }

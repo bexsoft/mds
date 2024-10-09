@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import React from "react";
-
 import { OverrideTheme, SelectOption } from "../../global/global.types";
 
 export interface DropdownSelectorProps {
@@ -33,16 +32,4 @@ export interface DropdownSelectorProps {
   anchorOrigin?: "start" | "end";
   useAnchorWidth?: boolean;
   forSelectInput?: boolean;
-}
-
-export interface DropDownBlockProps {
-  useAnchorWidth: boolean;
-  forSelectInput: boolean;
-  sx: OverrideTheme;
-}
-
-export interface DropdownItemProps {
-  icon?: React.ReactNode;
-  label: string;
-  indicator?: React.ReactNode;
 }

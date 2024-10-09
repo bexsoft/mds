@@ -14,4 +14,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-export * from "./components";
+export { default as Accordion } from "./components/Accordion";
+export { default as Badge } from "./components/Badge";
+export { default as Box } from "./components/Box";
+export { default as ButtonGroup } from "./components/ButtonGroup";
+export { default as Button } from "./components/Button";
+export { default as CodeEditor } from "./components/CodeEditor";
+export { default as Checkbox } from "./components/Checkbox";
+export { default as DropdownSelector } from "./components/DropdownSelector";
+export { default as ExpandMenu } from "./components/ExpandMenu";
+export { default as Grid } from "./components/Grid";
+export { default as InputLabel } from "./components/InputLabel";
+export { default as LinkButton } from "./components/LinkButton";
+export { default as MDSCacheProvider } from "./components/MDSCacheProvider";
+export { default as ModalBox } from "./components/ModalBox";
+export { default as ProgressBar } from "./components/ProgressBar";
+export { default as Select } from "./components/Select";
+export { default as Slider } from "./components/Slider";
+export { default as ThemeHandler } from "./components/ThemeHandler";
+export { default as Tooltip } from "./components/Tooltip";

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { OverrideTheme } from "../../global/global.types";
 import { ButtonVariant } from "../Button/Button.types";
+import { OverrideTheme } from "../../global/global.types";
 export interface ExpandMenuProps {
   id: string;
   name?: string;
