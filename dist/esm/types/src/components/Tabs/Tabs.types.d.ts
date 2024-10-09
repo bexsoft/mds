@@ -20,12 +20,6 @@ export interface TabsProps {
   onTabClick: (selectedItem: string) => void;
   optionsInitialComponent?: React.ReactNode;
   optionsEndComponent?: React.ReactNode;
-  horizontalBarBackground?: boolean;
-  sx?: OverrideTheme;
-}
-export interface TabsContainerProps {
-  horizontal: boolean;
-  horizontalBarBackground: boolean;
   sx?: OverrideTheme;
 }
 export interface TabButtonProps {
@@ -36,9 +30,6 @@ export interface TabButtonProps {
   disabled: boolean;
   icon?: React.ReactNode;
   selected?: boolean;
-}
-export interface TabButtonConstructProps {
-  horizontal: boolean;
 }
 export interface TabPanelProps {
   id: string;

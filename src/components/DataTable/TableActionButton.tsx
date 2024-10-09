@@ -15,100 +15,22 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import React from "react";
-import get from "lodash/get";
-import styled from "styled-components";
-
-import { lightV2 } from "../../global/themes";
-import CircleMinusIcon from "../Icons/NewDesignIcons/CircleMinusIcon";
-import CloudIcon from "../Icons/NewDesignIcons/CloudIcon";
-import DownloadIcon from "../Icons/NewDesignIcons/DownloadIcon";
-import EraserIcon from "../Icons/NewDesignIcons/EraserIcon";
-import EyeIcon from "../Icons/NewDesignIcons/EyeIcon";
-import PencilIcon from "../Icons/NewDesignIcons/PencilIcon";
-import ShareIcon from "../Icons/NewDesignIcons/ShareIcon";
-import ShieldEllipsisIcon from "../Icons/NewDesignIcons/ShieldEllipsisIcon";
-import SquareTerminalIcon from "../Icons/NewDesignIcons/SquareTerminalIcon";
-import TrashIcon from "../Icons/NewDesignIcons/TrashIcon";
-import Tooltip from "../Tooltip/Tooltip";
 import {
   actionsTypes,
   IActionButton,
   PredefinedActionTypes,
 } from "./DataTable.types";
-
-const TableActionCustomIcon = styled.button(({ theme }) => {
-  const buttonSize: number | string = 30;
-
-  return {
-    width: buttonSize,
-    height: buttonSize,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "100%",
-    border: `1px solid ${get(theme, `dataTable.actionButton.border`, lightV2.plainIconButtonBorder)}`,
-    position: "relative",
-    cursor: "pointer",
-    transitionDuration: "0.2s",
-    background: get(
-      theme,
-      `dataTable.actionButton.background`,
-      lightV2.plainIconButtonBG,
-    ),
-    "& svg": {
-      color: get(
-        theme,
-        `dataTable.actionButton.iconColor`,
-        lightV2.plainIconButtonColor,
-      ),
-      margin: "calc(25% - 2px)",
-    },
-    "&:hover:not(:disabled)": {
-      background: get(
-        theme,
-        `dataTable.actionButton.hoverBackground`,
-        lightV2.plainIconButtonBG,
-      ),
-      borderColor: get(
-        theme,
-        `dataTable.actionButton.hoverBorder`,
-        lightV2.plainIconButtonBorder,
-      ),
-    },
-    "&:active:not(:disabled)": {
-      background: get(
-        theme,
-        `dataTable.actionButton.activeBackground`,
-        lightV2.plainIconButtonBG,
-      ),
-      borderColor: get(
-        theme,
-        `dataTable.actionButton.activeBorder`,
-        lightV2.plainIconButtonBorder,
-      ),
-    },
-    "&:disabled": {
-      cursor: "not-allowed",
-      background: get(
-        theme,
-        `dataTable.actionButton.disabledBackground`,
-        "transparent",
-      ),
-      borderColor: get(
-        theme,
-        `dataTable.actionButton.disabledBorder`,
-        lightV2.disabledSecondary,
-      ),
-      "& svg": {
-        color: get(
-          theme,
-          `dataTable.actionButton.disabledIconColor`,
-          lightV2.disabledSecondaryText,
-        ),
-      },
-    },
-  };
-});
+import EyeIcon from "../../icons/EyeIcon";
+import PencilIcon from "../../icons/PencilIcon";
+import TrashIcon from "../../icons/TrashIcon";
+import ShieldEllipsisIcon from "../../icons/ShieldEllipsisIcon";
+import ShareIcon from "../../icons/ShareIcon";
+import CloudIcon from "../../icons/CloudIcon";
+import SquareTerminalIcon from "../../icons/SquareTerminalIcon";
+import DownloadIcon from "../../icons/DownloadIcon";
+import CircleMinusIcon from "../../icons/CircleMinusIcon";
+import EraserIcon from "../../icons/EraserIcon";
+import Tooltip from "../Tooltip";
 
 export const isPredefinedAction = (val: any): val is PredefinedActionTypes =>
   actionsTypes.includes(val);
@@ -151,7 +73,7 @@ const TableActionButton = <T,>({
 }: IActionButton<T>) => {
   const icon = isPredefinedAction(type) ? defineIcon(type) : type;
   let buttonElement = (
-    <TableActionCustomIcon
+    <button
       type={"button"}
       aria-label={typeof type === "string" ? type : ""}
       disabled={disabled}
@@ -169,7 +91,7 @@ const TableActionButton = <T,>({
       }
     >
       {icon}
-    </TableActionCustomIcon>
+    </button>
   );
 
   if (tooltip && tooltip !== "") {

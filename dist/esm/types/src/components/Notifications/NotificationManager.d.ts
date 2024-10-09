@@ -1,5 +1,5 @@
-import { NotificationVariant } from "../NotificationAlert/NotificationAlert.types";
 import { Notification, NotificationOptions } from "./Notifications.types";
+import { NotificationVariant } from "../NotificationAlert/NotificationAlert.types";
 type NotificationCallback = (notifications: Notification[]) => void;
 declare class NotificationManager {
   private static instance;

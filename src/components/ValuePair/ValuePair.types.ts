@@ -15,8 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { ReactNode } from "react";
-
 import { OverrideTheme } from "../../global/global.types";
+
+export type ValuePairDirection = "column" | "row";
 
 export interface ValuePairMain {
   label?: ReactNode;
@@ -24,7 +25,7 @@ export interface ValuePairMain {
 }
 
 export interface ValuePairCommon {
-  direction?: "column" | "row";
+  direction?: ValuePairDirection;
   sx?: OverrideTheme;
 }
 

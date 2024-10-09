@@ -1,15 +1,16 @@
 import React from "react";
+export type TooltipPlacement = "bottom" | "left" | "right" | "top";
 export interface TooltipProps {
   children: React.ReactElement;
   tooltip: React.ReactNode;
   errorProps?: any;
-  placement?: "bottom" | "left" | "right" | "top";
+  placement?: TooltipPlacement;
 }
 export interface TooltipBuild {
-  placement: "bottom" | "left" | "right" | "top";
+  placement: TooltipPlacement;
 }
 export interface TooltipConstructProps {
-  placement: "bottom" | "left" | "right" | "top";
+  placement: TooltipPlacement;
   content: React.ReactNode;
   anchorEl: (EventTarget & HTMLSpanElement) | null;
 }
