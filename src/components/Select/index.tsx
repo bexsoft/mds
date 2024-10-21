@@ -23,6 +23,11 @@ import ChevronUpIcon from "../../icons/ChevronUpIcon";
 import DropdownSelector from "../DropdownSelector";
 import InputBox from "../InputBox";
 import { SelectProps } from "./Select.types";
+import { containerOverlayIcon, containerSizeSmall, inputContainerStyles } from "../InputBox/InputBox.styles";
+import InputLabel from "../InputLabel";
+import Tooltip from "../Tooltip";
+import CircleHelpIcon from "../../icons/CircleHelpIcon";
+import { containerStyles } from "../Grid/Grid.styles";
 
 const Select: FC<SelectProps> = ({
   id,
@@ -45,6 +50,8 @@ const Select: FC<SelectProps> = ({
   helper,
 }) => {
   const theme = useTheme();
+
+  const containerStyles = inputContainerStyles(theme);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<
@@ -69,21 +76,50 @@ const Select: FC<SelectProps> = ({
     left: 0,
     width: "100%",
     height: sizeMode === "small" ? 30 : 38,
-    "&:hover": {
+    "&:hover:not(.disabled)": {
       cursor: "pointer",
     },
+    cursor: disabled || readOnly ? "not-allowed" : "pointer",
   });
 
   return (
+    <div
+      css={[
+        containerStyles,
+        sizeMode === "small" ? containerSizeSmall : {},
+        css({ flexDirection: orientation === "vertical" ? "column" : "row" }),
+        overrideThemes,
+      ]}
+      className={`inputItem inputdiv Base_Normal ${className}`}
+    >
+      {label !== "" && (
+        <InputLabel
+          htmlFor={id}
+          noMinWidth={noLabelMinWidth}
+          className={`inputLabel ${orientation === "vertical" ? "verticalMode" : ""}`}
+          orientation={orientation}
+          inputSizeMode={sizeMode}
+        >
+          {label}
+          {required ? "*" : ""}
+          {tooltip !== "" && (
+            <div className={"tooltipContainer"}>
+              <Tooltip tooltip={tooltip} placement="top">
+                <div className={tooltip}>
+                  <CircleHelpIcon />
+                </div>
+              </Tooltip>
+            </div>
+          )}
+        </InputLabel>
+      )}
     <InputBox
       className={`select ${className || ""}`}
       id={id}
-      label={label}
-      required={required}
-      tooltip={tooltip}
       noLabelMinWidth={noLabelMinWidth}
       value={displayValue}
       sx={{
+        position: "relative",
         "& .overlayAction > button": {
           borderLeft: 0,
           backgroundColor: "transparent",
@@ -106,6 +142,8 @@ const Select: FC<SelectProps> = ({
       startIcon={selectedLabel?.icon}
     >
       <div
+        id={"select-trigger"}
+        className={`${disabled || readOnly ? "disabled" : ""}`}
         css={boxStyle}
         onClick={(e) => {
           if (!disabled) {
@@ -130,6 +168,7 @@ const Select: FC<SelectProps> = ({
         />
       )}
     </InputBox>
+    </div>
   );
 };
 
