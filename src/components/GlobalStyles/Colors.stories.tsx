@@ -17,7 +17,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 
-import GlobalStyles from "./GlobalStyles";
+import GlobalStyles from "./";
 import Box from "../Box";
 import StoryThemeProvider from "../../utils/StoryThemeProvider";
 import { darkModeColors, lightModeColors } from "../../global/themeColors";
