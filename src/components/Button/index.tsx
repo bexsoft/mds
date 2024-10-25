@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'use client'
+"use client";
 
 import React, { FC, Fragment, useMemo } from "react";
 import { css, useTheme } from "@emotion/react";

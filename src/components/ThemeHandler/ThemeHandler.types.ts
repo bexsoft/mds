@@ -14,29 +14,10 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/*Basics*/
-export {
-  breakPoints,
-  calculateBytes,
-  overridePropsParse,
-  paddingSizeVariants,
-  radioVariants,
-} from "./global/utils";
+import { Theme } from "@emotion/react";
 
-/*Hooks*/
-export {
-  useArrowKeys,
-  useEnterKey,
-  useEscapeKey,
-  useMDSTheme,
-} from "./global/hooks";
-
-export { default as Button } from "./components/Button";
-export { default as GlobalStyles } from "./components/GlobalStyles";
-
-/*Style Wrapper*/
-export { styled } from "./styled";
-
-export * from "./global/global.types";
-export * from "./global/themeColors";
-export * from "./global/themes";
+export interface ThemeHandlerProps {
+  darkMode?: boolean;
+  customTheme?: Theme;
+  children: any;
+}
