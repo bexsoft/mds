@@ -33,7 +33,7 @@ export default [
         keepName: true,
       }),
     ],
-    external: ["react", "react-dom", "emotion", "emotion/react"],
+    external: ["react", "react-dom", "@emotion/react", "@emotion/styled"],
   },
   {
     input: "dist/esm/src/index.d.ts",
