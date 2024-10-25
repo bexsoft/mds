@@ -357,6 +357,14 @@ declare const Button: FC<
 
 declare const GlobalStyles: () => _emotion_react_jsx_runtime.JSX.Element;
 
+interface ThemeHandlerProps {
+  darkMode?: boolean;
+  customTheme?: Theme;
+  children: any;
+}
+
+declare const ThemeHandler: FC<ThemeHandlerProps>;
+
 declare const lightModeColors: {
   "Color/Base/Royal/0": string;
   "Color/Base/Royal/1": string;
@@ -833,6 +841,7 @@ export {
   type SelectOption,
   type ShadowsThemeProps,
   type ThemeDefinition,
+  ThemeHandler,
   breakPoints,
   calculateBytes,
   darkModeColors,
