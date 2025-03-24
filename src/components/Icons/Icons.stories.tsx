@@ -1601,11 +1601,6 @@ const Template: Story = (args) => {
               <br />
               FolderBrowserIcon
             </div>
-            <div className="story-icon">
-              <ficons.TrashOffIcon />
-              <br />
-              TrashOffIcon
-            </div>
           </IconDisplay>
         </Grid>
       </Fragment>
