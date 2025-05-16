@@ -164,6 +164,10 @@ const DropdownSelector: FC<DropdownSelectorProps> = ({
   const [indexHover, setIndexHover] = useState<number>(0);
 
   const selectOption = () => {
+    if (!open) {
+      return; // Prevent action if the dropdown is not open
+    }
+
     const option = options[indexHover];
 
     if (!option.disabled) {
