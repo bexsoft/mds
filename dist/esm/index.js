@@ -23807,7 +23807,6 @@ const Nh = p.div(({}) => ({
     const [p, h] = a(null),
       [m, g] = a(0),
       f = () => {
-        if (!l) return;
         console.log("trigger");
         const e = t[m];
         e.disabled ||

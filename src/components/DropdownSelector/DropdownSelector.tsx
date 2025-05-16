@@ -168,12 +168,9 @@ const DropdownSelector: FC<DropdownSelectorProps> = ({
       return; // Prevent action if the dropdown is not open
     }
 
-    console.log("trigger");
-
     const option = options[indexHover];
 
     if (!option.disabled) {
-      console.log("onselect");
       onSelect(
         option.value,
         option.extraValue || null,
