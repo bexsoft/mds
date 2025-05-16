@@ -23808,8 +23808,12 @@ const Nh = p.div(({}) => ({
       [m, g] = a(0),
       f = () => {
         if (!l) return;
+        console.log("trigger");
         const e = t[m];
-        e.disabled || i(e.value, e.extraValue || null, e.label, m), o();
+        e.disabled ||
+          (console.log("onselect"),
+          i(e.value, e.extraValue || null, e.label, m)),
+          o();
       };
     return (
       ((e) => {
