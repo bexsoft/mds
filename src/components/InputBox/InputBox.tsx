@@ -123,7 +123,7 @@ const InputContainer = styled.div<InputContainerProps>(
 );
 
 const InputBox = React.forwardRef<
-  React.HTMLAttributes<HTMLInputElement>,
+  HTMLInputElement,
   InputBoxElement
 >(
   (
